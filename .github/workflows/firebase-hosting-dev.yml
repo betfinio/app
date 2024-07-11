@@ -6,9 +6,13 @@ name: Deploy to Firebase Hosting App Development
   push:
     branches:
       - dev
+env:
+  PUBLIC_WALLETCONNECT_ID: ${{ vars.PUBLIC_WALLETCONNECT_ID }}
+
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+    environment: development
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
