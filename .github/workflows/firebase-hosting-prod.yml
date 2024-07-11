@@ -34,7 +34,7 @@ env:
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
-    environment: development
+    environment: production
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
