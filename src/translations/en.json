@@ -1,0 +1,30 @@
+{
+  "shared": {
+    "sidebar": {
+      "staking": "Staking",
+      "staking-conservative": "Conservative",
+      "staking-dynamic": "Dynamic",
+      "affiliate": "Affiliate",
+      "affiliate-linear-tree": "Linear tree",
+      "affiliate-binary-tree": "Binary tree",
+      "roadmap": "Roadmap",
+      "documentation": "Documentation",
+      "media": "Media",
+      "contact": "Contact Us",
+      "exchange": "Buy BET",
+      "label": "Games",
+      "predict": "Crypto Predict",
+      "sport": "Sport betting",
+      "dice": "Dice",
+      "binary": "Binary Options",
+      "roulette": "Roulette",
+      "lottery": "Lucky Round",
+      "poker": "Poker",
+      "blackjack": "Blackjack",
+      "stones": "Stones",
+      "slots": "Slots",
+      "support": "Support",
+      "about": "About BET"
+    }
+  }
+}
