@@ -12,6 +12,7 @@ jobs:
     steps:
       - uses: oven-sh/setup-bun@v2
       - run: bun install
+
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - run: bun run build --env-mode production
