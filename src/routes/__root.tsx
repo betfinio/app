@@ -6,7 +6,6 @@ import {games, navigation, others} from "../config/links.tsx";
 import ConnectButton, {WalletBalance} from "../../components/ui/ConnectButton.tsx";
 import {WagmiProvider} from "wagmi";
 import {QueryClientProvider} from "@tanstack/react-query";
-import {midnightTheme, RainbowKitProvider} from "@rainbow-me/rainbowkit";
 import config from "../config/wagmi.ts";
 import queryClient from "../config/query.ts";
 import Header from "@/components/blocks/Header.tsx";
@@ -22,7 +21,7 @@ const Root: FC = () => {
 	}
 	const getSidebar = () => {
 		return <Sidebar links={[navigation, games, others]}>
-			<WalletBalance className={'mt-2'} />
+			<WalletBalance className={'mt-2'}/>
 		</Sidebar>
 	}
 	
@@ -32,12 +31,11 @@ const Root: FC = () => {
 	return <WagmiProvider config={config}>
 		<QueryClientProvider client={queryClient}>
 			<SupabaseProvider client={client}>
-				<RainbowKitProvider theme={midnightTheme()}><I18nextProvider i18n={appInstance}>
+				<I18nextProvider i18n={appInstance}>
 					<RootLayout header={getHeader()} sidebar={getSidebar()} footer={getFooter()}>
 						<Outlet/>
 					</RootLayout>
 				</I18nextProvider>
-				</RainbowKitProvider>
 			</SupabaseProvider>
 		</QueryClientProvider>
 	</WagmiProvider>
