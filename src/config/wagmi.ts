@@ -7,7 +7,6 @@ import {createWeb3Modal} from "@web3modal/wagmi/react";
 
 const chains = import.meta.env.PUBLIC_ENVIRONMENT === 'production' ? [polygon] : [polygonAmoy]
 const chainId = chains[0].id
-console.error(chainId, import.meta.env.PUBLIC_ENVIRONMENT)
 const config = defaultWagmiConfig({
 	metadata: {
 		name: 'BetFin.io',
