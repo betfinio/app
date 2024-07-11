@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "betfin-dev"
+  },
+  "targets": {
+      "betfin-dev": {
+        "hosting": {
+          "app": [
+            "betfin-app"
+          ]
+        }
+      }
+    }
+}
