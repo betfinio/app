@@ -1,21 +1,29 @@
 import {defineConfig} from '@rsbuild/core';
 import {pluginReact} from '@rsbuild/plugin-react';
 import {ModuleFederationPlugin} from '@module-federation/enhanced/rspack';
+// @ts-ignore
 import {TanStackRouterRspack} from '@tanstack/router-plugin/rspack'
 
 export default defineConfig({
 	server: {
 		port: 5555,
 	},
+	dev: {
+		assetPrefix: 'http://localhost:5555',
+	},
 	html: {
 		title: 'BetFin'
 	},
+	
 	tools: {
-		rspack: (config, {appendPlugins}) => {
+		rspack: (config, {appendPlugins, addRules}) => {
 			appendPlugins([
 				TanStackRouterRspack(),
 				new ModuleFederationPlugin({
 					name: 'betfinio_app',
+					exposes: {
+						'./root': './src/routes/__root.tsx',
+					},
 					shared: {
 						'react': {
 							singleton: true,
@@ -27,7 +35,7 @@ export default defineConfig({
 						},
 						"@tanstack/react-router": {
 							singleton: true,
-							requiredVersion: '^1.44.0'
+							requiredVersion: '^1.44.2'
 						},
 						"lucide-react": {
 							singleton: true,
@@ -40,6 +48,18 @@ export default defineConfig({
 						"react-i18next": {
 							singleton: true,
 							requiredVersion: '^14.1.2'
+						},
+						"tailwindcss-animate": {
+							singleton: true,
+							requiredVersion: '^1.0.7'
+						},
+						"tailwindcss": {
+							singleton: true,
+							requiredVersion: '^3.4.4'
+						},
+						"@web3modal/wagmi": {
+							singleton: true,
+							requiredVersion: '^5.0.6'
 						}
 					},
 				}),
