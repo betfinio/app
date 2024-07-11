@@ -1,7 +1,6 @@
 import {useAccount} from "wagmi";
 import {FC, forwardRef} from "react";
 import {Bet, BetLogo} from "@betfinio/ui/dist/icons";
-import "@rainbow-me/rainbowkit/styles.css"
 import {Button} from "./button.tsx";
 import {Popover, PopoverContent, PopoverTrigger} from "./popover.tsx";
 import {useUsername} from "@/lib/query/username.ts";
