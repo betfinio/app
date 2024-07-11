@@ -14,7 +14,9 @@ export default defineConfig({
 	html: {
 		title: 'BetFin'
 	},
-	
+	output: {
+		assetPrefix: process.env.PUBLIC_ENVIRONMENT === 'production' ? 'https://betfin-app.web.app' : 'https://betfin-app-dev.web.app'
+	},
 	tools: {
 		rspack: (config, {appendPlugins, addRules}) => {
 			appendPlugins([
