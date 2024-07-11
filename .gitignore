@@ -16,3 +16,7 @@ dist/
 .npmrc
 
 bun.lockb
+
+yarn.lock
+
+.firebase/
