@@ -19,6 +19,7 @@ export default defineConfig({
 	},
 	tools: {
 		rspack: (config, {appendPlugins, addRules}) => {
+			config.output!.uniqueName = 'betfinio_app';
 			appendPlugins([
 				TanStackRouterRspack(),
 				new ModuleFederationPlugin({
