@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "build": "rsbuild build --env-mode production",
+    "build": "rsbuild build",
     "check": "biome check --write",
     "dev": "rsbuild dev --open",
     "prod": "rsbuild dev --env-mode production --open",

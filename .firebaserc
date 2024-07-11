@@ -3,12 +3,15 @@
     "default": "betfin-dev"
   },
   "targets": {
-      "betfin-dev": {
-        "hosting": {
-          "app": [
-            "betfin-app"
-          ]
-        }
+    "betfin-dev": {
+      "hosting": {
+        "app": [
+          "betfin-app"
+        ],
+        "app-dev": [
+          "betfin-app-dev"
+        ]
       }
     }
+  }
 }
