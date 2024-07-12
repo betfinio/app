@@ -2,11 +2,10 @@ import {writeContract, WriteContractReturnType} from "@wagmi/core";
 import {Options} from "@/lib";
 import {TokenContract} from "@betfinio/abi";
 import {Address} from "viem";
-import {ZeroAddress} from "@betfinio/hooks";
 import {readContract} from "viem/actions";
 
 export const fetchBalance = async (address: Address | undefined, options: Options, block?: bigint): Promise<bigint> => {
-	if (!options.config || address === undefined || address === ZeroAddress) return 0n;
+	if (!options.config || address === undefined) return 0n;
 	return await readContract(options.config.getClient(), {
 		abi: TokenContract.abi,
 		address: import.meta.env.PUBLIC_TOKEN_ADDRESS,
@@ -18,7 +17,7 @@ export const fetchBalance = async (address: Address | undefined, options: Option
 
 
 export const fetchAllowance = async (address: Address | undefined, options: Options): Promise<bigint> => {
-	if (!options.config || address === undefined || address === ZeroAddress) return 0n;
+	if (!options.config || address === undefined) return 0n;
 	return await readContract(options.config.getClient(), {
 		abi: TokenContract.abi,
 		address: import.meta.env.PUBLIC_TOKEN_ADDRESS,

@@ -4,7 +4,6 @@ import {Bet, BetLogo} from "@betfinio/ui/dist/icons";
 import {Button} from "./button.tsx";
 import {Popover, PopoverContent, PopoverTrigger} from "./popover.tsx";
 import {useUsername} from "@/lib/query/username.ts";
-import {truncateEthAddress, valueToNumber} from "@betfinio/hooks/dist/utils";
 import {cx} from "class-variance-authority";
 import {ArrowLeftRight, Loader, LogOut, Unplug, UserPen} from "lucide-react";
 import {AnimatePresence, motion} from "framer-motion";
@@ -13,6 +12,8 @@ import BetChart from "@/components/ui/BetChart.tsx";
 import {useWeb3Modal} from "@web3modal/wagmi/react";
 import {useIsMember} from "@/lib/query/pass.ts";
 import {Badge} from "@/components/ui/badge.tsx";
+
+import {truncateEthAddress, valueToNumber} from "@betfinio/abi/dist";
 
 const ConnectButton = () => {
 	const {address, chain} = useAccount();
