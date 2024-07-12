@@ -18,6 +18,17 @@
     {
       "public": "dist",
       "target": "app-dev",
+      "headers": [
+        {
+          "source": "**/*.@(eot|otf|ttf|ttc|woff|font.css|js|ts|jsx|tsx)",
+          "headers": [
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            }
+          ]
+        }
+      ],
       "ignore": [
         "firebase.json",
         "**/.*",
