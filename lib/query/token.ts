@@ -1,6 +1,5 @@
 import {useMutation, useQuery} from "@tanstack/react-query";
 import {fetchAllowance, fetchBalance, increaseAllowance} from "@/lib/api/token";
-import {useWatchContractEvent} from "wagmi";
 import {TokenContract} from "@betfinio/abi";
 import {Address, decodeEventLog, Log, WriteContractReturnType} from "viem";
 import queryClient from "@/src/config/query.ts";
@@ -8,11 +7,10 @@ import config from "@/src/config/wagmi.ts";
 import {useTranslation} from "react-i18next";
 import {useEffect} from "react";
 import {watchContractEvent} from "viem/actions";
-import {ZeroAddress} from "@betfinio/hooks";
 
 export const useBalance = (address: Address | undefined) => {
 	useEffect(() => {
-		if (!address || address === ZeroAddress) return;
+		if (!address) return;
 		const unwatch = watchContractEvent(config.getClient(), {
 			abi: TokenContract.abi,
 			address: import.meta.env.PUBLIC_TOKEN_ADDRESS,
