@@ -1,7 +1,7 @@
 import {createRootRoute, Link, Outlet} from '@tanstack/react-router'
 import {FC} from "react";
 import {I18nextProvider} from 'react-i18next';
-import appInstance from "../i18n.ts";
+import instance from "../i18n";
 import {games, navigation, others} from "../config/links.tsx";
 import ConnectButton, {WalletBalance} from "../../components/ui/ConnectButton.tsx";
 import {WagmiProvider} from "wagmi";
@@ -32,7 +32,7 @@ export const Root: FC = () => {
 	return <WagmiProvider config={config}>
 		<QueryClientProvider client={queryClient}>
 			<SupabaseProvider client={client}>
-				<I18nextProvider i18n={appInstance}>
+				<I18nextProvider i18n={instance}>
 					<RootLayout header={getHeader()} sidebar={getSidebar()} footer={getFooter()}>
 						<Outlet/>
 					</RootLayout>

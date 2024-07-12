@@ -1,6 +1,6 @@
 import {useMutation, useQuery} from "@tanstack/react-query";
 import {fetchAllowance, fetchBalance, increaseAllowance} from "@/lib/api/token";
-import {TokenContract} from "@betfinio/abi";
+import {TokenContract, ZeroAddress} from "@betfinio/abi";
 import {Address, decodeEventLog, Log, WriteContractReturnType} from "viem";
 import queryClient from "@/src/config/query.ts";
 import config from "@/src/config/wagmi.ts";
@@ -58,6 +58,7 @@ export const useAllowance = (address: Address | undefined) => {
 				}
 			}
 		})
+		return () => unwatch()
 	}, [address]);
 	
 	return useQuery<bigint>({

@@ -16,7 +16,7 @@ import {Badge} from "@/components/ui/badge.tsx";
 import {truncateEthAddress, valueToNumber} from "@betfinio/abi/dist";
 
 const ConnectButton = () => {
-	const {address, chain} = useAccount();
+	const {address} = useAccount();
 	const {open} = useWeb3Modal()
 	const handleConnect = async () => {
 		await open();
