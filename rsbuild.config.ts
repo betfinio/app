@@ -3,7 +3,7 @@ import {pluginReact} from '@rsbuild/plugin-react';
 import {ModuleFederationPlugin} from '@module-federation/enhanced/rspack';
 // @ts-ignore
 import {TanStackRouterRspack} from '@tanstack/router-plugin/rspack'
-
+// @ts-ignore
 import {dependencies} from "./package.json";
 
 export default defineConfig({
