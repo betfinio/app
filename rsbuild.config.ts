@@ -28,6 +28,11 @@ export default defineConfig({
 					name: 'betfinio_app',
 					exposes: {
 						'./root': './src/routes/__root.tsx',
+						'./dialog': './components/ui/dialog.tsx',
+						'./sheet': './components/ui/sheet.tsx',
+						'./popover': './components/ui/popover.tsx',
+						'./button': './components/ui/button.tsx',
+						'./badge': './components/ui/badge.tsx'
 					},
 					shared: {
 						'react': {
