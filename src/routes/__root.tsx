@@ -1,7 +1,6 @@
 import {createRootRoute, Link, Outlet} from '@tanstack/react-router'
 import {FC} from "react";
 import {I18nextProvider} from 'react-i18next';
-import instance from "../i18n";
 import {games, navigation, others} from "../config/links.tsx";
 import ConnectButton, {WalletBalance} from "../../components/ui/ConnectButton.tsx";
 import {WagmiProvider} from "wagmi";
@@ -14,9 +13,11 @@ import RootLayout from "@/components/blocks/RootLayout.tsx";
 import {SupabaseProvider} from "@/lib/contexts/supabase.tsx";
 import client from "@/src/config/supabase.ts";
 import "../globals.css";
+import {i18n} from "i18next";
+import instance from "@/src/i18n.ts";
 
 
-export const Root: FC = () => {
+export const Root: FC<{ instance: i18n }> = ({instance}) => {
 	const getHeader = () => {
 		return <Header sidebar={getSidebar()}><ConnectButton/></Header>
 	}
@@ -44,5 +45,5 @@ export const Root: FC = () => {
 
 
 export const Route = createRootRoute({
-	component: Root
+	component: () => <Root instance={instance}/>,
 })
