@@ -50,6 +50,7 @@ export default defineConfig({
 						"./lib/api/token": './lib/api/token',
 						'./lib/query/conservative': './lib/query/conservative',
 						'./lib/query/dynamic': './lib/query/dynamic',
+						'./lib/query/token': './lib/query/token',
 						'./lib/utils': './lib/utils',
 					},
 					shared: {
