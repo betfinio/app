@@ -12,7 +12,6 @@ import Sidebar from "@/components/blocks/Sidebar.tsx";
 import RootLayout from "@/components/blocks/RootLayout.tsx";
 import {SupabaseProvider} from "@/lib/contexts/supabase.tsx";
 import client from "@/src/config/supabase.ts";
-import "../globals.css";
 import {i18n} from "i18next";
 import instance from "@/src/i18n.ts";
 

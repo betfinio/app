@@ -1,5 +1,6 @@
 import {defineConfig} from '@rsbuild/core';
 import {pluginReact} from '@rsbuild/plugin-react';
+import {pluginSass} from '@rsbuild/plugin-sass';
 import {ModuleFederationPlugin} from '@module-federation/enhanced/rspack';
 // @ts-ignore
 import {TanStackRouterRspack} from '@tanstack/router-plugin/rspack'
@@ -17,22 +18,32 @@ export default defineConfig({
 		title: 'BetFin'
 	},
 	output: {
-		assetPrefix: process.env.PUBLIC_ENVIRONMENT === 'production' ? 'https://betfin-app.web.app' : 'https://betfin-app-dev.web.app'
+		assetPrefix: process.env.PUBLIC_ENVIRONMENT === 'production' ? 'https://app.betfin.io' : 'https://betfin-app-dev.web.app'
 	},
 	tools: {
 		rspack: (config, {appendPlugins, addRules}) => {
+			addRules([
+				{
+					test: /\.css$/,
+					use: ['style-loader', 'css-loader', 'postcss-loader'],
+				},
+			])
 			config.output!.uniqueName = 'betfinio_app';
 			appendPlugins([
 				TanStackRouterRspack(),
 				new ModuleFederationPlugin({
 					name: 'betfinio_app',
 					exposes: {
+						'./TailwindCssGlobal': './src/tailwind.global.scss',
 						'./root': './src/routes/__root.tsx',
 						'./dialog': './components/ui/dialog.tsx',
 						'./sheet': './components/ui/sheet.tsx',
 						'./popover': './components/ui/popover.tsx',
 						'./button': './components/ui/button.tsx',
-						'./badge': './components/ui/badge.tsx'
+						'./badge': './components/ui/badge.tsx',
+						'./tooltip': './components/ui/tooltip.tsx',
+						'./skeleton': './components/ui/skeleton.tsx',
+						'./BetValue': './components/ui/BetValue.tsx',
 					},
 					shared: {
 						'react': {
@@ -84,5 +95,5 @@ export default defineConfig({
 			]);
 		},
 	},
-	plugins: [pluginReact()],
+	plugins: [pluginReact(), pluginSass()],
 });
