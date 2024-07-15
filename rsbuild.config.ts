@@ -44,6 +44,13 @@ export default defineConfig({
 						'./tooltip': './components/ui/tooltip.tsx',
 						'./skeleton': './components/ui/skeleton.tsx',
 						'./BetValue': './components/ui/BetValue.tsx',
+						'./supabase': './lib/contexts/supabase',
+						"./lib/api/conservative": './lib/api/conservative',
+						"./lib/api/dynamic": './lib/api/dynamic',
+						"./lib/api/token": './lib/api/token',
+						'./lib/query/conservative': './lib/query/conservative',
+						'./lib/query/dynamic': './lib/query/dynamic',
+						'./lib/utils': './lib/utils',
 					},
 					shared: {
 						'react': {
@@ -65,6 +72,10 @@ export default defineConfig({
 						"lucide-react": {
 							singleton: true,
 							requiredVersion: dependencies['lucide-react']
+						},
+						"@supabase/supabase-js": {
+							singleton: true,
+							requiredVersion: dependencies['@supabase/supabase-js']
 						},
 						"i18next": {
 							singleton: true,

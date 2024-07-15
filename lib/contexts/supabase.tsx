@@ -19,3 +19,4 @@ export const SupabaseProvider: FC<PropsWithChildren<SupabaseContextProps>> = ({c
 export const useSupabase = () => {
 	return useContext(SupabaseContext);
 }
+export {SupabaseClient};

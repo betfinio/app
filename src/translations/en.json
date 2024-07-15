@@ -1,5 +1,7 @@
 {
   "shared": {
+    "balance": "Wallet balance:",
+    "allowance": "Spendable limit:",
     "sidebar": {
       "staking": "Staking",
       "staking-conservative": "Conservative",
