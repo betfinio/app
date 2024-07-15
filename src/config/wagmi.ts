@@ -3,7 +3,7 @@ import {polygon, polygonAmoy} from "viem/chains";
 import {createStorage} from "wagmi";
 import {defaultWagmiConfig} from "@web3modal/wagmi";
 import {createWeb3Modal} from "@web3modal/wagmi/react";
-import {injected} from 'wagmi/connectors'
+import {injected, mock, safe} from 'wagmi/connectors'
 
 
 const chains = import.meta.env.PUBLIC_ENVIRONMENT === 'production' ? [polygon] : [polygonAmoy]
@@ -12,10 +12,10 @@ const config = defaultWagmiConfig({
 	metadata: {
 		name: 'BetFin.io',
 		description: 'Decentralized staking platform',
-		url: 'https://app.betfin.io/', // origin must match your domain & subdomain
+		url: 'http://localhost', // origin must match your domain & subdomain
 		icons: ['https://betfin.io/favicon.svg']
 	},
-	connectors: [injected()],
+	connectors: [safe()],
 	chains: chains as any,
 	transports: {
 		[chainId]: fallback([
@@ -25,7 +25,8 @@ const config = defaultWagmiConfig({
 		])
 	},
 	enableInjected: true,
-	enableWalletConnect: false,
+	enableWalletConnect: true,
+	enableCoinbase: true,
 	storage: createStorage({
 		key: `betfin-${chainId}`
 	}),

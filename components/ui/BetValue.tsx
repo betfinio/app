@@ -37,7 +37,7 @@ export const BetValue: FC<BetValueProps> = ({
 					</span>
 				</TooltipTrigger>
 				<TooltipContent side={place}>
-					{prefix} {value} {postfix}
+					{prefix} {value.toFixed(2)} {postfix}
 				</TooltipContent>
 			</Tooltip>
 		</TooltipProvider>
