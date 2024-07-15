@@ -14,6 +14,7 @@ import {useIsMember} from "@/lib/query/pass.ts";
 import {Badge} from "@/components/ui/badge.tsx";
 
 import {truncateEthAddress, valueToNumber} from "@betfinio/abi/dist";
+import {useTranslation} from "react-i18next";
 
 const ConnectButton = () => {
 	const {address} = useAccount();
@@ -77,6 +78,7 @@ const AccountBlock = forwardRef((props: any, forwardedRef: any) => {
 
 export const WalletBalance: FC<{ className?: string }> = ({className = ''}) => {
 	const {address} = useAccount();
+	const {t} = useTranslation('', {keyPrefix: 'shared'})
 	const {data: balance = 0n} = useBalance(address);
 	const {data: allowance = 0n} = useAllowance(address);
 	const {mutate: increaseAllowance, isPending} = useIncreaseAllowance();
@@ -99,9 +101,9 @@ export const WalletBalance: FC<{ className?: string }> = ({className = ''}) => {
 	}
 	if (address === undefined) return <div className={'w-full max-h-[150px] overflow-hidden'}><BetChart/></div>;
 	return <div className={cx('flex flex-col w-full', className)}>
-		<div className={'text-sm font-medium text-gray-400'}>Wallet balance:</div>
+		<div className={'text-sm font-medium text-gray-400'}>{t("balance")}</div>
 		<div className={'text-lg font-semibold flex flex-row items-center gap-1'}>{Math.floor(valueToNumber(balance)).toLocaleString()} <Bet className={'w-5 h-5'}/></div>
-		<div className={'text-sm font-medium text-gray-400'}>Spendable limit:</div>
+		<div className={'text-sm font-medium text-gray-400'}>{t("allowance")}</div>
 		<div className={'text-sm font-semibold flex flex-row items-center gap-1'}>{Math.floor(valueToNumber(allowance)).toLocaleString()} <Bet className={'w-3 h-3'}/></div>
 		<div className={'grid grid-cols-2 gap-2 mt-2'}>
 			<Button onClick={handleAllowance} variant={'outline'} className={'gap-1 px-3'}>
