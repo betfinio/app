@@ -52,6 +52,8 @@ export default defineConfig({
 						'./lib/query/dynamic': './lib/query/dynamic',
 						'./lib/query/token': './lib/query/token',
 						'./lib/utils': './lib/utils',
+						'./locales/ru': './src/translations/ru.json',
+						'./locales/en': './src/translations/en.json',
 					},
 					shared: {
 						'react': {
