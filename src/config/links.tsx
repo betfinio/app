@@ -6,11 +6,19 @@ import {Stones} from "@betfinio/ui/dist/icons/Stones";
 import {Contact, PaperclipIcon} from "lucide-react";
 import {NavItemProps} from "@/components/ui/NavItem.tsx";
 
+const getStakingUrl = () => {
+	if (import.meta.env.PUBLIC_ENVIRONMENT === 'development') {
+		return 'https://betfin-staking-dev.web.app'
+	} else {
+		return 'https://staking.betfin.io'
+	}
+}
+
 const navigation: NavItemProps[] = [
 	{
-		label: 'staking', disabled: false, icon: <Staking/>, href: '/staking', children: [
-			{label: 'staking-conservative', href: '/staking/conservative', disabled: false, icon: <Bank className={'w-6 h-6'}/>},
-			{label: 'staking-dynamic', href: '/staking/dynamic', disabled: false, icon: <Bag className={'w-6 h-6'}/>},
+		label: 'staking', disabled: false, icon: <Staking/>, href: getStakingUrl() + '/', children: [
+			{label: 'staking-conservative', href: getStakingUrl() + '/conservative', disabled: false, icon: <Bank className={'w-6 h-6'}/>},
+			{label: 'staking-dynamic', href: getStakingUrl() + '/dynamic', disabled: false, icon: <Bag className={'w-6 h-6'}/>},
 		]
 	},
 	{
