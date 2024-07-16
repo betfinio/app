@@ -35,6 +35,8 @@ export default defineConfig({
 					name: 'betfinio_app',
 					exposes: {
 						'./TailwindCssGlobal': './src/tailwind.global.scss',
+						'./BetValue': './components/ui/BetValue.tsx',
+						'./DataTable': './components/ui/DataTable.tsx',
 						'./root': './src/routes/__root.tsx',
 						'./dialog': './components/ui/dialog.tsx',
 						'./sheet': './components/ui/sheet.tsx',
@@ -42,9 +44,9 @@ export default defineConfig({
 						'./button': './components/ui/button.tsx',
 						'./tabs': './components/ui/tabs.tsx',
 						'./badge': './components/ui/badge.tsx',
+						'./table': './components/ui/table.tsx',
 						'./tooltip': './components/ui/tooltip.tsx',
 						'./skeleton': './components/ui/skeleton.tsx',
-						'./BetValue': './components/ui/BetValue.tsx',
 						'./supabase': './lib/contexts/supabase',
 						"./lib/api/conservative": './lib/api/conservative',
 						"./lib/api/dynamic": './lib/api/dynamic',
@@ -72,6 +74,10 @@ export default defineConfig({
 						"@tanstack/react-query": {
 							singleton: true,
 							requiredVersion: dependencies['@tanstack/react-query']
+						},
+						"@tanstack/react-table": {
+							singleton: true,
+							requiredVersion: dependencies['@tanstack/react-table']
 						},
 						"lucide-react": {
 							singleton: true,
