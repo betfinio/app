@@ -40,6 +40,7 @@ export default defineConfig({
 						'./sheet': './components/ui/sheet.tsx',
 						'./popover': './components/ui/popover.tsx',
 						'./button': './components/ui/button.tsx',
+						'./tabs': './components/ui/tabs.tsx',
 						'./badge': './components/ui/badge.tsx',
 						'./tooltip': './components/ui/tooltip.tsx',
 						'./skeleton': './components/ui/skeleton.tsx',

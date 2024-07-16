@@ -44,5 +44,5 @@ export const Root: FC<{ instance: i18n, id: string }> = ({instance, id}) => {
 
 
 export const Route = createRootRoute({
-	component: () => <Root instance={instance}/>,
+	component: () => <Root id={'app'} instance={instance}/>,
 })
