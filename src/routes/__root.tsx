@@ -16,7 +16,7 @@ import {i18n} from "i18next";
 import instance from "@/src/i18n.ts";
 
 
-export const Root: FC<{ instance: i18n }> = ({instance}) => {
+export const Root: FC<{ instance: i18n, id: string }> = ({instance, id}) => {
 	const getHeader = () => {
 		return <Header sidebar={getSidebar()}><ConnectButton/></Header>
 	}
@@ -33,7 +33,7 @@ export const Root: FC<{ instance: i18n }> = ({instance}) => {
 		<QueryClientProvider client={queryClient}>
 			<SupabaseProvider client={client}>
 				<I18nextProvider i18n={instance}>
-					<RootLayout header={getHeader()} sidebar={getSidebar()} footer={getFooter()}>
+					<RootLayout header={getHeader()} id={id} sidebar={getSidebar()} footer={getFooter()}>
 						<Outlet/>
 					</RootLayout>
 				</I18nextProvider>
