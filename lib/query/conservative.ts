@@ -7,7 +7,7 @@ export const useTotalStakedStat = () => {
 	const {client} = useSupabase()
 	return useQuery<Stat[]>({
 		queryKey: ['staking', 'conservative', 'totalStaked', 'stat'],
-		queryFn: () => fetchTotalStakedStat(client!)
+		queryFn: () => fetchTotalStakedStat(client!),
 	})
 }
 export const useTotalStakersStat = () => {
