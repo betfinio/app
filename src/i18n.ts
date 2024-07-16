@@ -5,14 +5,22 @@ import ruJSON from './translations/ru.json';
 import {i18n} from "i18next";
 
 const resources = {
-	en: {translation: enJSON},
-	ru: {translation: ruJSON},
+	en: {
+		translation: {
+			shared: enJSON
+		}
+	},
+	ru: {
+		translation: {
+			shared: ruJSON
+		}
+	},
 };
 
 const instance: i18n = i18.createInstance();
 instance.use(initReactI18next).init({
 	resources,
-	lng: 'en', // default language
+	lng: 'ru', // default language
 	fallbackLng: 'en',
 	interpolation: {escapeValue: false},
 	react: {useSuspense: true},
