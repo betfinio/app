@@ -1,8 +1,8 @@
 import {createFileRoute} from '@tanstack/react-router'
 
 const Index = () => {
-	return <div className={'p-3'}>
-	
+	return <div className={'w-full h-full p-2 md:p-3 lg:p-4 gap-2 flex flex-col lg:gap-4 border border-red-500'}>
+		hello
 	</div>
 }
 
