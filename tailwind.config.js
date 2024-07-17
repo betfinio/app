@@ -50,6 +50,14 @@ module.exports = {
 				md: "calc(var(--radius) - 2px)",
 				sm: "calc(var(--radius) - 4px)",
 			},
+			backgroundImage: {
+				'game-roulette': "url('./assets/games/roulette.png')",
+				'game-poker': "url('./assets/games/poker.png')",
+				'game-predict': "url('./assets/games/predict.png')",
+				'game-gem-roulette': "url('./assets/games/gem-roulette.png')",
+				'game-slots': "url('./assets/games/slots.png')",
+				'game-blackjack': "url('./assets/games/blackjack.png')",
+			},
 			keyframes: {
 				"accordion-down": {
 					from: {height: "0"},
