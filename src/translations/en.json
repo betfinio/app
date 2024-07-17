@@ -26,5 +26,36 @@
     "slots": "Slots",
     "support": "Support",
     "about": "About BET"
+  },
+  "homepage": {
+    "title": "Welcome to the homepage",
+    "staking": {
+      "online": "Online",
+      "conservative": {
+        "predict": "Crypto Predict",
+        "poker": "Poker",
+        "gem-roulette": "Gem Roulette",
+        "info": {
+          "title": "Conservative Staking",
+          "subtitle": "(from sharebet)",
+          "totalLabel": "Staked total",
+          "paLabel": "Revenue",
+          "buttonLabel": "Stake now"
+        }
+      },
+      "dynamic": {
+        "blackjack": "Blackjack",
+        "slots": "Slots",
+        "roulette": "Roulette",
+        "info": {
+          "title": "Dynamic Staking",
+          "subtitle": "(from Casino and Live Games)",
+          "total": "{total} BET",
+          "totalLabel": "Staked total",
+          "paLabel": "Revenue",
+          "buttonLabel": "Stake now"
+        }
+      }
+    }
   }
 }

@@ -20,3 +20,5 @@ bun.lockb
 yarn.lock
 
 .firebase/
+
+@mf-types/
