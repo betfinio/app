@@ -1,5 +1,5 @@
 import {useAccount} from "wagmi";
-import {FC, forwardRef} from "react";
+import {FC, forwardRef, useEffect} from "react";
 import {Bet, BetLogo} from "@betfinio/ui/dist/icons";
 import {Button} from "./button.tsx";
 import {Popover, PopoverContent, PopoverTrigger} from "./popover.tsx";
@@ -22,6 +22,23 @@ const ConnectButton = () => {
 	const handleConnect = async () => {
 		await open();
 	}
+	useEffect(() => {
+		const script = document.createElement("script");
+		script.src = "https://app.livechatai.com/embed.js";
+		script.async = true;
+		script.defer = true;
+		script.setAttribute('data-id', 'clypvp6o20003xh36bqa3cx2m')
+		document.body.appendChild(script);
+	}, []);
+	useEffect(() => {
+		if (!address) return;
+		window.lc = window.lc || {};
+		window.lc.identity = {
+			distinctId: address.toLowerCase(), // required, unique identifier for your user,
+			name: address.toLowerCase()
+		};
+		console.log(window.lc)
+	}, [address]);
 	if (address === undefined) {
 		return <Button onClick={handleConnect} variant={'outline'} className={'border-yellow-400 gap-2'}><Unplug className={'w-4 h-4'}/> Connect Wallet</Button>
 	}

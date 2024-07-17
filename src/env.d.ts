@@ -7,3 +7,19 @@ declare module "@tanstack/react-table" {
 		colSpan?: number;
 	}
 }
+
+interface IdentifyEventData {
+	distinctId: string;
+	email?: string;
+	name?: string;
+	phone?: string;
+}
+
+declare global {
+	interface Window {
+		lc: {
+			identity?: IdentityData;
+			debug?: boolean;
+		};
+	}
+}
