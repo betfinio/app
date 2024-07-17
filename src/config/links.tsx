@@ -4,13 +4,27 @@ import {Dice} from "@betfinio/ui/dist/icons/Dice";
 import {Binary} from "@betfinio/ui/dist/icons/Binary";
 import {Stones} from "@betfinio/ui/dist/icons/Stones";
 import {Contact, PaperclipIcon} from "lucide-react";
-import {NavItemProps} from "@/components/ui/NavItem.tsx";
+import {NavItemProps} from "@/components/ui/NavItem";
+
+export const getAppUrl = () => {
+	switch (import.meta.env.PUBLIC_ENVIRONMENT) {
+		case 'development':
+			return 'https://betfin-app-dev.web.app'
+		case 'production':
+			return 'https://app.betfin.io'
+		default:
+			return 'http://localhost:5555'
+	}
+}
 
 const getStakingUrl = () => {
-	if (import.meta.env.PUBLIC_ENVIRONMENT === 'development') {
-		return 'https://betfin-staking-dev.web.app'
-	} else {
-		return 'https://staking.betfin.io'
+	switch (import.meta.env.PUBLIC_ENVIRONMENT) {
+		case 'development':
+			return 'https://betfin-staking-dev.web.app'
+		case 'production':
+			return 'https://staking.betfin.io'
+		default:
+			return 'http://localhost:3000'
 	}
 }
 

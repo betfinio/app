@@ -30,7 +30,8 @@ const NavItem: FC<NavItemProps> = ({
 	disabled = !external
 }) => {
 	const {t} = useTranslation();
-	const {location: {pathname}} = useRouterState();
+	const {location: {pathname, href: url}} = useRouterState();
+	
 	const handleSoon = () => {
 		toast.dark("Coming soon", {toastId: 'report'})
 	}
@@ -53,9 +54,9 @@ const NavItem: FC<NavItemProps> = ({
 			      to={disabled ? '/soon' : href}>{icon || <div className={'w-6'}></div>} {label}</Link>
 		)}
 		
-		{active && children?.map((item, index) => <NavItem key={index} {...item} className={'pl-6 !gap-3'}
-		                                                   label={t('shared.sidebar.' + item.label)}
-		                                                   active={pathname.includes(item.href)}/>)}
+		{(active || children?.length || 0 > 0) && children?.map((item, index) => <NavItem key={index} {...item} className={'pl-6 !gap-3'}
+		                                                                                  label={t('shared.sidebar.' + item.label)}
+		                                                                                  active={item.href.startsWith(location.origin) && item.href.includes(pathname)}/>)}
 	</>
 }
 
