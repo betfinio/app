@@ -4,14 +4,14 @@ import Bag from "@betfinio/ui/dist/icons/Bag";
 import {valueToNumber} from "@betfinio/hooks/dist/utils";
 import {Link} from "@tanstack/react-router";
 import cx from "clsx";
-import {MillifyWithTooltip} from "@betfinio/ui/dist/shared/atoms/MillifyWithTooltip";
 import {useBalance} from "@/lib/query/token.ts";
 import GameBlock from "@/components/blocks/GameBlock.tsx";
 import {useTranslation} from "react-i18next";
 import {usePredictOnline} from "@/lib/query/predict.ts";
 import {useTotalStaked as useConservativeTotalStaked} from "betfinio_staking/lib/query/conservative";
 import {useTotalProfit as useDynamicTotalProfit, useTotalStaked as useDynamicTotalStaked} from "betfinio_staking/lib/query/dynamic";
-import {getGamesUrl} from "@/lib";
+import {getGamesUrl, getStakingUrl} from "@/lib";
+import {BetValue} from "@/components/ui/BetValue.tsx";
 
 export interface MainBlockProps {
 	variant: 'conservative' | 'dynamic'
@@ -99,20 +99,19 @@ const StakingInfo: FC<StakeInfoProps> = ({
 	variant
 }) => {
 	const loadStyle = 'text-secondaryLight animate-pulse bg-secondaryLight rounded-xl !p-0 mt-2'
-	const href = `/staking/${variant}`
 	return <div className={'w-full flex  flex-col justify-between items-center text-center gap-1 md:gap-0'}>
 		{icon}
 		<h3 className={'text-base md:text-xl font-semibold text-[#FFC800]'}>{title}</h3>
 		<h4 className={'text-xs md:text-sm text-gray-500'}>{subtitle}</h4>
 		<span className={cx('text-base md:text-xl font-semibold pt-2 leading-[0] flex gap-1', loading && loadStyle)}>
-			<MillifyWithTooltip value={total} withIcon={true}/>
+			<BetValue value={total} withIcon={true}/>
 		</span>
 		<span className={cx('text-xs md:text-sm text-gray-500 text-semibold',)}>{totalLabel}</span>
 		<span className={cx('text-base md:text-xl font-semibold text-yellow-400 pt-2 leading-[0]', loading && loadStyle)}>
-			<MillifyWithTooltip value={pa} withIcon prefix={"Revenue from last cycle: "}/>
+			<BetValue value={pa} withIcon prefix={"Revenue from last cycle: "}/>
 		</span>
 		<span className={'text-xs md:text-sm text-gray-500 text-semibold'}>{paLabel}</span>
-		<Link className={'text-black bg-yellow-400 text-xs md:text-sm font-medium px-4 py-2 rounded-lg mt-2'} to={href}>{buttonLabel}</Link>
+		<Link className={'text-black bg-yellow-400 text-xs md:text-sm font-medium px-4 py-2 rounded-lg mt-2'} to={getStakingUrl() + '/' + variant}>{buttonLabel}</Link>
 	</div>
 }
 

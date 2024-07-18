@@ -54,8 +54,10 @@ export function DataTable<TData, TValue>({
 			</TableHeader>
 			<TableBody>
 				{isLoading ? <TableRow>
-					<TableCell colSpan={10} rowSpan={5} className="h-[200px] w-full flex items-center justify-center text-center">
-						<Loader className={'animate-spin'}/>
+					<TableCell colSpan={columns.length} className="h-[200px]">
+						<div className={'flex items-center justify-center'}>
+							<Loader className={'animate-spin'}/>
+						</div>
 					</TableCell>
 				</TableRow> : table.getRowModel().rows?.length ? (
 					table.getRowModel().rows.map((row) => (

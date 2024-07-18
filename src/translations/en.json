@@ -29,6 +29,14 @@
   },
   "homepage": {
     "title": "Welcome to the homepage",
+    "tables": {
+      "allBets": "All bets",
+      "myBets": "My bets",
+      "allStakes": "All stakes",
+      "transaction": "Transaction",
+      "player": "Player",
+      "amount": "Amount"
+    },
     "staking": {
       "online": "Online",
       "conservative": {
