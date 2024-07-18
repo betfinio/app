@@ -24,8 +24,6 @@ export default defineConfig({
 	},
 	dev: {
 		assetPrefix: 'http://localhost:5555',
-		hmr: false,
-		liveReload: false
 	},
 	html: {
 		title: 'BetFin'
