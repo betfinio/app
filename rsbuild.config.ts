@@ -26,7 +26,8 @@ export default defineConfig({
 		assetPrefix: 'http://localhost:5555',
 	},
 	html: {
-		title: 'BetFin'
+		title: 'BetFin',
+		favicon: './src/assets/favicon.svg',
 	},
 	output: {
 		assetPrefix: process.env.PUBLIC_ENVIRONMENT === 'production' ? 'https://app.betfin.io' : 'https://betfin-app-dev.web.app'
