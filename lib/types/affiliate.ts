@@ -1,12 +1,12 @@
 import {Address} from "viem";
 
 export interface Member {
-	member: string;
-	inviter: string
-	parent: string;
+	member: Address;
+	inviter: Address
+	parent: Address;
 	invitees: number;
-	left: string;
-	right: string;
+	left: Address;
+	right: Address;
 	count: {
 		left: number;
 		right: number;
