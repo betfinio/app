@@ -2,7 +2,6 @@
 module.exports = {
 	darkMode: ["class"],
 	content: ['./pages/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './app/**/*.{ts,tsx}', './src/**/*.{ts,tsx}', './node_modules/@betfinio/**/*.{js,ts,jsx,tsx,mdx}'],
-	prefix: "",
 	theme: {
 		container: {
 			center: true,
@@ -24,6 +23,10 @@ module.exports = {
 				secondary: '#201C40',
 				secondaryLight: '#292546',
 				secondaryLighter: '#201C4080',
+				"purple": {
+					"box": '#6A6A9F',
+					"table": '#201C40'
+				},
 				destructive: {
 					DEFAULT: "hsl(var(--destructive))",
 					foreground: "hsl(var(--destructive-foreground))",

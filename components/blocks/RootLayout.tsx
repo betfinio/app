@@ -1,5 +1,6 @@
 import {FC, PropsWithChildren, ReactNode} from "react";
 import cx from "clsx";
+import {Toaster} from "@/components/ui/toaster.tsx";
 
 interface RootLayoutProps {
 	header: ReactNode;
@@ -17,6 +18,7 @@ const RootLayout: FC<PropsWithChildren<RootLayoutProps>> = ({children, footer, h
 			{header}
 			{children}
 		</div>
+		<Toaster/>
 		{/*<div className={'w-full'}>*/}
 		{/*	{footer}*/}
 		{/*</div>*/}
