@@ -131,5 +131,9 @@ html, body {
 }
 
 .tradingview-widget-copyright {
-    display: none;
+  display: none;
+}
+
+.live-chat-ai-wrapper {
+  z-index: 5 !important;
 }

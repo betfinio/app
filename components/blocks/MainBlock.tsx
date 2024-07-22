@@ -37,7 +37,7 @@ const MainBlock: FC<MainBlockProps> = ({variant}) => {
 					<Link to={getGamesUrl() + "/soon"} className={'hidden sm:flex'}>
 						<GameBlock className={'bg-game-gem-roulette'} label={t('gem-roulette')} online={0}/>
 					</Link>
-					<StakingInfo icon={<Bank className={'w-[36px] h-[36px] shrink-0 text-[#FFC800]'}/>} pa={valueToNumber(conservativeBalance)} buttonLabel={t('info.buttonLabel')}
+					<StakingInfo icon={<Bank className={'w-[36px] h-[36px] shrink-0 text-yellow-400'}/>} pa={valueToNumber(conservativeBalance)} buttonLabel={t('info.buttonLabel')}
 					             variant={'conservative'}
 					             loading={conservative.isFetching}
 					             paLabel={t('info.paLabel')}
@@ -56,7 +56,7 @@ const MainBlock: FC<MainBlockProps> = ({variant}) => {
 					<Link to={getGamesUrl() + "/soon"} className={'hidden md:flex'}>
 						<GameBlock className={'bg-game-slots'} label={t('slots')} online={0}/>
 					</Link>
-					<StakingInfo icon={<Bag className={'w-[36px] h-[36px] text-[#FFC800] shrink-0'}/>} pa={valueToNumber(dynamicRevenue)} buttonLabel={t('info.buttonLabel')}
+					<StakingInfo icon={<Bag className={'w-[36px] h-[36px] text-yellow-400 shrink-0'}/>} pa={valueToNumber(dynamicRevenue)} buttonLabel={t('info.buttonLabel')}
 					             variant={'dynamic'}
 					             loading={dynamic.isFetching}
 					             paLabel={t('info.paLabel')}
@@ -101,7 +101,7 @@ const StakingInfo: FC<StakeInfoProps> = ({
 	const loadStyle = 'text-secondaryLight animate-pulse bg-secondaryLight rounded-xl !p-0 mt-2'
 	return <div className={'w-full flex  flex-col justify-between items-center text-center gap-1 md:gap-0'}>
 		{icon}
-		<h3 className={'text-base md:text-xl font-semibold text-[#FFC800]'}>{title}</h3>
+		<h3 className={'text-base md:text-xl font-semibold text-yellow-400'}>{title}</h3>
 		<h4 className={'text-xs md:text-sm text-gray-500'}>{subtitle}</h4>
 		<span className={cx('text-base md:text-xl font-semibold pt-2 leading-[0] flex gap-1', loading && loadStyle)}>
 			<BetValue value={total} withIcon={true}/>
