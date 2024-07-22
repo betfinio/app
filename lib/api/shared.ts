@@ -1,6 +1,6 @@
 import {Address} from "viem";
 import {Config, getBlock, readContract} from "@wagmi/core";
-import {Options} from "@/lib";
+import {Options} from "@/lib/types";
 import {getContractEvents} from "viem/actions";
 import {BetInterfaceContract, BetsMemoryContract, ConservativeStakingContract, DynamicStakingContract} from "@betfinio/abi";
 import {BetInterface} from "@betfinio/hooks/dist/types/game";

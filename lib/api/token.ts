@@ -1,5 +1,5 @@
 import {writeContract, WriteContractReturnType} from "@wagmi/core";
-import {Options} from "@/lib";
+import {Options} from "@/lib/types";
 import {TokenContract} from "@betfinio/abi";
 import {Address} from "viem";
 import {readContract} from "viem/actions";

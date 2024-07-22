@@ -34,12 +34,6 @@ export default defineConfig({
 	},
 	tools: {
 		rspack: (config, {appendPlugins, addRules}) => {
-			addRules([
-				{
-					test: /\.css$/,
-					use: ['style-loader', 'css-loader', 'postcss-loader'],
-				},
-			])
 			config.output!.uniqueName = 'betfinio_app';
 			appendPlugins([
 				TanStackRouterRspack(),
@@ -66,10 +60,13 @@ export default defineConfig({
 						"./lib/api/conservative": './lib/api/conservative',
 						"./lib/api/dynamic": './lib/api/dynamic',
 						"./lib/api/token": './lib/api/token',
+						"./lib/api/pass": './lib/api/pass',
 						'./lib/query/conservative': './lib/query/conservative',
 						'./lib/query/dynamic': './lib/query/dynamic',
 						'./lib/query/token': './lib/query/token',
+						'./lib/query/pass': './lib/query/pass',
 						'./lib/utils': './lib/utils',
+						'./lib/types': './lib/types',
 						'./locales/ru': './src/translations/ru.json',
 						'./locales/en': './src/translations/en.json',
 					},

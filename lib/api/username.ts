@@ -1,5 +1,5 @@
 import {Address} from "viem";
-import {Options} from "@/lib";
+import {Options} from "@/lib/types";
 import {ZeroAddress} from "@betfinio/abi";
 import {SupabaseClient} from "@supabase/supabase-js";
 
