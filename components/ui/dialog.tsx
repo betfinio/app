@@ -1,9 +1,7 @@
 import * as React from "react"
 import * as DialogPrimitive from "@radix-ui/react-dialog"
-import {X} from "lucide-react"
 
 import {cn} from "@/lib/utils"
-import cx from "clsx";
 
 const Dialog = DialogPrimitive.Root
 
@@ -33,7 +31,7 @@ const DialogContent = React.forwardRef<
 	React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
 >(({className, children, ...props}, ref) => (
 	<DialogPortal>
-		<DialogOverlay />
+		<DialogOverlay/>
 		<DialogPrimitive.Content
 			ref={ref}
 			className={cn(
@@ -54,7 +52,7 @@ const DialogHeader = ({
 }: React.HTMLAttributes<HTMLDivElement>) => (
 	<div
 		className={cn(
-			"flex flex-col space-y-1.5 text-center sm:text-left",
+			"flex flex-col space-y-1.5  sm:text-left",
 			className
 		)}
 		{...props}
@@ -83,7 +81,7 @@ const DialogTitle = React.forwardRef<
 	<DialogPrimitive.Title
 		ref={ref}
 		className={cn(
-			"text-lg font-semibold leading-none tracking-tight",
+			"font-semibold leading-none tracking-tight",
 			className
 		)}
 		{...props}
