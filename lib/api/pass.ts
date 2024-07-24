@@ -1,5 +1,5 @@
 import {Address} from "viem";
-import {Options} from "@/lib";
+import {Options} from "@/lib/types";
 import {readContract} from "viem/actions";
 import {PassContract} from "@betfinio/abi";
 

@@ -1,6 +1,6 @@
 import {getBlockByTimestamp} from "@/lib/utils.ts";
 import {readContract} from "@wagmi/core";
-import {Options} from "@/lib";
+import {Options} from "@/lib/types";
 import supabase from "@/src/config/supabase.ts";
 import {BetsMemoryContract} from "@betfinio/abi";
 import {Address} from "viem";

@@ -103,7 +103,6 @@ export const WalletBalance: FC<{ className?: string }> = ({className = ''}) => {
 		increaseAllowance()
 	}
 	const handleAddToWallet = () => {
-		// @ts-ignore
 		window.ethereum.request({
 			method: 'wallet_watchAsset',
 			params: {
@@ -116,8 +115,8 @@ export const WalletBalance: FC<{ className?: string }> = ({className = ''}) => {
 			},
 		});
 	}
-	if (address === undefined) return <div className={'w-full max-h-[150px] overflow-hidden'}><BetChart/></div>;
-	return <div className={cx('flex flex-col w-full', className)}>
+	if (address === undefined) return <div className={'w-full h-[170px] overflow-hidden'}><BetChart/></div>;
+	return <div className={cx('flex flex-col w-full h-[170px]', className)}>
 		<div className={'text-sm font-medium text-gray-400'}>{t("balance")}</div>
 		<div className={'text-lg font-semibold flex flex-row items-center gap-1'}>{Math.floor(valueToNumber(balance)).toLocaleString()} <Bet className={'w-5 h-5'}/></div>
 		<div className={'text-sm font-medium text-gray-400'}>{t("allowance")}</div>

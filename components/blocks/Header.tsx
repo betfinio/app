@@ -8,7 +8,6 @@ const Header: FC<PropsWithChildren<{ sidebar: ReactNode }>> = ({children, sideba
 	return <header style={{minHeight: '70px'}} className={' flex flex-row items-center justify-between lg:justify-end px-4 border-b border-gray-800'}>
 		<Link to={'/'}>
 			<Logo className={'lg:hidden'} size={'small'}/>
-			{/*<Logo className={'hidden md:block lg:hidden h-[30px]'} size={'big'}/>*/}
 		</Link>
 		{children}
 		<Sheet>

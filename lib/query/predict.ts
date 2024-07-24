@@ -8,6 +8,8 @@ export const usePredictOnline = () => {
 	const {client} = useSupabase()
 	return useQuery<number>({
 		queryKey: ['predict', 'online'],
-		queryFn: () => fetchPredictOnline({supabase: client, config})
+		queryFn: () => fetchPredictOnline({supabase: client, config}),
+		refetchOnWindowFocus: false,
+		refetchOnMount: false
 	})
 }
