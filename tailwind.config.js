@@ -27,6 +27,10 @@ module.exports = {
 					"box": '#6A6A9F',
 					"table": '#201C40'
 				},
+				"red": {
+					600: "#B80042",
+					"roulette": "#dd375f"
+				},
 				destructive: {
 					DEFAULT: "hsl(var(--destructive))",
 					foreground: "hsl(var(--destructive-foreground))",
