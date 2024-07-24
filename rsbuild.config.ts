@@ -24,23 +24,16 @@ export default defineConfig({
 	},
 	dev: {
 		assetPrefix: 'http://localhost:5555',
-		hmr: false,
-		liveReload: false
 	},
 	html: {
-		title: 'BetFin'
+		title: 'BetFin',
+		favicon: './src/assets/favicon.svg',
 	},
 	output: {
 		assetPrefix: process.env.PUBLIC_ENVIRONMENT === 'production' ? 'https://app.betfin.io' : 'https://betfin-app-dev.web.app'
 	},
 	tools: {
 		rspack: (config, {appendPlugins, addRules}) => {
-			addRules([
-				{
-					test: /\.css$/,
-					use: ['style-loader', 'css-loader', 'postcss-loader'],
-				},
-			])
 			config.output!.uniqueName = 'betfinio_app';
 			appendPlugins([
 				TanStackRouterRspack(),
@@ -57,20 +50,32 @@ export default defineConfig({
 						'./dialog': './components/ui/dialog.tsx',
 						'./sheet': './components/ui/sheet.tsx',
 						'./popover': './components/ui/popover.tsx',
+						'./checkbox': './components/ui/checkbox.tsx',
+						'./input': './components/ui/input.tsx',
 						'./button': './components/ui/button.tsx',
+						'./command': './components/ui/command.tsx',
 						'./tabs': './components/ui/tabs.tsx',
+						'./scroll-area': './components/ui/scroll-area.tsx',
+						'./dropdown-menu': './components/ui/dropdown-menu.tsx',
 						'./badge': './components/ui/badge.tsx',
+						'./use-toast': './components/ui/use-toast.ts',
 						'./table': './components/ui/table.tsx',
+						'./drawer': './components/ui/drawer.tsx',
 						'./tooltip': './components/ui/tooltip.tsx',
 						'./skeleton': './components/ui/skeleton.tsx',
 						'./supabase': './lib/contexts/supabase',
 						"./lib/api/conservative": './lib/api/conservative',
+						"./lib/api/username": './lib/api/username',
 						"./lib/api/dynamic": './lib/api/dynamic',
 						"./lib/api/token": './lib/api/token',
+						"./lib/api/pass": './lib/api/pass',
 						'./lib/query/conservative': './lib/query/conservative',
 						'./lib/query/dynamic': './lib/query/dynamic',
 						'./lib/query/token': './lib/query/token',
+						'./lib/query/pass': './lib/query/pass',
 						'./lib/utils': './lib/utils',
+						'./lib/types': './lib/types',
+						'./lib': './lib/index',
 						'./locales/ru': './src/translations/ru.json',
 						'./locales/en': './src/translations/en.json',
 					},

@@ -4,14 +4,14 @@ import Bag from "@betfinio/ui/dist/icons/Bag";
 import {valueToNumber} from "@betfinio/hooks/dist/utils";
 import {Link} from "@tanstack/react-router";
 import cx from "clsx";
-import {MillifyWithTooltip} from "@betfinio/ui/dist/shared/atoms/MillifyWithTooltip";
 import {useBalance} from "@/lib/query/token.ts";
 import GameBlock from "@/components/blocks/GameBlock.tsx";
 import {useTranslation} from "react-i18next";
 import {usePredictOnline} from "@/lib/query/predict.ts";
 import {useTotalStaked as useConservativeTotalStaked} from "betfinio_staking/lib/query/conservative";
 import {useTotalProfit as useDynamicTotalProfit, useTotalStaked as useDynamicTotalStaked} from "betfinio_staking/lib/query/dynamic";
-import {getGamesUrl} from "@/lib";
+import {getGamesUrl, getStakingUrl} from "@/lib";
+import {BetValue} from "@/components/ui/BetValue.tsx";
 
 export interface MainBlockProps {
 	variant: 'conservative' | 'dynamic'
@@ -37,7 +37,7 @@ const MainBlock: FC<MainBlockProps> = ({variant}) => {
 					<Link to={getGamesUrl() + "/soon"} className={'hidden sm:flex'}>
 						<GameBlock className={'bg-game-gem-roulette'} label={t('gem-roulette')} online={0}/>
 					</Link>
-					<StakingInfo icon={<Bank className={'w-[36px] h-[36px] shrink-0 text-[#FFC800]'}/>} pa={valueToNumber(conservativeBalance)} buttonLabel={t('info.buttonLabel')}
+					<StakingInfo icon={<Bank className={'w-[36px] h-[36px] shrink-0 text-yellow-400'}/>} pa={valueToNumber(conservativeBalance)} buttonLabel={t('info.buttonLabel')}
 					             variant={'conservative'}
 					             loading={conservative.isFetching}
 					             paLabel={t('info.paLabel')}
@@ -56,7 +56,7 @@ const MainBlock: FC<MainBlockProps> = ({variant}) => {
 					<Link to={getGamesUrl() + "/soon"} className={'hidden md:flex'}>
 						<GameBlock className={'bg-game-slots'} label={t('slots')} online={0}/>
 					</Link>
-					<StakingInfo icon={<Bag className={'w-[36px] h-[36px] text-[#FFC800] shrink-0'}/>} pa={valueToNumber(dynamicRevenue)} buttonLabel={t('info.buttonLabel')}
+					<StakingInfo icon={<Bag className={'w-[36px] h-[36px] text-yellow-400 shrink-0'}/>} pa={valueToNumber(dynamicRevenue)} buttonLabel={t('info.buttonLabel')}
 					             variant={'dynamic'}
 					             loading={dynamic.isFetching}
 					             paLabel={t('info.paLabel')}
@@ -99,20 +99,19 @@ const StakingInfo: FC<StakeInfoProps> = ({
 	variant
 }) => {
 	const loadStyle = 'text-secondaryLight animate-pulse bg-secondaryLight rounded-xl !p-0 mt-2'
-	const href = `/staking/${variant}`
 	return <div className={'w-full flex  flex-col justify-between items-center text-center gap-1 md:gap-0'}>
 		{icon}
-		<h3 className={'text-base md:text-xl font-semibold text-[#FFC800]'}>{title}</h3>
+		<h3 className={'text-base md:text-xl font-semibold text-yellow-400'}>{title}</h3>
 		<h4 className={'text-xs md:text-sm text-gray-500'}>{subtitle}</h4>
 		<span className={cx('text-base md:text-xl font-semibold pt-2 leading-[0] flex gap-1', loading && loadStyle)}>
-			<MillifyWithTooltip value={total} withIcon={true}/>
+			<BetValue value={total} withIcon={true}/>
 		</span>
 		<span className={cx('text-xs md:text-sm text-gray-500 text-semibold',)}>{totalLabel}</span>
 		<span className={cx('text-base md:text-xl font-semibold text-yellow-400 pt-2 leading-[0]', loading && loadStyle)}>
-			<MillifyWithTooltip value={pa} withIcon prefix={"Revenue from last cycle: "}/>
+			<BetValue value={pa} withIcon prefix={"Revenue from last cycle: "}/>
 		</span>
 		<span className={'text-xs md:text-sm text-gray-500 text-semibold'}>{paLabel}</span>
-		<Link className={'text-black bg-yellow-400 text-xs md:text-sm font-medium px-4 py-2 rounded-lg mt-2'} to={href}>{buttonLabel}</Link>
+		<Link className={'text-black bg-yellow-400 text-xs md:text-sm font-medium px-4 py-2 rounded-lg mt-2'} to={getStakingUrl() + '/' + variant}>{buttonLabel}</Link>
 	</div>
 }
 
