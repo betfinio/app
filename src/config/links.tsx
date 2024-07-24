@@ -5,7 +5,7 @@ import {Binary} from "@betfinio/ui/dist/icons/Binary";
 import {Stones} from "@betfinio/ui/dist/icons/Stones";
 import {Contact, PaperclipIcon} from "lucide-react";
 import {NavItemProps} from "@/components/ui/NavItem";
-import {getStakingUrl} from "@/lib";
+import {getAffiliateUrl, getStakingUrl} from "@/lib";
 
 export const getAppUrl = () => {
 	switch (import.meta.env.PUBLIC_ENVIRONMENT) {
@@ -26,9 +26,9 @@ const navigation: NavItemProps[] = [
 		]
 	},
 	{
-		label: 'affiliate', icon: <Affiliate/>, href: '/affiliate', disabled: false, children: [
-			{label: 'affiliate-linear-tree', href: '/affiliate/network/linear', disabled: false, icon: <DirectAffiliate className={'w-6 h-[22px]'}/>},
-			{label: 'affiliate-binary-tree', href: '/affiliate/network/binary', disabled: false, icon: <DepthAffiliate className={'w-6 h-[22px]'}/>},
+		label: 'affiliate', icon: <Affiliate/>, href: getAffiliateUrl() + '/', disabled: false, children: [
+			{label: 'affiliate-linear-tree', href: getAffiliateUrl() + '/linear', disabled: false, icon: <DirectAffiliate className={'w-6 h-[22px]'}/>},
+			{label: 'affiliate-binary-tree', href: getAffiliateUrl() + '/binary', disabled: false, icon: <DepthAffiliate className={'w-6 h-[22px]'}/>},
 		]
 	},
 ]

@@ -1,4 +1,3 @@
-
 export const getStakingUrl = () => {
 	switch (import.meta.env.PUBLIC_ENVIRONMENT) {
 		case 'development':
@@ -17,6 +16,28 @@ export const getStakingUrl = () => {
 				return ''
 			} else {
 				return 'http://localhost:3000'
+			}
+	}
+}
+
+export const getAffiliateUrl = () => {
+	switch (import.meta.env.PUBLIC_ENVIRONMENT) {
+		case 'development':
+			if (window.location.origin === 'https://betfin-affiliate-dev.web.app') {
+				return ''
+			}
+			return 'https://betfin-affiliate-dev.web.app'
+		case 'production':
+			if (window.location.origin === 'https://affiliate.betfin.io') {
+				return ''
+			} else {
+				return 'https://affiliate.betfin.io'
+			}
+		default:
+			if (window.location.origin === 'http://localhost:8888') {
+				return ''
+			} else {
+				return 'http://localhost:8888'
 			}
 	}
 }
