@@ -48,6 +48,7 @@ export default defineConfig({
 						'./DataTable': './components/ui/DataTable.tsx',
 						'./root': './src/routes/__root.tsx',
 						'./dialog': './components/ui/dialog.tsx',
+						'./separator': './components/ui/separator.tsx',
 						'./sheet': './components/ui/sheet.tsx',
 						'./popover': './components/ui/popover.tsx',
 						'./checkbox': './components/ui/checkbox.tsx',
