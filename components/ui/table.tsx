@@ -77,7 +77,7 @@ const TableHead = React.forwardRef<
 	<th
 		ref={ref}
 		className={cn(
-			"h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
+			"h-12 px-2 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
 			className
 		)}
 		{...props}
@@ -91,7 +91,7 @@ const TableCell = React.forwardRef<
 >(({className, ...props}, ref) => (
 	<td
 		ref={ref}
-		className={cn("p-4 align-middle [&:has([role=checkbox])]:pr-0", className)}
+		className={cn("p-2 align-middle [&:has([role=checkbox])]:pr-0", className)}
 		{...props}
 	/>
 ))
@@ -120,7 +120,7 @@ function DataTablePagination<TData>({
 		<div className="flex items-center justify-between py-2">
 			<div className="flex-1">
 			</div>
-			<div className="flex items-center space-x-6 lg:space-x-8">
+			<div className="flex items-center space-x-2 lg:space-x-4">
 				<div className="flex items-center space-x-2">
 					<p className="text-xs font-medium">Rows per page</p>
 					<Select
