@@ -11,8 +11,8 @@ export const fetchUsername = async (member: Address | undefined, options: Option
 	return user?.username || ''
 }
 
-export const fetchCustomUsername = async (address: Address, user: Address, supabase: SupabaseClient) => {
-	if (address === ZeroAddress) {
+export const fetchCustomUsername = async (address: Address | undefined, user: Address | undefined, supabase: SupabaseClient) => {
+	if (address === ZeroAddress || !address || !user || user === ZeroAddress) {
 		return ""
 	}
 	const data = await supabase

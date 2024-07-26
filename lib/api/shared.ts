@@ -97,7 +97,7 @@ export async function fetchLastStakes(count: number, address: Address, options: 
 	return await Promise.all([...conservativeStakes, ...dynamicStakes].sort((a, b) => (b.block || 0) - (a.block || 0)).slice(0, count).map(async (stake) => ({
 		...stake,
 		username: await fetchUsername(stake.staker, options),
-		customUsername: await fetchCustomUsername(address, stake.staker as Address, options.supabase!)
+		customUsername: await   fetchCustomUsername(address, stake.staker as Address, options.supabase!)
 	})))
 }
 
