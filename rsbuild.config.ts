@@ -33,10 +33,6 @@ export default defineConfig({
 	},
 	output: {
 		assetPrefix: process.env.PUBLIC_ENVIRONMENT === 'production' ? 'https://app.betfin.io' : 'https://betfin-app-dev.web.app',
-		externals: {
-			react: 'React',
-			'react-dom': 'ReactDOM',
-		}
 	},
 	tools: {
 		rspack: (config, {appendPlugins, addRules}) => {
