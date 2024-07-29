@@ -32,7 +32,11 @@ export default defineConfig({
 		favicon: './src/assets/favicon.svg',
 	},
 	output: {
-		assetPrefix: process.env.PUBLIC_ENVIRONMENT === 'production' ? 'https://app.betfin.io' : 'https://betfin-app-dev.web.app'
+		assetPrefix: process.env.PUBLIC_ENVIRONMENT === 'production' ? 'https://app.betfin.io' : 'https://betfin-app-dev.web.app',
+		externals: {
+			react: 'React',
+			'react-dom': 'ReactDOM',
+		}
 	},
 	tools: {
 		rspack: (config, {appendPlugins, addRules}) => {
