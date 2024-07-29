@@ -86,7 +86,7 @@ const AccountBlock = forwardRef((props: any, forwardedRef: any) => {
 			            transition={{duration: 0.1}}
 			            animate={{opacity: isOpen ? 1 : 0, width: isOpen ? 'auto' : '0'}}>
 				<UserPen className={'text-yellow-400'} onClick={handleOpenProfile}/>
-				<LogOut className={'text-red-500'} onClick={handleOpenModal}/>
+				<LogOut className={'text-red-roulette'} onClick={handleOpenModal}/>
 			</motion.div>
 		</motion.div>
 	</AnimatePresence>

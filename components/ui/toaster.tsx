@@ -18,7 +18,7 @@ export function Toaster() {
 					<Toast key={id} {...props} variant={variant}>
 						<div className="flex flex-row gap-4 items-center">
 							{variant === 'default' && <CircleCheck className={'text-green-400 w-8 h-8'}/>}
-							{variant === 'destructive' && <CircleAlert className={'text-red-500 w-8 h-8'}/>}
+							{variant === 'destructive' && <CircleAlert className={'text-red-roulette w-8 h-8'}/>}
 							{variant === 'soon' && <CircleAlert className={'text-purple-box w-8 h-8'}/>}
 							{variant === 'loading' && <Loader className={'text-yellow-400 w-8 h-8 animate-spin'}/>}
 							
