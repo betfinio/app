@@ -1,26 +1,26 @@
 import {useSupabase} from "@/lib/contexts/supabase";
 import {useQuery} from "@tanstack/react-query";
-import {Stat} from "@/lib/types/staking";
+import {Stat, Timeframe} from "@/lib/types/staking";
 import {fetchTotalProfitStat, fetchTotalStakedStat, fetchTotalStakersStat} from "@/lib/api/conservative";
 
-export const useTotalStakedStat = () => {
+export const useTotalStakedStat = (timeframe: Timeframe) => {
 	const {client} = useSupabase()
 	return useQuery<Stat[]>({
-		queryKey: ['staking', 'conservative', 'totalStaked', 'stat'],
-		queryFn: () => fetchTotalStakedStat(client!),
+		queryKey: ['staking', 'conservative', 'totalStaked', 'stat', timeframe],
+		queryFn: () => fetchTotalStakedStat(timeframe, client!),
 	})
 }
-export const useTotalStakersStat = () => {
+export const useTotalStakersStat = (timeframe: Timeframe) => {
 	const {client} = useSupabase()
 	return useQuery<Stat[]>({
-		queryKey: ['staking', 'conservative', 'totalStakers', 'stat'],
-		queryFn: () => fetchTotalStakersStat(client!)
+		queryKey: ['staking', 'conservative', 'totalStakers', 'stat', timeframe],
+		queryFn: () => fetchTotalStakersStat(timeframe, client!)
 	})
 }
-export const useTotalProfitStat = () => {
+export const useTotalProfitStat = (timeframe: Timeframe) => {
 	const {client} = useSupabase()
 	return useQuery<Stat[]>({
-		queryKey: ['staking', 'conservative', 'totalProfit', 'stat',],
-		queryFn: () => fetchTotalProfitStat(client!)
+		queryKey: ['staking', 'conservative', 'totalProfit', 'stat', timeframe],
+		queryFn: () => fetchTotalProfitStat(timeframe, client!)
 	})
 }

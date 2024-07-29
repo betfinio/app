@@ -22,7 +22,7 @@ const MainBlock: FC<MainBlockProps> = ({variant}) => {
 	const {data: stakedConservative = 0n, ...conservative} = useConservativeTotalStaked()
 	const {data: stakedDynamic = 0n, ...dynamic} = useDynamicTotalStaked()
 	const {data: predictOnline = 0, isFetching: isPredictOnlineFetching} = usePredictOnline()
-	const {data: conservativeBalance = 0n} = useBalance(import.meta.env.PUBLIC_CONSERVATIVE_STAKING_CONTRACT_ADDRESS)
+	const {data: conservativeBalance = 0n} = useBalance(import.meta.env.PUBLIC_CONSERVATIVE_STAKING_ADDRESS)
 	const {data: dynamicRevenue = 0n} = useDynamicTotalProfit()
 	const getGameBlocks = () => {
 		switch (variant) {

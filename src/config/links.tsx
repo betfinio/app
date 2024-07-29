@@ -7,8 +7,9 @@ import {Contact, PaperclipIcon} from "lucide-react";
 import {NavItemProps} from "@/components/ui/NavItem";
 import {getAffiliateUrl, getStakingUrl} from "@/lib";
 
+const MODE = import.meta.env.PUBLIC_ENVIRONMENT
 export const getAppUrl = () => {
-	switch (import.meta.env.PUBLIC_ENVIRONMENT) {
+	switch (MODE) {
 		case 'development':
 			return 'https://betfin-app-dev.web.app'
 		case 'production':
@@ -35,7 +36,7 @@ const navigation: NavItemProps[] = [
 const games: NavItemProps[] = [
 	{label: 'predict', icon: <Predict/>, href: '/predict', disabled: false},
 	{label: 'roulette', icon: <Roulette/>, href: '/roulette', disabled: false},
-	{label: 'lottery', icon: <LuckyRound className={'w-6 h-6'}/>, href: '/lottery', soon: true, disabled: import.meta.env.MODE === "dev"},
+	{label: 'lottery', icon: <LuckyRound className={'w-6 h-6'}/>, href: '/lottery', soon: true, disabled: MODE === "prod"},
 	{label: 'dice', icon: <Dice/>, href: '/dice'},
 	{label: 'binary', icon: <Binary/>, href: '/poker'},
 	{label: 'slots', icon: <Slots/>, href: '/slots'},
