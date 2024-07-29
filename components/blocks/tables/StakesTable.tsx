@@ -1,7 +1,6 @@
 import {FC} from "react";
 import {useTranslation} from "react-i18next";
-import {Address} from "viem";
-import {Bag, Bank, Predict, Roulette} from "@betfinio/ui/dist/icons";
+import {Bag, Bank} from "@betfinio/ui/dist/icons";
 import {truncateEthAddress, valueToNumber, ZeroAddress} from "@betfinio/abi";
 import {SquareArrowOutUpRight} from "lucide-react";
 import {BetValue} from "@/components/ui/BetValue.tsx";
@@ -11,13 +10,10 @@ import {useAllStakes} from "@/lib/query/shared.ts";
 import {Stake} from "betfinio_staking/lib/types";
 import {Link} from "@tanstack/react-router";
 
-const ETHSCAN = import.meta.env.PUBLIC_ETHSCAN
-
 const columnHelper = createColumnHelper<Stake>();
 
 const StakesTable: FC = () => {
-	const {t} = useTranslation('', {keyPrefix: 'shared.homepage.tables'});
-	const {data, isLoading, isFetching} = useAllStakes(10)
+	const {data = [], isLoading, isFetching} = useAllStakes(10)
 	const getStakingIcon = (staking: string) => {
 		if (staking.toLowerCase() === import.meta.env.PUBLIC_CONSERVATIVE_STAKING_ADDRESS.toLowerCase()) {
 			return <Bank className={'w-6 h-6'}/>
