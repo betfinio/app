@@ -8,6 +8,9 @@
         "app": [
           "betfin-app"
         ],
+        "app-ua": [
+          "betfin-app-ua"
+        ],
         "app-dev": [
           "betfin-app-dev"
         ]
