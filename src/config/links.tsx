@@ -28,8 +28,8 @@ const navigation: NavItemProps[] = [
 	},
 	{
 		label: 'affiliate', icon: <Affiliate/>, href: getAffiliateUrl() + '/', disabled: false, children: [
-			{label: 'affiliate-linear-tree', href: getAffiliateUrl() + '/linear', disabled: false, icon: <DirectAffiliate className={'w-6 h-[22px]'}/>},
-			{label: 'affiliate-binary-tree', href: getAffiliateUrl() + '/binary', disabled: false, icon: <DepthAffiliate className={'w-6 h-[22px]'}/>},
+			{label: 'affiliate-linear-tree', href: getAffiliateUrl() + '/linear', disabled: false, icon: <DirectAffiliate className={'w-6 h-6'}/>},
+			{label: 'affiliate-binary-tree', href: getAffiliateUrl() + '/binary', disabled: false, icon: <DepthAffiliate className={'w-6 h-6'}/>},
 		]
 	},
 ]
