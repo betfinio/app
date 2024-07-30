@@ -1,5 +1,5 @@
 import {createRootRoute, Outlet} from '@tanstack/react-router'
-import {FC, useEffect} from "react";
+import {FC} from "react";
 import {I18nextProvider} from 'react-i18next';
 import {games, navigation, others} from "../config/links.tsx";
 import ConnectButton, {WalletBalance} from "../../components/ui/ConnectButton.tsx";
