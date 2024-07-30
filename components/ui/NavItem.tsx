@@ -3,6 +3,7 @@ import {useTranslation} from "react-i18next";
 import {Link, useRouterState} from "@tanstack/react-router";
 import {toast} from "react-toastify";
 import {cx} from "class-variance-authority";
+import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/components/ui/tooltip.tsx";
 
 // todo: refactor
 
@@ -16,6 +17,7 @@ export interface NavItemProps {
 	disabled?: boolean,
 	className?: string,
 	external?: boolean,
+	minimized?: boolean
 }
 
 const NavItem: FC<NavItemProps> = ({
@@ -27,7 +29,8 @@ const NavItem: FC<NavItemProps> = ({
 	soon = false,
 	className = '',
 	external = false,
-	disabled = !external
+	disabled = !external,
+	minimized = false
 }) => {
 	const {t} = useTranslation();
 	const {location: {pathname, href: url}} = useRouterState();
@@ -37,24 +40,37 @@ const NavItem: FC<NavItemProps> = ({
 	}
 	if (external) {
 		return <a className={cx('flex flex-row items-center gap-5 text-white font-medium hover:text-yellow-400', className)}
-		          href={href} target={'_blank'}>{icon || <div className={'w-6'}></div>} {label}</a>
+		          href={href} target={'_blank'}>{icon || <div className={'w-6'}></div>} {!minimized && label}</a>
 	}
 	return <>
 		{disabled ? (
 			<div
 				onClick={handleSoon}
 				className={cx('flex flex-row relative items-center gap-5 font-medium hover:text-yellow-400', active && 'text-yellow-400', className, 'opacity-50 cursor-not-allowed')}>
-				{icon || <div className={'w-6'}></div>} {label}
+				{icon || <div className={'w-6'}></div>} {!minimized && label}
 				{soon && (
 					<SoonBadge/>
 				)}
 			</div>
 		) : (
-			<Link className={cx('flex flex-row items-center gap-5 font-medium hover:text-yellow-400', active && 'text-yellow-400', className)}
-			      to={disabled ? '/soon' : href}>{icon || <div className={'w-6'}></div>} {label}</Link>
+			<TooltipProvider>
+				<Tooltip>
+					<TooltipTrigger>
+						<Link className={cx('flex flex-row items-center gap-5 font-medium hover:text-yellow-400', active && 'text-yellow-400', className)} to={disabled ? '/soon' : href}>
+							{icon || <div className={'w-6'}></div>} {!minimized && label}
+						</Link>
+					</TooltipTrigger>
+					<TooltipContent side={'right'}>
+						{label}
+					</TooltipContent>
+				</Tooltip>
+			
+			</TooltipProvider>
+		
 		)}
 		
-		{(active || children?.length || 0 > 0) && children?.map((item, index) => <NavItem key={index} {...item} className={'pl-6 !gap-3'}
+		{(active || children?.length || 0 > 0) && children?.map((item, index) => <NavItem key={index} minimized={minimized} {...item}
+		                                                                                  className={cx(!minimized && 'pl-6 !gap-3')}
 		                                                                                  label={t('shared.sidebar.' + item.label)}
 		                                                                                  active={item.href.startsWith(location.origin) && item.href.includes(pathname)}/>)}
 	</>

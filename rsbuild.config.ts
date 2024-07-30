@@ -24,13 +24,15 @@ export default defineConfig({
 	},
 	dev: {
 		assetPrefix: 'http://localhost:5555',
+		hmr: true,
+		liveReload: false
 	},
 	html: {
 		title: 'BetFin',
 		favicon: './src/assets/favicon.svg',
 	},
 	output: {
-		assetPrefix: process.env.PUBLIC_ENVIRONMENT === 'production' ? 'https://app.betfin.io' : 'https://betfin-app-dev.web.app'
+		assetPrefix: process.env.PUBLIC_ENVIRONMENT === 'production' ? 'https://app.betfin.io' : 'https://betfin-app-dev.web.app',
 	},
 	tools: {
 		rspack: (config, {appendPlugins, addRules}) => {
