@@ -15,6 +15,7 @@ import {Badge} from "@/components/ui/badge.tsx";
 
 import {truncateEthAddress, valueToNumber} from "@betfinio/abi/dist";
 import {useTranslation} from "react-i18next";
+import {useOpenProfile} from "@/lib/query/shared.ts";
 
 const ConnectButton = () => {
 	const {address} = useAccount();
@@ -37,7 +38,6 @@ const ConnectButton = () => {
 			distinctId: address.toLowerCase(), // required, unique identifier for your user,
 			name: address.toLowerCase()
 		};
-		console.log(window.lc)
 	}, [address]);
 	if (address === undefined) {
 		return <Button onClick={handleConnect} variant={'outline'} className={'border-yellow-400 gap-2'}><Unplug className={'w-4 h-4'}/> Connect Wallet</Button>
@@ -57,6 +57,7 @@ export default ConnectButton
 const AccountBlock = forwardRef((props: any, forwardedRef: any) => {
 	const {address} = useAccount()
 	const {data: username} = useUsername(address)
+	const {data: profile, open: openProfile} = useOpenProfile()
 	const {data: isMember} = useIsMember(address)
 	const {open} = useWeb3Modal();
 	
@@ -65,7 +66,9 @@ const AccountBlock = forwardRef((props: any, forwardedRef: any) => {
 		await open()
 	}
 	const handleOpenProfile = () => {
-		alert('open')
+		if (address) {
+			openProfile(address)
+		}
 	}
 	const handleNotMember = (e: any) => {
 		e.stopPropagation()

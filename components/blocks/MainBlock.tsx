@@ -8,8 +8,8 @@ import {useBalance} from "@/lib/query/token.ts";
 import GameBlock from "@/components/blocks/GameBlock.tsx";
 import {useTranslation} from "react-i18next";
 import {usePredictOnline} from "@/lib/query/predict.ts";
-import {useTotalStaked as useConservativeTotalStaked} from "betfinio_staking/lib/query/conservative";
-import {useTotalProfit as useDynamicTotalProfit, useTotalStaked as useDynamicTotalStaked} from "betfinio_staking/lib/query/dynamic";
+import {useTotalStaked as useConservativeTotalStaked} from "@/lib/query/conservative.ts";
+import {useTotalProfit as useDynamicTotalProfit, useTotalStaked as useDynamicTotalStaked} from "@/lib/query/dynamic.ts";
 import {getGamesUrl, getStakingUrl} from "@/lib";
 import {BetValue} from "@/components/ui/BetValue.tsx";
 
@@ -111,7 +111,7 @@ const StakingInfo: FC<StakeInfoProps> = ({
 			<BetValue value={pa} withIcon prefix={"Revenue from last cycle: "}/>
 		</span>
 		<span className={'text-xs md:text-sm text-gray-500 text-semibold'}>{paLabel}</span>
-		<Link className={'text-black bg-yellow-400 text-xs md:text-sm font-medium px-4 py-2 rounded-lg mt-2'} to={getStakingUrl() + '/' + variant}>{buttonLabel}</Link>
+		<Link className={'text-black bg-yellow-400 text-xs md:text-sm font-medium px-4 py-2 rounded-lg mt-2'} to={getStakingUrl(variant)}>{buttonLabel}</Link>
 	</div>
 }
 

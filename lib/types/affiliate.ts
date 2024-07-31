@@ -1,4 +1,5 @@
 import {Address} from "viem";
+import {ZeroAddress} from "@betfinio/abi";
 
 export interface Member {
 	member: Address;
@@ -74,4 +75,26 @@ export interface Claim {
 	timestamp: number,
 	amount: bigint
 	transaction: Address
+}
+
+
+export const defaultTreeMember: TreeMember = {
+	member: ZeroAddress,
+	inviter: ZeroAddress,
+	parent: ZeroAddress,
+	left: ZeroAddress,
+	right: ZeroAddress,
+	isMatching: false,
+	isInviting: false,
+	volumeLeft: 0n,
+	volumeRight: 0n,
+	betsLeft: 0n,
+	betsRight: 0n,
+	matchedLeft: 0n,
+	matchedRight: 0n,
+	countLeft: 0n,
+	countRight: 0n,
+	count: 0,
+	volume: 0n,
+	bets: 0n,
 }

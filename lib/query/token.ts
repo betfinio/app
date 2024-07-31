@@ -6,7 +6,9 @@ import queryClient from "@/src/config/query.ts";
 import config from "@/src/config/wagmi.ts";
 import {useTranslation} from "react-i18next";
 import {useEffect} from "react";
-import {watchContractEvent} from "viem/actions";
+import {waitForTransactionReceipt, watchContractEvent} from "viem/actions";
+import {toast} from "@/components/ui/use-toast.ts";
+import {getTransactionLink} from "@/lib/helpers.tsx";
 
 export const useBalance = (address: Address | undefined) => {
 	useEffect(() => {
@@ -74,12 +76,45 @@ export const useIncreaseAllowance = () => {
 		mutationKey: ['app', 'account', 'increaseAllowance'],
 		mutationFn: () => increaseAllowance({config}),
 		onError: (e) => {
-			console.log(e, t(e.cause.reason))
+			console.log('error', e, e.cause, e.cause.reason)
+			if (e && e.cause && e.cause.reason) {
+				toast({
+					title: "Failed to mint passes",
+					description: t(e.cause.reason),
+					variant: 'destructive'
+				})
+			} else {
+				toast({
+					title: t('unknown'),
+					variant: 'destructive'
+				})
+			}
 		},
-		onMutate: () => console.log('allowance'),
-		onSuccess: (data) => {
-			console.log('allowance success', data)
-		},
-		onSettled: () => console.log('allowance settled')
+		onSuccess: async (data) => {
+			if (data !== undefined) {
+				const {id, update} = toast({
+					title: "Increasing allowance",
+					description: "Transaction submitted",
+					variant: 'loading',
+					duration: 60 * 1000
+				})
+				await waitForTransactionReceipt(config.getClient(), {
+					hash: data
+				})
+				update({
+					title: "Allowance was increased",
+					description: "Transaction confirmed",
+					variant: 'default',
+					duration: 5 * 1000,
+					id: id,
+					action: getTransactionLink(data)
+				})
+			} else {
+				toast({
+					title: t('unknown'),
+					variant: 'destructive'
+				})
+			}
+		}
 	})
 }
