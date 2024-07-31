@@ -1,22 +1,9 @@
 import {defineConfig} from '@rsbuild/core';
 import {pluginReact} from '@rsbuild/plugin-react';
-import {pluginSass} from '@rsbuild/plugin-sass';
 import {ModuleFederationPlugin} from '@module-federation/enhanced/rspack';
-// @ts-ignore
 import {TanStackRouterRspack} from '@tanstack/router-plugin/rspack'
-// @ts-ignore
 import {dependencies} from "./package.json";
-
-const getStaking = () => {
-	switch (process.env.PUBLIC_ENVIRONMENT) {
-		case 'development':
-			return 'betfinio_staking@https://betfin-staking-dev.web.app/mf-manifest.json'
-		case 'production':
-			return 'betfinio_staking@https://staking.betfin.io/mf-manifest.json'
-		default:
-			return 'betfinio_staking@http://localhost:3000/mf-manifest.json'
-	}
-}
+import {pluginSass} from "@rsbuild/plugin-sass";
 
 export default defineConfig({
 	server: {
@@ -24,8 +11,6 @@ export default defineConfig({
 	},
 	dev: {
 		assetPrefix: 'http://localhost:5555',
-		hmr: true,
-		liveReload: false
 	},
 	html: {
 		title: 'BetFin',
@@ -35,17 +20,16 @@ export default defineConfig({
 		assetPrefix: process.env.PUBLIC_ENVIRONMENT === 'production' ? 'https://app.betfin.io' : 'https://betfin-app-dev.web.app',
 	},
 	tools: {
-		rspack: (config, {appendPlugins, addRules}) => {
-			config.output!.uniqueName = 'betfinio_app';
-			appendPlugins([
+		rspack: {
+			output: {
+				uniqueName: 'betfinio_app',
+			},
+			plugins: [
 				TanStackRouterRspack(),
 				new ModuleFederationPlugin({
 					name: 'betfinio_app',
-					remotes: {
-						betfinio_staking: getStaking()
-					},
 					exposes: {
-						'./TailwindCssGlobal': './src/tailwind.global.scss',
+						'./style': './src/style.ts',
 						'./BetValue': './components/ui/BetValue.tsx',
 						'./DataTable': './components/ui/DataTable.tsx',
 						'./root': './src/routes/__root.tsx',
@@ -73,9 +57,11 @@ export default defineConfig({
 						"./lib/api/dynamic": './lib/api/dynamic',
 						"./lib/api/token": './lib/api/token',
 						"./lib/api/pass": './lib/api/pass',
+						"./helpers": './lib/helpers.tsx',
 						'./lib/query/conservative': './lib/query/conservative',
 						'./lib/query/dynamic': './lib/query/dynamic',
 						'./lib/query/username': './lib/query/username',
+						'./lib/query/shared': './lib/query/shared',
 						'./lib/query/token': './lib/query/token',
 						'./lib/query/pass': './lib/query/pass',
 						'./lib/utils': './lib/utils',
@@ -137,9 +123,9 @@ export default defineConfig({
 							singleton: true,
 							requiredVersion: dependencies['@web3modal/wagmi']
 						}
-					},
-				}),
-			]);
+					}
+				})
+			]
 		},
 	},
 	plugins: [pluginReact(), pluginSass()],

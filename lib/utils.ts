@@ -17,3 +17,4 @@ export async function getTimeByBlock(block: bigint, config: Config): Promise<num
 	const data = await getBlock(config, {blockNumber: block});
 	return Number(data.timestamp);
 }
+

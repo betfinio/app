@@ -5,42 +5,32 @@ import {Binary} from "@betfinio/ui/dist/icons/Binary";
 import {Stones} from "@betfinio/ui/dist/icons/Stones";
 import {Contact, PaperclipIcon} from "lucide-react";
 import {NavItemProps} from "@/components/ui/NavItem";
-import {getAffiliateUrl, getStakingUrl} from "@/lib";
+import {getAffiliateUrl, getGamesUrl, getStakingUrl} from "@/lib";
 
 const MODE = import.meta.env.PUBLIC_ENVIRONMENT
-export const getAppUrl = () => {
-	switch (MODE) {
-		case 'development':
-			return 'https://betfin-app-dev.web.app'
-		case 'production':
-			return 'https://app.betfin.io'
-		default:
-			return 'http://localhost:5555'
-	}
-}
 
 const navigation: NavItemProps[] = [
 	{
-		label: 'staking', disabled: false, icon: <Staking/>, href: getStakingUrl() + '/', children: [
-			{label: 'staking-conservative', href: getStakingUrl() + '/conservative', disabled: false, icon: <Bank className={'w-6 h-6'}/>},
-			{label: 'staking-dynamic', href: getStakingUrl() + '/dynamic', disabled: false, icon: <Bag className={'w-6 h-6'}/>},
+		label: 'staking', disabled: false, icon: <Staking/>, href: getStakingUrl(), children: [
+			{label: 'staking-conservative', href: getStakingUrl('/conservative'), disabled: false, icon: <Bank className={'w-6 h-6'}/>},
+			{label: 'staking-dynamic', href: getStakingUrl('/dynamic'), disabled: false, icon: <Bag className={'w-6 h-6'}/>},
 		]
 	},
 	{
-		label: 'affiliate', icon: <Affiliate/>, href: getAffiliateUrl() + '/', disabled: false, children: [
-			{label: 'affiliate-linear-tree', href: getAffiliateUrl() + '/linear', disabled: false, icon: <DirectAffiliate className={'w-6 h-6'}/>},
-			{label: 'affiliate-binary-tree', href: getAffiliateUrl() + '/binary', disabled: false, icon: <DepthAffiliate className={'w-6 h-6'}/>},
+		label: 'affiliate', icon: <Affiliate/>, href: getAffiliateUrl(), disabled: false, children: [
+			{label: 'affiliate-linear-tree', href: getAffiliateUrl('/linear'), disabled: false, icon: <DirectAffiliate className={'w-6 h-6'}/>},
+			{label: 'affiliate-binary-tree', href: getAffiliateUrl('/binary'), disabled: false, icon: <DepthAffiliate className={'w-6 h-6'}/>},
 		]
 	},
 ]
 const games: NavItemProps[] = [
-	{label: 'predict', icon: <Predict/>, href: '/predict', disabled: false},
-	{label: 'roulette', icon: <Roulette/>, href: '/roulette', disabled: false},
-	{label: 'lottery', icon: <LuckyRound className={'w-6 h-6'}/>, href: '/lottery', soon: true, disabled: MODE === "prod"},
-	{label: 'dice', icon: <Dice/>, href: '/dice'},
-	{label: 'binary', icon: <Binary/>, href: '/poker'},
-	{label: 'slots', icon: <Slots/>, href: '/slots'},
-	{label: 'stones', icon: <Stones/>, href: '/stones'},
+	{label: 'predict', icon: <Predict/>, href: getGamesUrl('/predict'), disabled: false},
+	{label: 'roulette', icon: <Roulette/>, href: getGamesUrl('/roulette'), disabled: false},
+	{label: 'lottery', icon: <LuckyRound className={'w-6 h-6'}/>, href: getGamesUrl('/lottery'), soon: true, disabled: MODE === "production"},
+	{label: 'dice', icon: <Dice/>, href: getGamesUrl('/dice')},
+	{label: 'binary', icon: <Binary/>, href: getGamesUrl('/poker')},
+	{label: 'slots', icon: <Slots/>, href: getGamesUrl('/slots')},
+	{label: 'stones', icon: <Stones/>, href: getGamesUrl('/stones')},
 ]
 
 const others: NavItemProps[] = [
