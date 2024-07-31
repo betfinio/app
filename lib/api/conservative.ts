@@ -1,6 +1,10 @@
 import {SupabaseClient} from "@supabase/supabase-js";
 import {valueToNumber} from "@betfinio/abi/dist";
 import {Stat, Timeframe} from "@/lib/types/staking";
+import {Config} from "wagmi";
+import {readContract} from "@wagmi/core";
+import {ConservativeStakingContract} from "@betfinio/abi";
+import {Address} from "viem";
 
 export const fetchTotalStakedStat = async (timeframe: Timeframe, supabase: SupabaseClient): Promise<Stat[]> => {
 	const data = await supabase
@@ -24,3 +28,17 @@ export const fetchTotalProfitStat = async (timeframe: Timeframe, supabase: Supab
 		.eq('staking', import.meta.env.PUBLIC_CONSERVATIVE_STAKING_ADDRESS.toLowerCase())
 	return data.data!.map(e => ({time: new Date(e.time).getTime() / 1000, value: valueToNumber(BigInt(e.revenues))}));
 }
+
+
+export const fetchTotalStaked = async (
+	config: Config,
+	block?: bigint,
+): Promise<bigint> => {
+	console.log('fetching total staked conservative');
+	return (await readContract(config, {
+		abi: ConservativeStakingContract.abi,
+		address: import.meta.env.PUBLIC_CONSERVATIVE_STAKING_ADDRESS as Address,
+		functionName: 'totalStaked',
+		blockNumber: block || undefined,
+	})) as bigint;
+};

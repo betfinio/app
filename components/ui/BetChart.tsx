@@ -6,7 +6,7 @@ const BetChart = () => {
 	                  trendLineColor={'#facc15'}
 	                  underLineColor={'#6A6A9F'}
 	                  underLineBottomColor={'#201C40'}
-										// @ts-ignore
+		// @ts-ignore
 		                noTimeScale={true}
 		                colorTheme="dark" width={'100%'} height={150}/>
 }
