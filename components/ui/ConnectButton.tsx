@@ -38,7 +38,6 @@ const ConnectButton = () => {
 			distinctId: address.toLowerCase(), // required, unique identifier for your user,
 			name: address.toLowerCase()
 		};
-		console.log(window.lc)
 	}, [address]);
 	if (address === undefined) {
 		return <Button onClick={handleConnect} variant={'outline'} className={'border-yellow-400 gap-2'}><Unplug className={'w-4 h-4'}/> Connect Wallet</Button>
