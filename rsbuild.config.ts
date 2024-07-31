@@ -61,6 +61,7 @@ export default defineConfig({
 						'./lib/query/conservative': './lib/query/conservative',
 						'./lib/query/dynamic': './lib/query/dynamic',
 						'./lib/query/username': './lib/query/username',
+						'./lib/query/shared': './lib/query/shared',
 						'./lib/query/token': './lib/query/token',
 						'./lib/query/pass': './lib/query/pass',
 						'./lib/utils': './lib/utils',
