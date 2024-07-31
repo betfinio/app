@@ -1,5 +1,4 @@
 import {FC} from "react";
-import {useTranslation} from "react-i18next";
 import {Bag, Bank} from "@betfinio/ui/dist/icons";
 import {truncateEthAddress, valueToNumber, ZeroAddress} from "@betfinio/abi";
 import {SquareArrowOutUpRight} from "lucide-react";
@@ -7,8 +6,8 @@ import {BetValue} from "@/components/ui/BetValue.tsx";
 import {DataTable} from "@/components/ui/DataTable.tsx";
 import {createColumnHelper} from "@tanstack/react-table";
 import {useAllStakes} from "@/lib/query/shared.ts";
-import {Stake} from "betfinio_staking/lib/types";
 import {Link} from "@tanstack/react-router";
+import {Stake} from "@/lib/types";
 
 const columnHelper = createColumnHelper<Stake>();
 

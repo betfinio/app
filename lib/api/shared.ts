@@ -1,11 +1,12 @@
 import {Address} from "viem";
-import {Config, getBlock, readContract} from "@wagmi/core";
-import {Options} from "@/lib/types";
+import {getBlock, readContract} from "@wagmi/core";
+import {Options, Stake} from "@/lib/types";
 import {getContractEvents} from "viem/actions";
-import {BetInterfaceContract, BetsMemoryContract, ConservativeStakingContract, DynamicStakingContract} from "@betfinio/abi";
+import {BetInterfaceContract, BetsMemoryContract, ConservativeStakingContract, DynamicStakingContract, PassContract} from "@betfinio/abi";
 import {BetInterface} from "@betfinio/hooks/dist/types/game";
 import {fetchCustomUsername, fetchUsername} from "@/lib/api/username.ts";
-import {Stake} from "betfinio_staking/lib/types";
+import {SupabaseClient} from "@supabase/supabase-js";
+import {Config} from "wagmi";
 
 export const fetchLastBets = async (count: number, address: Address, options: Options) => {
 	if (!options.config) return []
@@ -97,8 +98,41 @@ export async function fetchLastStakes(count: number, address: Address, options: 
 	return await Promise.all([...conservativeStakes, ...dynamicStakes].sort((a, b) => (b.block || 0) - (a.block || 0)).slice(0, count).map(async (stake) => ({
 		...stake,
 		username: await fetchUsername(stake.staker, options),
-		customUsername: await   fetchCustomUsername(address, stake.staker as Address, options.supabase!)
+		customUsername: await fetchCustomUsername(address, stake.staker as Address, options.supabase!)
 	})))
 }
 
+export const fetchMemberSide = async (parent: Address, member: Address, supabase: SupabaseClient): Promise<"left" | "right" | null> => {
+	const {data: result, count} = await supabase.rpc("find_parent", {member: member.toLowerCase(), parent: parent.toLowerCase()}, {count: 'exact'})
+	console.log(result, count)
+	if (count === 0) return null;
+	if (count === 1) {
+		return result[0].side === 2 ? 'right' : result[0].side === 1 ? 'left' : null
+	}
+	return null;
+}
+
+export const fetchRegistrationDate = async (address: Address, config: Config) => {
+	try {
+		console.log('fetching registration date', address)
+		const events = await getContractEvents(config.getClient(), {
+			abi: PassContract.abi,
+			address: import.meta.env.PUBLIC_PASS_ADDRESS as Address,
+			eventName: 'NewMember',
+			args: {
+				member: address
+			},
+			toBlock: 'latest',
+			fromBlock: 0n
+		})
+		if (events.length === 0) return 0
+		const event = events[0]
+		const block = await getBlock(config, {blockNumber: event.blockNumber})
+		return Number(block.timestamp) * 1000
+	} catch (e) {
+		console.log(e)
+		return 0
+	}
+	
+}
 

@@ -3,6 +3,7 @@ import Logo from "@/components/ui/logo.tsx";
 import {Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger} from "@/components/ui/sheet.tsx";
 import {Menu} from "@betfinio/ui/dist/icons";
 import {Link} from "@tanstack/react-router";
+import MemberProfile from "@/components/blocks/MemberProfile.tsx";
 
 const Header: FC<PropsWithChildren<{ sidebar: ReactNode }>> = ({children, sidebar}) => {
 	return <header style={{minHeight: '70px'}} className={' flex flex-row items-center justify-between lg:justify-end px-4 border-b border-gray-800'}>
@@ -18,6 +19,7 @@ const Header: FC<PropsWithChildren<{ sidebar: ReactNode }>> = ({children, sideba
 				{sidebar}
 			</SheetContent>
 		</Sheet>
+		<MemberProfile/>
 	</header>
 }
 
