@@ -63,9 +63,9 @@ const MemberProfile = () => {
 				<ScrollArea className={'max-h-[100vh]'}>
 					<motion.div className={'mx-auto text-white w-full rounded-3xl  bg-primaryLight'}>
 						<div className={'p-4 lg:p-8 mb-10 relative'}>
-							<DialogClose>
+							<DialogClose onClick={handleClose}>
 								<X
-									className={'absolute top-4 right-4 w-6 h-6 p-1 border-2 border-white rounded-full cursor-pointer hover:text-[#DD375F] hover:border-[#DD375F] duration-300'}/>
+									className={'absolute top-4 right-4 w-6 h-6 p-1 border-2 border-white rounded-full cursor-pointer hover:text-red-roulette hover:border-red-roulette duration-300'}/>
 							</DialogClose>
 							
 							<div className={'flex items-center justify-center text-lg font-semibold'}>Member profile</div>
@@ -205,7 +205,7 @@ const MemberProfile = () => {
 															</div>
 														</td>
 														<TooltipContent
-															className={cx('z-50 border-2 rounded-xl border-[#FFC800] bg-black bg-opacity-75 text-white')}>
+															className={cx('z-50 border-2 rounded-xl border-yellow-400 bg-black bg-opacity-75 text-white')}>
 															<div className={'px-4 py-2 text-xs'}>
 																<p className={'font-bold text-center'}>
 																	This value represents <span className={'text-yellow-400'}>100% of all bets</span> <br/> of your <span
@@ -228,7 +228,7 @@ const MemberProfile = () => {
 															</div>
 														</td>
 														<TooltipContent
-															className={cx('z-50 border-2 rounded-xl border-[#FFC800] bg-black bg-opacity-75 text-white')}>
+															className={cx('z-50 border-2 rounded-xl border-yellow-400 bg-black bg-opacity-75 text-white')}>
 															<div className={'px-4 py-2 text-xs'}>
 																<p className={'font-bold text-center'}>
 																	This value represents <span className={'text-yellow-400'}>1% of all bets</span> <br/> in your <span
