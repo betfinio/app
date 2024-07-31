@@ -6,7 +6,7 @@ import {AlertCircle, ArrowLeftCircleIcon, ArrowRightCircleIcon, Copy, Layers3, L
 import {truncateEthAddress, valueToNumber} from "@betfinio/abi/dist";
 import {Input} from "@/components/ui/input.tsx";
 import cx from "clsx";
-import {FC, useMemo, useState} from "react";
+import {FC, useEffect, useMemo, useState} from "react";
 import {useAccount} from "wagmi";
 import {Button} from "@/components/ui/button.tsx";
 import {DateTime} from "luxon";
@@ -15,7 +15,7 @@ import {Blackjack, Hero, People} from "@betfinio/ui/dist/icons";
 import {BetValue} from "@/components/ui/BetValue.tsx";
 import {useInviteStakingVolume, useTreeMember} from "@/lib/query/affiliate.ts";
 import {defaultTreeMember} from "@/lib/types";
-import {useUsername} from "@/lib/query/username.ts";
+import {useChangeCustomUsername, useChangeUsername, useCustomUsername, useUsername} from "@/lib/query/username.ts";
 import {ScrollArea} from "@/components/ui/scroll-area.tsx";
 
 const MemberProfile = () => {
@@ -26,6 +26,9 @@ const MemberProfile = () => {
 	const {data: bettingVolume = 0n} = useInviteStakingVolume(data.address || ZeroAddress)
 	const {data: stakingVolume = 0n} = useInviteStakingVolume(data.address || ZeroAddress)
 	const {data: username} = useUsername(data.address || ZeroAddress);
+	const {data: customUsername = ''} = useCustomUsername(me || ZeroAddress, data.address || ZeroAddress)
+	const {mutate: saveUsername} = useChangeUsername();
+	const {mutate: saveCustomUsername} = useChangeCustomUsername();
 	const volume = [stakingVolume, bettingVolume]
 	const handleClose = () => {
 		close()
@@ -34,7 +37,6 @@ const MemberProfile = () => {
 	const totalVolume = useMemo(() => {
 		return member ? valueToNumber(member.volumeLeft + member.volumeRight + member.betsRight / 100n + member.betsLeft / 100n) : 0
 	}, [member])
-	console.log(data, me)
 	if (!data.open || !data.address || !me) return null;
 	const address = data.address
 	
@@ -44,7 +46,12 @@ const MemberProfile = () => {
 	}
 	
 	const handleSaveUsername = async (username: string) => {
-		return false
+		saveUsername(username)
+		return true
+	}
+	const handleSaveCustomUsername = async (username: string) => {
+		saveCustomUsername({username, address})
+		return true
 	}
 	const handleCopyLink = () => {
 		alert('copy')
@@ -80,10 +87,10 @@ const MemberProfile = () => {
 										</label>
 									</div>
 									<div className={''}>
-										<UsernameEdit label={'Username'} onSave={handleSaveUsername} initialValue={username || ''}/>
+										<UsernameEdit label={'Username'} onSave={handleSaveUsername} allowEdit={me.toLowerCase() === address.toLowerCase()} initialValue={username || ''}/>
 									</div>
 									<div className={cx(me.toLowerCase() === address.toLowerCase() && 'hidden')}>
-										<UsernameEdit label={'Custom username'} onSave={handleSaveUsername} initialValue={''}/>
+										<UsernameEdit label={'Custom username'} onSave={handleSaveCustomUsername} allowEdit={true} initialValue={customUsername}/>
 									</div>
 									<div className={'text-sm'}>
 										<label className={'flex flex-col px-2 py-1 relative'}>
@@ -264,16 +271,25 @@ const MemberProfile = () => {
 export default MemberProfile;
 
 
-const UsernameEdit: FC<{ label: string, onSave: (username: string) => Promise<boolean>, initialValue: string }> = ({label, onSave, initialValue}) => {
+const UsernameEdit: FC<{ label: string, allowEdit: boolean, onSave: (username: string) => Promise<boolean>, initialValue: string }> = ({
+	label,
+	allowEdit,
+	onSave,
+	initialValue
+}) => {
 	const {data, close} = useOpenProfile()
 	const address = data.address!
-	
 	const {address: me} = useAccount()
 	const [usernameError, setUsernameError] = useState('')
 	const [username, setUsername] = useState(initialValue)
 	const [editAllowed, setEditAllowed] = useState(false)
 	const {data: side} = useSide(me!, address)
+	console.log(side, me, address)
 	const [loading, setLoading] = useState(false)
+	
+	useEffect(() => {
+		setUsername(initialValue)
+	}, [initialValue])
 	
 	const handleUsernameChange = (e: any) => {
 		const username = e.target.value
@@ -294,7 +310,6 @@ const UsernameEdit: FC<{ label: string, onSave: (username: string) => Promise<bo
 			return
 		}
 		const result = await onSave(username)
-		console.log(result, label)
 		if (result) {
 			setEditAllowed(false)
 		}
@@ -312,21 +327,20 @@ const UsernameEdit: FC<{ label: string, onSave: (username: string) => Promise<bo
 		       placeholder={username === '' ? 'not set' : ''}
 		       className={cx('p-2 px-4 rounded-lg border text-sm bg-primaryLight border-purple-box outline:none active:ring-0 placeholder:text-gray-500 ring-0 focus:outline-0 focus:ring-0 ', usernameError && 'border-red-500')}
 		       disabled={!editAllowed}/>
-		<div className={cx('flex flex-row gap-2 items-center absolute bottom-2.5 text-sm font-medium h-[26px] rounded-lg bg-gray-600 p-1 px-3 right-4',
-			address.toLowerCase() === me?.toLowerCase() && "hidden")}>
+		<div className={cx('flex flex-row gap-2 items-center absolute bottom-2.5 text-sm font-medium h-[26px] rounded-lg bg-gray-600 p-1 px-3 right-4', allowEdit && "hidden")}>
 			{side === "left" && <><ArrowLeftCircleIcon className={'w-5 h-5'}/> Left</>}
 			{side === "right" && <><ArrowRightCircleIcon className={'w-5 h-5'}/> Right</>}
 		</div>
 		{!editAllowed ? <div onClick={handleEditUsername}
-		                     className={cx('flex flex-row gap-2 items-center absolute bottom-2.5 text-sm font-medium h-[26px] cursor-pointer rounded-lg bg-gray-600 p-1 px-3 right-3.5', address.toLowerCase() !== me?.toLowerCase() && "hidden")}>
+		                     className={cx('flex flex-row gap-2 items-center absolute bottom-2.5 text-sm font-medium h-[26px] cursor-pointer rounded-lg bg-gray-600 p-1 px-3 right-3.5', !allowEdit && "hidden")}>
 			<PencilIcon className={'w-4 h-4'}/> Edit
 		</div> : <>
 			<button onClick={handleSaveUsername} disabled={!!usernameError}
-			        className={cx('flex flex-row gap-2 items-center disabled:cursor-not-allowed absolute bottom-2.5 text-sm font-medium h-[26px] cursor-pointer rounded-md bg-green-500 p-1 px-3 right-11', loading && '!hidden', usernameError && "bg-red-500 cursor-pointer", address.toLowerCase() !== me?.toLowerCase() && "hidden")}>
+			        className={cx('flex flex-row gap-2 items-center disabled:cursor-not-allowed absolute bottom-2.5 text-sm font-medium h-[26px] cursor-pointer rounded-md bg-green-500 p-1 px-3 right-11', loading && '!hidden', usernameError && "bg-red-500 cursor-pointer", !allowEdit && "hidden")}>
 				Save
 			</button>
 			<Button size={'sm'} onClick={handleClose}
-			        className={cx('flex flex-row gap-2 items-center absolute bottom-2.5 text-sm font-medium h-[26px] cursor-pointer rounded-md bg-gray-600 aspect-square justify-center right-3.5')}>
+			        className={cx('flex flex-row gap-2 items-center absolute bottom-2.5 text-sm font-medium px-0 h-[26px] cursor-pointer rounded-md bg-gray-600 aspect-square justify-center right-3.5')}>
 				{loading ? <Loader color={'white'} className={'w-2 h-2'}/> :
 					<X className={'w-3 h-3'}/>}
 			</Button>

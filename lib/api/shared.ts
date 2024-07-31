@@ -103,8 +103,8 @@ export async function fetchLastStakes(count: number, address: Address, options: 
 }
 
 export const fetchMemberSide = async (parent: Address, member: Address, supabase: SupabaseClient): Promise<"left" | "right" | null> => {
+	if (parent === member) return null;
 	const {data: result, count} = await supabase.rpc("find_parent", {member: member.toLowerCase(), parent: parent.toLowerCase()}, {count: 'exact'})
-	console.log(result, count)
 	if (count === 0) return null;
 	if (count === 1) {
 		return result[0].side === 2 ? 'right' : result[0].side === 1 ? 'left' : null

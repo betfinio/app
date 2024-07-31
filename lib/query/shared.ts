@@ -51,23 +51,19 @@ const useOpenProfile = () => {
 	const [address, setAddress] = useState<Address | undefined>(account)
 	
 	const getOpen = () => {
-		console.log('fet', isOpen)
 		return {open: isOpen, address}
 	}
 	
 	useEffect(() => {
-		console.log('eff', isOpen)
 	}, [isOpen]);
 	
 	const open = (address: Address) => {
-		console.log('open')
 		setOpen(true)
 		setAddress(address);
 		queryClient.setQueryData(['profile'], {open: true, address})
 	}
 	
 	function close() {
-		console.log('close')
 		setOpen(false)
 		queryClient.setQueryData(['profile'], {open: false})
 	}
@@ -85,7 +81,6 @@ const useOpenProfile = () => {
 const useSide = (parent: Address, member: Address) => {
 	const {client} = useSupabase()
 	return useQuery({
-		initialData: null,
 		queryKey: ['profile', 'side', parent, member],
 		queryFn: () => fetchMemberSide(parent, member, client!)
 	})
