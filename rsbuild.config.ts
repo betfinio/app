@@ -73,6 +73,7 @@ export default defineConfig({
 						"./lib/api/dynamic": './lib/api/dynamic',
 						"./lib/api/token": './lib/api/token',
 						"./lib/api/pass": './lib/api/pass',
+						"./helpers": './lib/helpers.tsx',
 						'./lib/query/conservative': './lib/query/conservative',
 						'./lib/query/dynamic': './lib/query/dynamic',
 						'./lib/query/username': './lib/query/username',

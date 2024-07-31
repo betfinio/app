@@ -2,9 +2,9 @@ import {FC, PropsWithChildren, ReactNode, useState} from "react";
 import Logo from "@/components/ui/logo.tsx";
 import NavGroup from "@/components/ui/NavGroup.tsx";
 import {NavItemProps} from "@/components/ui/NavItem.tsx";
-import {getAppUrl} from "@/src/config/links.tsx";
 import cx from "clsx";
 import {PanelLeftClose, PanelRightClose} from "lucide-react";
+import {getAppUrl} from "@/lib";
 
 const Sidebar: FC<PropsWithChildren<{ links: NavItemProps[][] }>> = ({children, links}) => {
 	const [minimized, setMinimized] = useState(false);
