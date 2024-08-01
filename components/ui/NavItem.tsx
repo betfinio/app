@@ -46,9 +46,9 @@ const NavItem: FC<NavItemProps> = ({
 		{disabled ? (
 			<div
 				onClick={handleSoon}
-				className={cx('flex flex-row relative items-center gap-5 font-medium hover:text-yellow-400', active && 'text-yellow-400', className, 'opacity-50 cursor-not-allowed')}>
+				className={cx('flex flex-row relative items-center gap-5 w-full font-medium hover:text-yellow-400', active && 'text-yellow-400', className, 'opacity-50 cursor-not-allowed')}>
 				{icon || <div className={'w-6'}></div>} {!minimized && label}
-				{soon && (
+				{!minimized && soon && (
 					<SoonBadge/>
 				)}
 			</div>

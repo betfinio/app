@@ -71,7 +71,7 @@ export const useAllowance = (address: Address | undefined) => {
 
 
 export const useIncreaseAllowance = () => {
-	const {t} = useTranslation('translation', {keyPrefix: 'errors'})
+	const {t} = useTranslation('translation', {keyPrefix: 'shared.errors'})
 	return useMutation<WriteContractReturnType, any, void>({
 		mutationKey: ['app', 'account', 'increaseAllowance'],
 		mutationFn: () => increaseAllowance({config}),
