@@ -5,6 +5,19 @@ import {TanStackRouterRspack} from '@tanstack/router-plugin/rspack'
 import {dependencies} from "./package.json";
 import {pluginSass} from "@rsbuild/plugin-sass";
 
+function getOutput() {
+	switch (process.env.PUBLIC_ENVIRONMENT) {
+		case 'development':
+			return 'https://betfin-app-dev.web.app';
+		case 'production':
+			return 'https://app.betfin.io';
+		case 'production-ua':
+			return 'https://app.betfin.gg';
+		default:
+			return 'http://localhost:5555';
+	}
+}
+
 export default defineConfig({
 	server: {
 		port: 5555,
@@ -17,7 +30,7 @@ export default defineConfig({
 		favicon: './src/assets/favicon.svg',
 	},
 	output: {
-		assetPrefix: process.env.PUBLIC_ENVIRONMENT === 'production' ? 'https://app.betfin.io' : 'https://betfin-app-dev.web.app',
+		assetPrefix: getOutput(),
 	},
 	tools: {
 		rspack: {
