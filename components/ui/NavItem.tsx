@@ -69,7 +69,7 @@ const NavItem: FC<NavItemProps> = ({
 		
 		)}
 		
-		{(active || children?.length || 0 > 0) && children?.map((item, index) => <NavItem key={index} minimized={minimized} {...item}
+		{(active || children?.length || 0 > 0) && children?.map((item, index) => <NavItem key={index + item.href} minimized={minimized} {...item}
 		                                                                                  className={cx(!minimized && 'pl-6 !gap-3')}
 		                                                                                  label={t('shared.sidebar.' + item.label)}
 		                                                                                  active={item.href.startsWith(location.origin) && item.href.includes(pathname)}/>)}

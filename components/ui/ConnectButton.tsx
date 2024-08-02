@@ -82,7 +82,7 @@ const AccountBlock = forwardRef((props: any, forwardedRef: any) => {
 			<BetLogo className={'border-yellow-400 border-2 aspect-square w-8 h-8 rounded-full p-1 bg-primaryLighter'}/>
 			<div className={'flex flex-col'}>
 				<div className={'text-sm text-gray-400'}>{truncateEthAddress(address)}</div>
-				{isMember ? <div className={'text-base text-white'}>{username}</div> : <Badge onClick={handleNotMember} variant={'destructive'}>Not a member</Badge>}
+				{isMember ? <div className={'text-base text-white w-[100px] overflow-x-hidden text-ellipsis'}>{username}</div> : <Badge onClick={handleNotMember} variant={'destructive'}>Not a member</Badge>}
 			</div>
 			<motion.div className={'flex flex-row items-center justify-center gap-2'}
 			            initial={{opacity: 0}}
