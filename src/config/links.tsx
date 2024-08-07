@@ -26,7 +26,7 @@ const navigation: NavItemProps[] = [
 const games: NavItemProps[] = [
 	{label: 'predict', icon: <Predict/>, href: getGamesUrl('/predict'), disabled: false},
 	{label: 'roulette', icon: <Roulette/>, href: getGamesUrl('/roulette'), disabled: false},
-	{label: 'lottery', icon: <LuckyRound className={'w-6 h-6'}/>, href: getGamesUrl('/lottery'), soon: true, disabled: MODE === "production"},
+	{label: 'luro', icon: <LuckyRound className={'w-6 h-6'}/>, href: getGamesUrl('/luro'), soon: true, disabled: MODE.includes('prod')},
 	{label: 'dice', icon: <Dice/>, href: getGamesUrl('/dice')},
 	{label: 'binary', icon: <Binary/>, href: getGamesUrl('/poker')},
 	{label: 'slots', icon: <Slots/>, href: getGamesUrl('/slots')},
