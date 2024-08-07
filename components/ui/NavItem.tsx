@@ -1,9 +1,10 @@
-import {FC, ReactNode} from "react";
+import {FC, ReactNode, useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
 import {Link, useRouterState} from "@tanstack/react-router";
 import {toast} from "react-toastify";
 import {cx} from "class-variance-authority";
 import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/components/ui/tooltip.tsx";
+import {DateTime} from "luxon";
 
 // todo: refactor
 
@@ -83,9 +84,23 @@ const NavItem: FC<NavItemProps> = ({
 export default NavItem;
 
 const SoonBadge = () => {
-	return (
-		<div className={'absolute right-0 text-[10px] bg-yellow-400 p-1 px-2 text-black rounded-lg'}>
-			Soon
+	const deployTimestamp = 1723226400; // Unix timestamp in seconds
+	const deploy = DateTime.fromSeconds(deployTimestamp);
+	
+	const [diff, setDiff] = useState(deploy.diffNow(['days', 'hours', 'minutes', 'seconds']));
+	
+	useEffect(() => {
+		const i = setInterval(() => {
+			setDiff(deploy.diffNow(['days', 'hours', 'minutes', 'seconds']));
+		}, 1000);
+		return () => clearInterval(i);
+	}, [])
+	return (<div className={'absolute right-0 text-[10px] bg-yellow-400 p-1 px-2 text-black rounded-lg'}>
+			{
+				(diff.days > 0 ? (diff.days + 'd ') : '') +
+				(diff.hours > 0 ? (diff.hours + 'h ') : '') +
+				(diff.minutes > 0 ? (Math.floor(diff.minutes) + 'm ') : '')
+			}
 		</div>
 	)
 }
