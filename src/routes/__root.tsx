@@ -14,6 +14,7 @@ import {SupabaseProvider} from "@/lib/contexts/supabase.tsx";
 import client from "@/src/config/supabase.ts";
 import {i18n} from "i18next";
 import instance from "@/src/i18n.ts";
+import Footer from "@/components/blocks/Footer.tsx";
 
 
 export const Root: FC<{ instance: i18n, id: string }> = ({instance, id}) => {
@@ -27,7 +28,7 @@ export const Root: FC<{ instance: i18n, id: string }> = ({instance, id}) => {
 	}
 	
 	const getFooter = () => {
-		return <footer className={'w-full'}></footer>
+		return <Footer/>
 	}
 	return <WagmiProvider config={config}>
 		<QueryClientProvider client={queryClient}>
