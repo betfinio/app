@@ -42,6 +42,11 @@ const NavItem: FC<NavItemProps> = ({
 		return <a className={cx('flex flex-row items-center gap-5 text-white font-medium hover:text-yellow-400', className)}
 		          href={href} target={'_blank'}>{icon || <div className={'w-6'}></div>} {!minimized && label}</a>
 	}
+	
+	const isActive = (href: string): boolean => {
+		return (window.location.origin + pathname).includes(href);
+	}
+	
 	return <>
 		{disabled ? (
 			<div
@@ -66,13 +71,12 @@ const NavItem: FC<NavItemProps> = ({
 				</Tooltip>
 			
 			</TooltipProvider>
-		
 		)}
 		
 		{(active || children?.length || 0 > 0) && children?.map((item, index) => <NavItem key={index + item.href} minimized={minimized} {...item}
 		                                                                                  className={cx(!minimized && 'pl-6 !gap-3')}
 		                                                                                  label={t('shared.sidebar.' + item.label)}
-		                                                                                  active={item.href.startsWith(location.origin) && item.href.includes(pathname)}/>)}
+		                                                                                  active={isActive(item.href)}/>)}
 	</>
 }
 
