@@ -1,6 +1,6 @@
 {
-  "balance": "Wallet balance:",
-  "allowance": "Spendable limit:",
+  "balance": "Available:",
+  "allowance": "Wallet balance:",
   "sidebar": {
     "staking": "Staking",
     "staking-conservative": "Conservative",

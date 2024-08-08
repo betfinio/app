@@ -158,7 +158,7 @@ const MemberProfile = () => {
 											</div>
 										</div>
 										<div className={'overflow-x-scroll w-full'}>
-											<table className={'w-full text-left'}>
+											<table className={'w-full text-left overflow-x-hidden'}>
 												<thead className={'whitespace-nowrap'}>
 												<tr className={'text-gray-400 border-b border-gray-600'}>
 													<th className={'w-1/3 pb-4 hidden md:block'}>Product</th>
@@ -187,62 +187,61 @@ const MemberProfile = () => {
 													</td>
 												</tr>
 												<tr>
-													<td className={' hidden md:table-cell'}>
+													<td className={'hidden md:table-cell'}>
 														<div className={'flex flex-row items-center gap-2'}><Blackjack
 															className={'w-4 h-4 text-yellow-400'}/> Betting
 														</div>
 													</td>
-													<Tooltip>
-														<td className={'py-2 pl-2'}>
-															<div className={'flex flex-col'}>
-																<BetValue value={(volume[1] / 100n)} withIcon/>
-																<span className={'text-sm flex gap-1'}>
-														total bets
-											<TooltipTrigger>
-														<AlertCircle className={'text-yellow-400'} width={18}/>
-											</TooltipTrigger>
-													</span>
-															</div>
-														</td>
-														<TooltipContent
-															className={cx('z-50 border-2 rounded-xl border-yellow-400 bg-black bg-opacity-75 text-white')}>
-															<div className={'px-4 py-2 text-xs'}>
-																<p className={'font-bold text-center'}>
-																	This value represents <span className={'text-yellow-400'}>100% of all bets</span> <br/> of your <span
-																	className={'text-yellow-400'}>direct</span> affiliates
-																</p>
-															
-															</div>
-														</TooltipContent>
-													</Tooltip>
-													<Tooltip>
-														<td className={'py-2 pl-2'}>
-															<div className={'flex flex-col'}><BetValue
-																value={(member.betsLeft / 100n + member.betsRight / 100n)} withIcon/>
-																<div className={'text-sm flex gap-1'}>
-																	total bets
+													<td className={'py-2 pl-2'}>
+														<div className={'flex flex-col'}>
+															<BetValue value={(volume[1] / 100n)} withIcon/>
+															<div className={'text-sm flex gap-1'}>
+																total bets
+																<Tooltip>
 																	<TooltipTrigger>
 																		<AlertCircle className={'text-yellow-400'} width={18}/>
 																	</TooltipTrigger>
-																</div>
+																	<TooltipContent className={cx('z-50 border- rounded-xl border-yellow-400 bg-black text-white')}>
+																		<div className={'px-4 py-2 text-xs'}>
+																			<p className={'font-bold text-center'}>
+																				This value represents <span className={'text-yellow-400'}>100% of all bets</span> <br/> of your <span
+																				className={'text-yellow-400'}>direct</span> affiliates
+																			</p>
+																		
+																		</div>
+																	</TooltipContent>
+																</Tooltip>
 															</div>
-														</td>
-														<TooltipContent
-															className={cx('z-50 border-2 rounded-xl border-yellow-400 bg-black bg-opacity-75 text-white')}>
-															<div className={'px-4 py-2 text-xs'}>
-																<p className={'font-bold text-center'}>
-																	This value represents <span className={'text-yellow-400'}>1% of all bets</span> <br/> in your <span
-																	className={'text-yellow-400'}>binary</span> affiliate system
-																</p>
-															
+														</div>
+													</td>
+													
+													<td className={'py-2 pl-2'}>
+														<div className={'flex flex-col'}><BetValue
+															value={(member.betsLeft / 100n + member.betsRight / 100n)} withIcon/>
+															<div className={'text-sm flex gap-1'}>
+																total bets
+																<Tooltip>
+																	<TooltipTrigger>
+																		<AlertCircle className={'text-yellow-400'} width={18}/>
+																	</TooltipTrigger>
+																	<TooltipContent
+																		className={cx('z-50 border-2 rounded-xl border-yellow-400 bg-black bg-opacity-75 text-white')}>
+																		<div className={'px-4 py-2 text-xs'}>
+																			<p className={'font-bold text-center'}>
+																				This value represents <span className={'text-yellow-400'}>1% of all bets</span> <br/> in your <span
+																				className={'text-yellow-400'}>binary</span> affiliate system
+																			</p>
+																		
+																		</div>
+																	</TooltipContent>
+																</Tooltip>
 															</div>
-														</TooltipContent>
-													</Tooltip>
+														</div>
+													</td>
 												</tr>
 												</tbody>
 											</table>
 										</div>
-									
 									</div>
 								</div>
 							</div>

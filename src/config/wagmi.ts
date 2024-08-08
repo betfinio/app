@@ -1,10 +1,26 @@
 import {fallback, http} from "viem";
 import {polygon, polygonAmoy} from "viem/chains";
-import {createStorage} from "wagmi";
+import {createStorage, parseCookie} from "wagmi";
 import {defaultWagmiConfig} from "@web3modal/wagmi";
 import {createWeb3Modal} from "@web3modal/wagmi/react";
 import {injected, metaMask} from 'wagmi/connectors'
 
+
+const cookieStorage = {
+	getItem(key: any) {
+		if (typeof window === 'undefined') return null
+		const value = parseCookie(document.cookie, key)
+		return value ?? null
+	},
+	setItem(key: any, value: any) {
+		if (typeof window === 'undefined') return
+		document.cookie = `${key}=${value}`
+	},
+	removeItem(key: any) {
+		if (typeof window === 'undefined') return
+		document.cookie = `${key}=;max-age=-1`
+	}
+}
 
 const chains = import.meta.env.PUBLIC_ENVIRONMENT.includes('prod') ? [polygon] : [polygonAmoy]
 const chainId = chains[0].id
@@ -33,13 +49,13 @@ const config = defaultWagmiConfig({
 	enableWalletConnect: true,
 	multiInjectedProviderDiscovery: true,
 	storage: createStorage({
-		key: `betfin-${chainId}`
+		storage: cookieStorage
 	}),
 	auth: {
 		email: false,
 	},
 	projectId: import.meta.env.PUBLIC_WALLETCONNECT_ID,
-	ssr: false,
+	ssr: true,
 });
 
 
@@ -52,8 +68,9 @@ createWeb3Modal({
 		}
 	},
 	projectId: import.meta.env.PUBLIC_WALLETCONNECT_ID,
-	enableAnalytics: false, // Optional - defaults to your Cloud configuration
+	enableAnalytics: true, // Optional - defaults to your Cloud configuration
 	enableOnramp: false // Optional - false as default
 })
 
 export default config
+
