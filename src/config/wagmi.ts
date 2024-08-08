@@ -6,16 +6,16 @@ import {createWeb3Modal} from "@web3modal/wagmi/react";
 import {injected, mock, safe, metaMask, walletConnect} from 'wagmi/connectors'
 
 
-const chains = import.meta.env.PUBLIC_ENVIRONMENT === 'production' ? [polygon] : [polygonAmoy]
+const chains = import.meta.env.PUBLIC_ENVIRONMENT.includes('prod') ? [polygon] : [polygonAmoy]
 const chainId = chains[0].id
 const config = defaultWagmiConfig({
 	metadata: {
-		name: 'BetFin.io',
+		name: 'BetFin',
 		description: 'Decentralized staking platform',
 		url: import.meta.env.PUBLIC_APP_URL, // origin must match your domain & subdomain
 		icons: ['https://betfin.io/favicon.svg']
 	},
-	connectors: [safe(), injected(), metaMask()],
+	connectors: [safe(), injected()],
 	chains: chains as any,
 	transports: {
 		[chainId]: fallback([
