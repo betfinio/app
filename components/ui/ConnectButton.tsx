@@ -80,6 +80,7 @@ const AccountBlock = forwardRef((props: any, forwardedRef: any) => {
 		<motion.div className={cx('h-[50px] whitespace-nowrap min-w-[100px] cursor-pointer rounded-lg rounded-b-none px-4 flex flex-row items-center justify-between gap-2', {
 			'bg-gray-800 animate-in w-[240px]': isOpen,
 		})} {...props} ref={forwardedRef}>
+			{!isOpen && <UserPen className={'text-yellow-400 ml-3'} onClick={handleOpenProfile}/>}
 			<BetLogo className={'border-yellow-400 border-2 aspect-square w-8 h-8 rounded-full p-1 bg-primaryLighter'}/>
 			<div className={'flex flex-col'}>
 				<div className={'text-sm text-gray-400'}>{truncateEthAddress(address)}</div>
