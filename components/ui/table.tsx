@@ -118,7 +118,8 @@ function DataTablePagination<TData>({
 }: DataTablePaginationProps<TData>) {
 	return (
 		<div className="flex items-center justify-between py-2">
-			<div className="flex-1">
+			<div className="flex-1 text-sm text-muted-foreground">
+				Total of {table.getFilteredRowModel().rows.length} result(s).
 			</div>
 			<div className="flex items-center space-x-2 lg:space-x-4">
 				<div className="flex items-center space-x-2">
