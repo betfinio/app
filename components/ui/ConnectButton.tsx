@@ -16,6 +16,7 @@ import {Badge} from "@/components/ui/badge.tsx";
 import {truncateEthAddress, valueToNumber} from "@betfinio/abi/dist";
 import {useTranslation} from "react-i18next";
 import {useOpenProfile} from "@/lib/query/shared.ts";
+import {useNavigate} from "@tanstack/react-router";
 
 const ConnectButton = () => {
 	const {address} = useAccount();
@@ -82,7 +83,8 @@ const AccountBlock = forwardRef((props: any, forwardedRef: any) => {
 			<BetLogo className={'border-yellow-400 border-2 aspect-square w-8 h-8 rounded-full p-1 bg-primaryLighter'}/>
 			<div className={'flex flex-col'}>
 				<div className={'text-sm text-gray-400'}>{truncateEthAddress(address)}</div>
-				{isMember ? <div className={'text-base text-white w-[100px] overflow-x-hidden text-ellipsis'}>{username}</div> : <Badge onClick={handleNotMember} variant={'destructive'}>Not a member</Badge>}
+				{isMember ? <div className={'text-base text-white w-[100px] overflow-x-hidden text-ellipsis'}>{username}</div> :
+					<Badge onClick={handleNotMember} variant={'destructive'}>Not a member</Badge>}
 			</div>
 			<motion.div className={'flex flex-row items-center justify-center gap-2'}
 			            initial={{opacity: 0}}
@@ -102,6 +104,7 @@ export const WalletBalance: FC<{ className?: string }> = ({className = ''}) => {
 	const {data: balance = 0n} = useBalance(address);
 	const {data: allowance = 0n} = useAllowance(address);
 	const {mutate: increaseAllowance, isPending} = useIncreaseAllowance();
+	const navigate = useNavigate();
 	const handleAllowance = () => {
 		increaseAllowance()
 	}
@@ -118,17 +121,29 @@ export const WalletBalance: FC<{ className?: string }> = ({className = ''}) => {
 			},
 		});
 	}
+	
+	
 	if (address === undefined) return <div className={'w-full h-[170px] overflow-hidden'}><BetChart/></div>;
-	return <div className={cx('flex flex-col w-full h-[170px]', className)}>
-		<div className={'text-sm font-medium text-gray-400'}>{t("balance")}</div>
-		<div className={'text-lg font-semibold flex flex-row items-center gap-1'}>{Math.floor(valueToNumber(balance)).toLocaleString()} <Bet className={'w-5 h-5'}/></div>
-		<div className={'text-sm font-medium text-gray-400'}>{t("allowance")}</div>
-		<div className={'text-sm font-semibold flex flex-row items-center gap-1'}>{Math.floor(valueToNumber(allowance)).toLocaleString()} <Bet className={'w-3 h-3'}/></div>
+	return <div className={cx('flex flex-col w-full h-[120px]', className)}>
+		<div className={'flex flex-row items-center gap-1'}>
+			<div className={'text-sm font-medium text-gray-400'}>{t("balance")}</div>
+			<div className={'text-base font-semibold flex flex-row items-center gap-1'}>{Math.floor(Math.min(valueToNumber(balance), valueToNumber(allowance))).toLocaleString()} <Bet
+				className={'w-4 h-4'}/></div>
+		</div>
+		<div className={'flex flex-row items-center gap-1'}>
+			<div className={'text-sm text-gray-400'}>{t("allowance")}</div>
+			<div className={'text-sm flex flex-row items-center gap-1'}>{Math.floor(valueToNumber(balance)).toLocaleString()} <Bet className={'w-4 h-4'}/></div>
+		</div>
 		<div className={'grid grid-cols-2 gap-2 mt-2'}>
 			<Button onClick={handleAllowance} variant={'outline'} className={'gap-1 px-3'}>
 				{isPending ? <Loader className={'animate-spin'}/> : <><ArrowLeftRight className={'w-4 h-4'}/> Transfer</>}
 			</Button>
-			<Button variant={'outline'} className={'gap-1 border-yellow-400 hover:bg-yellow-400/10'}><Bet className={'w-4 h-4'}/> Buy</Button>
+			<a target={'_blank'} className={'w-full'} href="https://app.uniswap.org/swap?outputCurrency=0xbF7970D56a150cD0b60BD08388A4A75a27777777">
+				<Button variant={'outline'} className={'w-full gap-1 border-yellow-400 hover:bg-yellow-400/10'}>
+					<Bet className={'w-4 h-4'}/> Buy
+				</Button>
+			</a>
+		
 		</div>
 		<div onClick={handleAddToWallet} className={'flex cursor-pointer flex-row gap-1 items-center text-sm mt-2 text-gray-400'}>Add <Bet/> to wallet</div>
 	</div>
