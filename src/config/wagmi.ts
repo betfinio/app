@@ -27,6 +27,7 @@ const config = defaultWagmiConfig({
 	enableInjected: true,
 	enableWalletConnect: true,
 	enableCoinbase: true,
+	multiInjectedProviderDiscovery: true,
 	storage: createStorage({
 		key: `betfin-${chainId}`
 	}),
