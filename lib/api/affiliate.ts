@@ -1,23 +1,30 @@
-import {defaultTreeMember, Options, TreeMember} from "../types";
-import {BetsMemoryContract, ConservativeStakingContract, DynamicStakingContract, ZeroAddress} from "@betfinio/abi";
-import {readContract} from "@wagmi/core";
-import {Config} from "wagmi";
-import {Address} from "viem";
+import { BetsMemoryContract, ConservativeStakingContract, DynamicStakingContract, ZeroAddress } from '@betfinio/abi';
+import { readContract } from '@wagmi/core';
+import type { Address } from 'viem';
+import type { Config } from 'wagmi';
+import { type Options, type TreeMember, defaultTreeMember } from '../types';
 
 export const fetchTreeMember = async (address: string, options: Options): Promise<TreeMember> => {
 	//todo optimize
 	if (!options.supabase) throw new Error('Supabase client is not defined');
 	if (address === ZeroAddress || !address) return defaultTreeMember;
-	const {data} = await options.supabase.from('members')
-		.select('inviter, parent, left, right, volumeLeft::text, volumeRight::text, bets::text, volume::text, matchedLeft::text, matchedRight::text, betsLeft::text, betsRight::text, isInviting, isMatching')
-		.eq('member', address.toLowerCase()).single<{
-			[key: string]: string | boolean
-		}>()
-	const {data: username} = await options.supabase.from('metadata').select('username').eq('member', address.toLowerCase()).single();
-	
-	const {count} = await options.supabase.from("members").select('*', {count: 'exact', head: true}).eq('inviter', address.toLowerCase());
-	const {data: member} = await options.supabase.from('tree').select('left::text, right::text, id::text').eq('member', address.toLowerCase())
-		.single<{ left: string, right: string, id: string }>();
+	const { data } = await options.supabase
+		.from('members')
+		.select(
+			'inviter, parent, left, right, volumeLeft::text, volumeRight::text, bets::text, volume::text, matchedLeft::text, matchedRight::text, betsLeft::text, betsRight::text, isInviting, isMatching',
+		)
+		.eq('member', address.toLowerCase())
+		.single<{
+			[key: string]: string | boolean;
+		}>();
+	const { data: username } = await options.supabase.from('metadata').select('username').eq('member', address.toLowerCase()).single();
+
+	const { count } = await options.supabase.from('members').select('*', { count: 'exact', head: true }).eq('inviter', address.toLowerCase());
+	const { data: member } = await options.supabase
+		.from('tree')
+		.select('left::text, right::text, id::text')
+		.eq('member', address.toLowerCase())
+		.single<{ left: string; right: string; id: string }>();
 	return {
 		member: address.toLowerCase(),
 		parent: data?.parent || ZeroAddress,
@@ -38,32 +45,31 @@ export const fetchTreeMember = async (address: string, options: Options): Promis
 		countRight: BigInt(member?.right || 0),
 		count: count || 0,
 		index: BigInt(member?.id || 0),
-		username: username?.username
-	} as TreeMember
-}
-
+		username: username?.username,
+	} as TreeMember;
+};
 
 export const fetchInviteStakingVolume = async (member: Address, config: Config): Promise<bigint> => {
-	const cons = await readContract(config, {
+	const cons = (await readContract(config, {
 		abi: ConservativeStakingContract.abi,
 		address: import.meta.env.PUBLIC_CONSERVATIVE_STAKING_ADDRESS,
 		functionName: 'totalStakesOfInvitees',
-		args: [member]
-	}) as bigint
-	const dyn = await readContract(config, {
+		args: [member],
+	})) as bigint;
+	const dyn = (await readContract(config, {
 		abi: DynamicStakingContract.abi,
 		address: import.meta.env.PUBLIC_DYNAMIC_STAKING_ADDRESS,
 		functionName: 'totalStakesOfInvitees',
-		args: [member]
-	}) as bigint
+		args: [member],
+	})) as bigint;
 	return cons + dyn;
-}
+};
 
 export const fetchInviteBettingVolume = async (member: Address, config: Config): Promise<bigint> => {
-	return await readContract(config, {
+	return (await readContract(config, {
 		abi: BetsMemoryContract.abi,
 		address: import.meta.env.PUBLIC_BETS_MEMORY_ADDRESS,
 		functionName: 'totalVolumeOfInvitees',
-		args: [member]
-	}) as bigint
-}
+		args: [member],
+	})) as bigint;
+};

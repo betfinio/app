@@ -1,9 +1,9 @@
-import {defineConfig} from '@rsbuild/core';
-import {pluginReact} from '@rsbuild/plugin-react';
-import {ModuleFederationPlugin} from '@module-federation/enhanced/rspack';
-import {TanStackRouterRspack} from '@tanstack/router-plugin/rspack'
-import {dependencies} from "./package.json";
-import {pluginSass} from "@rsbuild/plugin-sass";
+import { ModuleFederationPlugin } from '@module-federation/enhanced/rspack';
+import { defineConfig } from '@rsbuild/core';
+import { pluginReact } from '@rsbuild/plugin-react';
+import { pluginSass } from '@rsbuild/plugin-sass';
+import { TanStackRouterRspack } from '@tanstack/router-plugin/rspack';
+import { dependencies } from './package.json';
 
 function getOutput() {
 	switch (process.env.PUBLIC_ENVIRONMENT) {
@@ -66,12 +66,12 @@ export default defineConfig({
 						'./skeleton': './components/ui/skeleton.tsx',
 						'./breadcrumb': './components/ui/breadcrumb.tsx',
 						'./supabase': './lib/contexts/supabase',
-						"./lib/api/conservative": './lib/api/conservative',
-						"./lib/api/username": './lib/api/username',
-						"./lib/api/dynamic": './lib/api/dynamic',
-						"./lib/api/token": './lib/api/token',
-						"./lib/api/pass": './lib/api/pass',
-						"./helpers": './lib/helpers.tsx',
+						'./lib/api/conservative': './lib/api/conservative',
+						'./lib/api/username': './lib/api/username',
+						'./lib/api/dynamic': './lib/api/dynamic',
+						'./lib/api/token': './lib/api/token',
+						'./lib/api/pass': './lib/api/pass',
+						'./helpers': './lib/helpers.tsx',
 						'./lib/query/conservative': './lib/query/conservative',
 						'./lib/query/dynamic': './lib/query/dynamic',
 						'./lib/query/username': './lib/query/username',
@@ -85,61 +85,61 @@ export default defineConfig({
 						'./locales/en': './src/translations/en.json',
 					},
 					shared: {
-						'react': {
+						react: {
 							singleton: true,
-							requiredVersion: dependencies['react']
+							requiredVersion: dependencies.react,
 						},
 						'react-dom': {
 							singleton: true,
-							requiredVersion: dependencies['react-dom']
+							requiredVersion: dependencies['react-dom'],
 						},
-						"@tanstack/react-router": {
+						'@tanstack/react-router': {
 							singleton: true,
-							requiredVersion: dependencies['@tanstack/react-router']
+							requiredVersion: dependencies['@tanstack/react-router'],
 						},
-						"@tanstack/react-query": {
+						'@tanstack/react-query': {
 							singleton: true,
-							requiredVersion: dependencies['@tanstack/react-query']
+							requiredVersion: dependencies['@tanstack/react-query'],
 						},
-						"@tanstack/react-table": {
+						'@tanstack/react-table': {
 							singleton: true,
-							requiredVersion: dependencies['@tanstack/react-table']
+							requiredVersion: dependencies['@tanstack/react-table'],
 						},
-						"lucide-react": {
+						'lucide-react': {
 							singleton: true,
-							requiredVersion: dependencies['lucide-react']
+							requiredVersion: dependencies['lucide-react'],
 						},
-						"@supabase/supabase-js": {
+						'@supabase/supabase-js': {
 							singleton: true,
-							requiredVersion: dependencies['@supabase/supabase-js']
+							requiredVersion: dependencies['@supabase/supabase-js'],
 						},
-						"i18next": {
+						i18next: {
 							singleton: true,
-							requiredVersion: dependencies['i18next']
+							requiredVersion: dependencies.i18next,
 						},
-						"react-i18next": {
+						'react-i18next': {
 							singleton: true,
-							requiredVersion: dependencies['react-i18next']
+							requiredVersion: dependencies['react-i18next'],
 						},
-						"tailwindcss-animate": {
+						'tailwindcss-animate': {
 							singleton: true,
-							requiredVersion: dependencies['tailwindcss-animate']
+							requiredVersion: dependencies['tailwindcss-animate'],
 						},
-						"tailwindcss": {
+						tailwindcss: {
 							singleton: true,
-							requiredVersion: dependencies['tailwindcss']
+							requiredVersion: dependencies.tailwindcss,
 						},
-						"wagmi": {
+						wagmi: {
 							singleton: true,
-							requiredVersion: dependencies['wagmi']
+							requiredVersion: dependencies.wagmi,
 						},
-						"@web3modal/wagmi": {
+						'@web3modal/wagmi': {
 							singleton: true,
-							requiredVersion: dependencies['@web3modal/wagmi']
-						}
-					}
-				})
-			]
+							requiredVersion: dependencies['@web3modal/wagmi'],
+						},
+					},
+				}),
+			],
 		},
 	},
 	plugins: [pluginReact(), pluginSass()],
