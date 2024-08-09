@@ -17,6 +17,7 @@ import {truncateEthAddress, valueToNumber} from "@betfinio/abi/dist";
 import {useTranslation} from "react-i18next";
 import {useOpenProfile} from "@/lib/query/shared.ts";
 import {useNavigate} from "@tanstack/react-router";
+import {BetValue} from "@/components/ui/BetValue.tsx";
 
 const ConnectButton = () => {
 	const {address} = useAccount();
@@ -128,12 +129,12 @@ export const WalletBalance: FC<{ className?: string }> = ({className = ''}) => {
 	return <div className={cx('flex flex-col w-full h-[120px]', className)}>
 		<div className={'flex flex-row items-center gap-1'}>
 			<div className={'text-sm font-medium text-gray-400'}>{t("balance")}</div>
-			<div className={'text-base font-semibold flex flex-row items-center gap-1'}>{Math.floor(Math.min(valueToNumber(balance), valueToNumber(allowance))).toLocaleString()} <Bet
-				className={'w-4 h-4'}/></div>
+			<div className={'text-base font-semibold flex flex-row items-center gap-1'}>
+				<BetValue value={Math.min(valueToNumber(balance), valueToNumber(allowance))} withIcon/></div>
 		</div>
 		<div className={'flex flex-row items-center gap-1'}>
 			<div className={'text-sm text-gray-400'}>{t("allowance")}</div>
-			<div className={'text-sm flex flex-row items-center gap-1'}>{Math.floor(valueToNumber(balance)).toLocaleString()} <Bet className={'w-4 h-4'}/></div>
+			<div className={'text-sm flex flex-row items-center gap-1'}><BetValue value={balance} withIcon/></div>
 		</div>
 		<div className={'grid grid-cols-2 gap-2 mt-2'}>
 			<Button onClick={handleAllowance} variant={'outline'} className={'gap-1 px-3'}>

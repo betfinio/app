@@ -64,6 +64,7 @@ export default defineConfig({
 						'./drawer': './components/ui/drawer.tsx',
 						'./tooltip': './components/ui/tooltip.tsx',
 						'./skeleton': './components/ui/skeleton.tsx',
+						'./breadcrumb': './components/ui/breadcrumb.tsx',
 						'./supabase': './lib/contexts/supabase',
 						"./lib/api/conservative": './lib/api/conservative',
 						"./lib/api/username": './lib/api/username',
