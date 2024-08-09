@@ -1,12 +1,11 @@
-import {Address} from "viem";
+import type { Address } from 'viem';
 
 export interface Stat {
-	time: number,
-	value: number
+	time: number;
+	value: number;
 }
 
-export type Timeframe = 'hour' | 'day' | 'week'
-
+export type Timeframe = 'hour' | 'day' | 'week';
 
 export interface Stake {
 	start: number;

@@ -1,11 +1,10 @@
-import BetsTable from "@/components/blocks/tables/BetsTable";
-import {useBets} from "@/lib/query/shared";
+import BetsTable from '@/components/blocks/tables/BetsTable';
+import { useBets } from '@/lib/query/shared';
 
 const AllBetsTable = () => {
-	
-	const {data = [], isFetching, isRefetching} = useBets(50)
-	
-	return <BetsTable data={data} isLoading={isFetching || isRefetching}/>
-}
+	const { data = [], isFetching, isRefetching } = useBets(50);
 
-export default AllBetsTable
+	return <BetsTable data={data} isLoading={isFetching || isRefetching} />;
+};
+
+export default AllBetsTable;
