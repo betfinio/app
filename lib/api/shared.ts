@@ -19,11 +19,11 @@ export const fetchLastBets = async (count: number, address: Address, options: Op
 		eventName: 'NewBet',
 		strict: true,
 	});
-	// @ts-ignore
 	return await Promise.all(
 		data
 			.reverse()
 			.slice(0, count)
+			// @ts-ignore
 			.map(async (bet) => ({ ...(await fetchBetInterface(bet.args.bet, address, options)), hash: bet.transactionHash })),
 	);
 };
@@ -64,11 +64,11 @@ export const fetchPlayerBets = async (count: number, player: Address, options: O
 				player: player,
 			},
 		});
-		// @ts-ignore
 		return await Promise.all(
 			data
 				.reverse()
 				.slice(0, count)
+				// @ts-ignore
 				.map(async (bet) => ({ ...(await fetchBetInterface(bet.args.bet, player, options)), hash: bet.transactionHash })),
 		);
 	} catch (e) {
