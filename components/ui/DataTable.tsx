@@ -1,37 +1,17 @@
-import {
-	ColumnDef,
-	flexRender,
-	getCoreRowModel, TableMeta,
-	useReactTable,
-	getPaginationRowModel,
-	
-} from "@tanstack/react-table"
+import { type ColumnDef, type TableMeta, flexRender, getCoreRowModel, getPaginationRowModel, useReactTable } from '@tanstack/react-table';
 
-import {
-	DataTablePagination,
-	Table,
-	TableBody,
-	TableCell,
-	TableHead,
-	TableHeader,
-	TableRow,
-} from "@/components/ui/table"
-import {Loader} from "lucide-react";
-import cx from "clsx";
+import { DataTablePagination, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import cx from 'clsx';
+import { Loader } from 'lucide-react';
 
 interface DataTableProps<TData, TValue> {
-	columns: ColumnDef<TData, TValue>[]
-	data: TData[],
-	isLoading?: boolean,
-	meta?: TableMeta<TData>
+	columns: ColumnDef<TData, TValue>[];
+	data: TData[];
+	isLoading?: boolean;
+	meta?: TableMeta<TData>;
 }
 
-export function DataTable<TData, TValue>({
-	columns,
-	data,
-	isLoading = false,
-	meta
-}: DataTableProps<TData, TValue>) {
+export function DataTable<TData, TValue>({ columns, data, isLoading = false, meta }: DataTableProps<TData, TValue>) {
 	const table = useReactTable({
 		data,
 		columns,
@@ -41,12 +21,13 @@ export function DataTable<TData, TValue>({
 		initialState: {
 			pagination: {
 				pageSize: 5,
-				pageIndex: 0
-			}
-		}
-	})
-	
-	return (<div>
+				pageIndex: 0,
+			},
+		},
+	});
+
+	return (
+		<div>
 			<Table className="rounded-xl border border-gray-800 w-full">
 				<TableHeader>
 					{table.getHeaderGroups().map((headerGroup) => (
@@ -54,31 +35,25 @@ export function DataTable<TData, TValue>({
 							{headerGroup.headers.map((header) => {
 								return (
 									<TableHead key={header.id} className={header.column.columnDef.meta?.className}>
-										{header.isPlaceholder
-											? null
-											: flexRender(
-												header.column.columnDef.header,
-												header.getContext()
-											)}
+										{header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
 									</TableHead>
-								)
+								);
 							})}
 						</TableRow>
 					))}
 				</TableHeader>
 				<TableBody>
-					{isLoading ? <TableRow>
-						<TableCell colSpan={columns.length} className="h-[200px]">
-							<div className={'flex items-center justify-center'}>
-								<Loader className={'animate-spin'}/>
-							</div>
-						</TableCell>
-					</TableRow> : table.getRowModel().rows?.length ? (
+					{isLoading ? (
+						<TableRow>
+							<TableCell colSpan={columns.length} className="h-[200px]">
+								<div className={'flex items-center justify-center'}>
+									<Loader className={'animate-spin'} />
+								</div>
+							</TableCell>
+						</TableRow>
+					) : table.getRowModel().rows?.length ? (
 						table.getRowModel().rows.map((row) => (
-							<TableRow
-								key={row.id}
-								data-state={row.getIsSelected() && "selected"}
-							>
+							<TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
 								{row.getVisibleCells().map((cell) => (
 									<TableCell key={cell.id} className={cx(cell.column.columnDef.meta?.className)}>
 										{flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -95,7 +70,7 @@ export function DataTable<TData, TValue>({
 					)}
 				</TableBody>
 			</Table>
-			<DataTablePagination table={table}/>
+			<DataTablePagination table={table} />
 		</div>
-	)
+	);
 }

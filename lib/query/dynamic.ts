@@ -1,32 +1,31 @@
-import {useSupabase} from "@/lib/contexts/supabase";
-import {useQuery, useQueryClient} from "@tanstack/react-query";
-import {Stat, Timeframe} from "@/lib/types/staking";
-import {fetchTotalProfit, fetchTotalProfitStat, fetchTotalStaked, fetchTotalStakedStat, fetchTotalStakersStat} from "@/lib/api/dynamic";
-import {useConfig, useWatchContractEvent} from "wagmi";
-import {DynamicStakingContract} from "@betfinio/abi";
-
+import { fetchTotalProfit, fetchTotalProfitStat, fetchTotalStaked, fetchTotalStakedStat, fetchTotalStakersStat } from '@/lib/api/dynamic';
+import { useSupabase } from '@/lib/contexts/supabase';
+import type { Stat, Timeframe } from '@/lib/types/staking';
+import { DynamicStakingContract } from '@betfinio/abi';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useConfig, useWatchContractEvent } from 'wagmi';
 
 export const useTotalStakedStat = (timeframe: Timeframe) => {
-	const {client} = useSupabase()
+	const { client } = useSupabase();
 	return useQuery<Stat[]>({
 		queryKey: ['staking', 'dynamic', 'totalStaked', 'stat', timeframe],
-		queryFn: () => fetchTotalStakedStat(timeframe, client!)
-	})
-}
+		queryFn: () => fetchTotalStakedStat(timeframe, client),
+	});
+};
 export const useTotalStakersStat = (timeframe: Timeframe) => {
-	const {client} = useSupabase()
+	const { client } = useSupabase();
 	return useQuery<Stat[]>({
 		queryKey: ['staking', 'dynamic', 'totalStakers', 'stat', timeframe],
-		queryFn: () => fetchTotalStakersStat(timeframe, client!)
-	})
-}
+		queryFn: () => fetchTotalStakersStat(timeframe, client),
+	});
+};
 export const useTotalProfitStat = (timeframe: Timeframe) => {
-	const {client} = useSupabase()
+	const { client } = useSupabase();
 	return useQuery<Stat[]>({
 		queryKey: ['staking', 'dynamic', 'totalProfit', 'stat', timeframe],
-		queryFn: () => fetchTotalProfitStat(timeframe, client!)
-	})
-}
+		queryFn: () => fetchTotalProfitStat(timeframe, client),
+	});
+};
 export const useTotalStaked = () => {
 	const queryClient = useQueryClient();
 	const config = useConfig();
@@ -35,7 +34,7 @@ export const useTotalStaked = () => {
 		address: import.meta.env.PUBLIC_DYNAMIC_STAKING_ADDRESS,
 		eventName: 'Staked',
 		onLogs: async () => {
-			await queryClient.invalidateQueries({queryKey: ['staking', 'dynamic']});
+			await queryClient.invalidateQueries({ queryKey: ['staking', 'dynamic'] });
 		},
 	});
 	return useQuery<bigint>({

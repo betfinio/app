@@ -1,32 +1,32 @@
-import {useSupabase} from "@/lib/contexts/supabase";
-import {useQuery, useQueryClient} from "@tanstack/react-query";
-import {Stat, Timeframe} from "@/lib/types/staking";
-import {fetchTotalProfitStat, fetchTotalStaked, fetchTotalStakedStat, fetchTotalStakersStat} from "@/lib/api/conservative";
-import {useConfig, useWatchContractEvent} from "wagmi";
-import {ConservativeStakingContract} from "@betfinio/abi";
-import {Address} from "viem";
+import { fetchTotalProfitStat, fetchTotalStaked, fetchTotalStakedStat, fetchTotalStakersStat } from '@/lib/api/conservative';
+import { useSupabase } from '@/lib/contexts/supabase';
+import type { Stat, Timeframe } from '@/lib/types/staking';
+import { ConservativeStakingContract } from '@betfinio/abi';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import type { Address } from 'viem';
+import { useConfig, useWatchContractEvent } from 'wagmi';
 
 export const useTotalStakedStat = (timeframe: Timeframe) => {
-	const {client} = useSupabase()
+	const { client } = useSupabase();
 	return useQuery<Stat[]>({
 		queryKey: ['staking', 'conservative', 'totalStaked', 'stat', timeframe],
-		queryFn: () => fetchTotalStakedStat(timeframe, client!),
-	})
-}
+		queryFn: () => fetchTotalStakedStat(timeframe, client),
+	});
+};
 export const useTotalStakersStat = (timeframe: Timeframe) => {
-	const {client} = useSupabase()
+	const { client } = useSupabase();
 	return useQuery<Stat[]>({
 		queryKey: ['staking', 'conservative', 'totalStakers', 'stat', timeframe],
-		queryFn: () => fetchTotalStakersStat(timeframe, client!)
-	})
-}
+		queryFn: () => fetchTotalStakersStat(timeframe, client),
+	});
+};
 export const useTotalProfitStat = (timeframe: Timeframe) => {
-	const {client} = useSupabase()
+	const { client } = useSupabase();
 	return useQuery<Stat[]>({
 		queryKey: ['staking', 'conservative', 'totalProfit', 'stat', timeframe],
-		queryFn: () => fetchTotalProfitStat(timeframe, client!)
-	})
-}
+		queryFn: () => fetchTotalProfitStat(timeframe, client),
+	});
+};
 
 export const useTotalStaked = () => {
 	const queryClient = useQueryClient();

@@ -1,10 +1,9 @@
-import {FC} from 'react';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip.tsx';
+import { valueToNumber } from '@betfinio/abi';
+import { Bet } from '@betfinio/ui/dist/icons';
+import cx from 'clsx';
 import millify from 'millify';
-import cx from "clsx";
-import {TooltipProvider, Tooltip, TooltipTrigger, TooltipContent,} from "@/components/ui/tooltip.tsx";
-import {Bet} from "@betfinio/ui/dist/icons";
-import {valueToNumber} from "@betfinio/abi";
-
+import type { FC } from 'react';
 
 interface BetValueProps {
 	value: number | bigint;
@@ -20,13 +19,13 @@ interface BetValueProps {
 
 export const BetValue: FC<BetValueProps> = ({
 	value,
-	prefix = "",
+	prefix = '',
 	place = 'top',
 	precision = 2,
 	withIcon = false,
 	iconClassName = '',
-	postfix = " BET",
-	className
+	postfix = ' BET',
+	className,
 }) => {
 	const amount: number = typeof value === 'bigint' ? valueToNumber(value) : value;
 	return (
@@ -34,8 +33,8 @@ export const BetValue: FC<BetValueProps> = ({
 			<Tooltip>
 				<TooltipTrigger asChild>
 					<span className={cx(className, 'flex flex-row items-center cursor-pointer justify-start w-fit gap-1')}>
-						{millify(amount, {precision: precision})}
-						{withIcon && <Bet className={cx('w-4 h-4 stroke-0', iconClassName)}/>}
+						{millify(amount, { precision: precision })}
+						{withIcon && <Bet className={cx('w-4 h-4 stroke-0', iconClassName)} />}
 					</span>
 				</TooltipTrigger>
 				<TooltipContent side={place}>

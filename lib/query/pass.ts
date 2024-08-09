@@ -1,11 +1,11 @@
-import {Address} from "viem";
-import {useQuery} from "@tanstack/react-query";
-import {isMember} from "@/lib/api/pass.ts";
-import config from "@/src/config/wagmi"
+import { isMember } from '@/lib/api/pass.ts';
+import config from '@/src/config/wagmi';
+import { useQuery } from '@tanstack/react-query';
+import type { Address } from 'viem';
 
-export const useIsMember = (address: Address| undefined ) => {
+export const useIsMember = (address: Address | undefined) => {
 	return useQuery<boolean>({
 		queryKey: ['isMember', address],
-		queryFn: () => isMember(address, {config})
-	})
-}
+		queryFn: () => isMember(address, { config }),
+	});
+};
