@@ -67,6 +67,7 @@ module.exports = {
 				'game-roulette': "url('./assets/games/roulette.png')",
 				'game-poker': "url('./assets/games/poker.png')",
 				'game-predict': "url('./assets/games/predict.png')",
+				'game-luro': "url('./assets/games/luro.png')",
 				'game-gem-roulette': "url('./assets/games/gem-roulette.png')",
 				'game-slots': "url('./assets/games/slots.png')",
 				'game-blackjack': "url('./assets/games/blackjack.png')",

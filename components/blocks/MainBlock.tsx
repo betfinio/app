@@ -12,6 +12,7 @@ import { Link } from '@tanstack/react-router';
 import cx from 'clsx';
 import type { FC, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useLuroOnline } from '@/lib/query/luro.ts';
 
 export interface MainBlockProps {
 	variant: 'conservative' | 'dynamic';
@@ -22,6 +23,7 @@ const MainBlock: FC<MainBlockProps> = ({ variant }) => {
 	const { data: stakedConservative = 0n, ...conservative } = useConservativeTotalStaked();
 	const { data: stakedDynamic = 0n, ...dynamic } = useDynamicTotalStaked();
 	const { data: predictOnline = 0, isFetching: isPredictOnlineFetching } = usePredictOnline();
+	const { data: luroOnline = 0, isFetching: isLuroOnlineFetching } = useLuroOnline();
 	const { data: conservativeBalance = 0n } = useBalance(import.meta.env.PUBLIC_CONSERVATIVE_STAKING_ADDRESS);
 	const { data: dynamicRevenue = 0n } = useDynamicTotalProfit();
 	const getGameBlocks = () => {
@@ -29,11 +31,11 @@ const MainBlock: FC<MainBlockProps> = ({ variant }) => {
 			case 'conservative':
 				return (
 					<>
-						<Link to={`${getGamesUrl()}/predict`}>
+						<Link to={`${getGamesUrl('predict')}`}>
 							<GameBlock disabled={false} className={'bg-game-predict'} label={t('predict')} loading={isPredictOnlineFetching} online={predictOnline} />
 						</Link>
-						<Link to={`${getGamesUrl()}/soon`} className={' hidden md:flex'}>
-							<GameBlock className={'bg-game-poker'} label={t('poker')} online={0} />
+						<Link to={`${getGamesUrl('luro')}`} className={'hidden md:flex'}>
+							<GameBlock className={'bg-game-luro'} disabled={false} label={t('luro')} online={luroOnline} loading={isLuroOnlineFetching} />
 						</Link>
 						<Link to={`${getGamesUrl()}/soon`} className={'hidden sm:flex'}>
 							<GameBlock className={'bg-game-gem-roulette'} label={t('gem-roulette')} online={0} />
