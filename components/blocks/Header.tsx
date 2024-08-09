@@ -4,7 +4,6 @@ import {Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTri
 import {Menu} from "@betfinio/ui/dist/icons";
 import {Link} from "@tanstack/react-router";
 import MemberProfile from "@/components/blocks/MemberProfile.tsx";
-import {ScrollArea} from "@/components/ui/scroll-area.tsx";
 
 const Header: FC<PropsWithChildren<{ sidebar: ReactNode }>> = ({children, sidebar}) => {
 	return <header style={{minHeight: '70px'}} className={'flex flex-row items-center justify-between lg:justify-end px-4 border-b border-gray-800'}>
