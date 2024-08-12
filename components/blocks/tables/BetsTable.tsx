@@ -1,7 +1,7 @@
 import { BetValue } from '@/components/ui/BetValue.tsx';
 import { DataTable } from '@/components/ui/DataTable.tsx';
+import type { BetInterface } from '@/lib/types';
 import { ZeroAddress, truncateEthAddress, valueToNumber } from '@betfinio/abi';
-import type { BetInterface } from '@betfinio/hooks/dist/types/game';
 import { Predict, Roulette } from '@betfinio/ui/dist/icons';
 import { createColumnHelper } from '@tanstack/react-table';
 import { SquareArrowOutUpRight } from 'lucide-react';

@@ -5,9 +5,7 @@ import { Binary } from '@betfinio/ui/dist/icons/Binary';
 import { Dice } from '@betfinio/ui/dist/icons/Dice';
 import { LuckyRound } from '@betfinio/ui/dist/icons/LuckyRound';
 import { Stones } from '@betfinio/ui/dist/icons/Stones';
-import { Contact, PaperclipIcon } from 'lucide-react';
-
-const MODE = import.meta.env.PUBLIC_ENVIRONMENT;
+import { PaperclipIcon } from 'lucide-react';
 
 const navigation: NavItemProps[] = [
 	{

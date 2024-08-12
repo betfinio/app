@@ -44,7 +44,6 @@ export const saveCustomUsername = async (username: string, address: Address, use
 		body: { message: message, signature: res, address: user },
 		method: 'POST',
 	});
-	console.log(out);
 	if (out?.error) {
 		throw new Error(await out.error.context.text());
 	}
