@@ -1,5 +1,4 @@
 import logoSvg from '@/src/assets/logo.svg';
-import { truncateEthAddress } from '@betfinio/hooks/dist/utils';
 import {
 	Bet,
 	BetLogo,
@@ -15,10 +14,8 @@ import {
 	PolygonWithIcon,
 	Twitter,
 	Uniswap,
-} from '@betfinio/ui/dist/icons';
-import Globe from '@betfinio/ui/dist/icons/Globe';
-import Support from '@betfinio/ui/dist/icons/Support';
-import { Send } from 'lucide-react';
+} from '@betfinio/ui';
+import { Globe, Send } from 'lucide-react';
 
 const ETHSCAN = import.meta.env.PUBLIC_ETHSCAN;
 const PARTNER = import.meta.env.PUBLIC_PARTNER_ADDRESS;
@@ -211,6 +208,8 @@ const Footer = () => {
 export default Footer;
 
 import { getAffiliateUrl, getGamesUrl, getStakingUrl } from '@/lib';
+import { truncateEthAddress } from '@betfinio/abi';
+import Support from '@betfinio/ui/dist/icons/Support';
 import { Link } from '@tanstack/react-router';
 
 export const FooterMenu = () => {

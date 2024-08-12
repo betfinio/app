@@ -35,7 +35,6 @@ export const fetchTotalProfitStat = async (timeframe: Timeframe, supabase?: Supa
 };
 
 export const fetchTotalStaked = async (config: Config, block?: bigint): Promise<bigint> => {
-	console.log('fetching total staked conservative');
 	return (await readContract(config, {
 		abi: ConservativeStakingContract.abi,
 		address: import.meta.env.PUBLIC_CONSERVATIVE_STAKING_ADDRESS as Address,

@@ -1,8 +1,7 @@
 import { fetchLastBets, fetchLastStakes, fetchMemberSide, fetchPlayerBets, fetchRegistrationDate } from '@/lib/api/shared.ts';
 import { useSupabase } from '@/lib/contexts/supabase.tsx';
-import type { Stake } from '@/lib/types';
+import type { BetInterface, Stake } from '@/lib/types';
 import { ZeroAddress } from '@betfinio/abi';
-import type { BetInterface } from '@betfinio/hooks/dist/types/game';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import type { Address } from 'viem';
