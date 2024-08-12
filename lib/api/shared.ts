@@ -129,6 +129,7 @@ export const fetchMemberSide = async (parent: Address, member: Address, supabase
 
 export const fetchRegistrationDate = async (address: Address, config: Config) => {
 	try {
+		console.log('fetching registration date', address);
 		const events = await getContractEvents(config.getClient(), {
 			abi: PassContract.abi,
 			address: import.meta.env.PUBLIC_PASS_ADDRESS as Address,
@@ -139,11 +140,14 @@ export const fetchRegistrationDate = async (address: Address, config: Config) =>
 			toBlock: 'latest',
 			fromBlock: 0n,
 		});
+		console.log(events);
 		if (events.length === 0) return 0;
 		const event = events[0];
+		console.log(event.blockNumber);
 		const block = await getBlock(config, { blockNumber: event.blockNumber });
 		return Number(block.timestamp) * 1000;
 	} catch (e) {
+		console.log(e);
 		return 0;
 	}
 };

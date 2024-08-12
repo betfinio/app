@@ -1,23 +1,21 @@
 import BetChart from '@/components/ui/BetChart.tsx';
+import { BetValue } from '@/components/ui/BetValue.tsx';
 import { Badge } from '@/components/ui/badge.tsx';
 import { useIsMember } from '@/lib/query/pass.ts';
+import { useOpenProfile } from '@/lib/query/shared.ts';
 import { useAllowance, useBalance, useIncreaseAllowance } from '@/lib/query/token.ts';
 import { useUsername } from '@/lib/query/username.ts';
+import { truncateEthAddress, valueToNumber } from '@betfinio/abi/dist';
 import { Bet, BetLogo } from '@betfinio/ui/dist/icons';
 import { useWeb3Modal } from '@web3modal/wagmi/react';
 import { cx } from 'class-variance-authority';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowLeftRight, Loader, LogOut, Unplug, UserPen } from 'lucide-react';
 import { type FC, type MouseEvent, forwardRef, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useAccount } from 'wagmi';
 import { Button } from './button.tsx';
 import { Popover, PopoverContent, PopoverTrigger } from './popover.tsx';
-
-import { BetValue } from '@/components/ui/BetValue.tsx';
-import { useOpenProfile } from '@/lib/query/shared.ts';
-import { truncateEthAddress, valueToNumber } from '@betfinio/abi/dist';
-import { useNavigate } from '@tanstack/react-router';
-import { useTranslation } from 'react-i18next';
 
 const ConnectButton = () => {
 	const { address } = useAccount();
@@ -67,7 +65,7 @@ const AccountBlock = forwardRef((props: any, forwardedRef: any) => {
 	const { address } = useAccount();
 	const { data: username } = useUsername(address);
 	const { data: profile, open: openProfile } = useOpenProfile();
-	const { data: isMember } = useIsMember(address);
+	const { data: isMember = false, isLoading } = useIsMember(address);
 	const { open } = useWeb3Modal();
 
 	const isOpen = props['data-state'] === 'open';
@@ -102,7 +100,7 @@ const AccountBlock = forwardRef((props: any, forwardedRef: any) => {
 					<div className={'text-sm text-gray-400'}>{truncateEthAddress(address)}</div>
 					{isMember ? (
 						<div className={'text-base text-white w-[100px] overflow-x-hidden text-ellipsis'}>{username}</div>
-					) : (
+					) : isLoading ? null : (
 						<Badge onClick={handleNotMember} variant={'destructive'}>
 							Not a member
 						</Badge>
@@ -128,7 +126,6 @@ export const WalletBalance: FC<{ className?: string }> = ({ className = '' }) =>
 	const { data: balance = 0n } = useBalance(address);
 	const { data: allowance = 0n } = useAllowance(address);
 	const { mutate: increaseAllowance, isPending } = useIncreaseAllowance();
-	const navigate = useNavigate();
 	const handleAllowance = () => {
 		increaseAllowance();
 	};

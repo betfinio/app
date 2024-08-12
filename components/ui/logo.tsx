@@ -1,5 +1,5 @@
 import BigLogo from '@/components/icons/BigLogo.tsx';
-import { BetLogo } from '@betfinio/ui/dist/icons';
+import { BetLogo } from '@betfinio/ui';
 import { cx } from 'class-variance-authority';
 import type { FC } from 'react';
 

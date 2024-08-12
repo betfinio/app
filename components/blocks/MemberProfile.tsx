@@ -58,7 +58,7 @@ const MemberProfile = () => {
 	return (
 		<Dialog open={true} onOpenChange={handleClose}>
 			<DialogContent aria-describedby={undefined} className={'lg:min-w-[1000px]'}>
-				<DialogTitle />
+				<DialogTitle className={'hidden'} />
 				<TooltipProvider delayDuration={0}>
 					<ScrollArea className={'max-h-[100vh]'}>
 						<motion.div className={'mx-auto text-white w-full rounded-3xl  bg-primaryLight'}>
