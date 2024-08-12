@@ -15,7 +15,7 @@ const cookieStorage = {
 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 	setItem(key: any, value: any) {
 		if (typeof window === 'undefined') return;
-		document.cookie = `${key}=${value}`;
+		document.cookie = `${key}=${value};Domain=.betfin.io;Path=/`;
 	},
 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 	removeItem(key: any) {
