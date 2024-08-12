@@ -1,7 +1,7 @@
-import { useConfig } from 'wagmi';
+import { fetchLuroOnline } from '@/lib/api/luro.ts';
 import { useSupabase } from '@/lib/contexts/supabase.tsx';
 import { useQuery } from '@tanstack/react-query';
-import { fetchLuroOnline } from '@/lib/api/luro.ts';
+import { useConfig } from 'wagmi';
 
 export const useLuroOnline = () => {
 	const config = useConfig();

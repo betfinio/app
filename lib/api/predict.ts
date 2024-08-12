@@ -11,7 +11,6 @@ const PREDICT_ADDRESS: Address = import.meta.env.PUBLIC_PREDICT_ADDRESS;
 
 export async function fetchPredictOnline(options: Options): Promise<number> {
 	if (!options.config || !options.supabase) return 0;
-	console.time('fetching predict online');
 	const beforeBlock = await getBlockByTimestamp(Math.floor(Date.now() / 1000) - 270 * 4, supabase);
 	const betsCount = (await readContract(options.config, {
 		abi: BetsMemoryContract.abi,
@@ -26,6 +25,5 @@ export async function fetchPredictOnline(options: Options): Promise<number> {
 		args: [PREDICT_ADDRESS],
 		blockNumber: beforeBlock,
 	})) as bigint;
-	console.timeEnd('fetching predict online');
 	return Number(betsCount) - Number(beforeBetsCount);
 }
