@@ -1,7 +1,6 @@
 import { fetchCustomUsername, fetchUsername } from '@/lib/api/username.ts';
-import type { Options, Stake } from '@/lib/types';
+import type { BetInterface, Options, Stake } from '@/lib/types';
 import { BetInterfaceContract, BetsMemoryContract, ConservativeStakingContract, DynamicStakingContract, PassContract } from '@betfinio/abi';
-import type { BetInterface } from '@betfinio/hooks/dist/types/game';
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { getBlock, readContract } from '@wagmi/core';
 import type { Address } from 'viem';
@@ -78,7 +77,6 @@ export const fetchPlayerBets = async (count: number, player: Address, options: O
 
 export async function fetchLastStakes(count: number, address: Address, options: Options) {
 	if (!options.config || !options.supabase) return [];
-	console.log('fetchLastStakes', count);
 	const conservativeStakesData = await getContractEvents(options.config.getClient(), {
 		abi: ConservativeStakingContract.abi,
 		address: import.meta.env.PUBLIC_CONSERVATIVE_STAKING_ADDRESS as Address,
@@ -131,7 +129,6 @@ export const fetchMemberSide = async (parent: Address, member: Address, supabase
 
 export const fetchRegistrationDate = async (address: Address, config: Config) => {
 	try {
-		console.log('fetching registration date', address);
 		const events = await getContractEvents(config.getClient(), {
 			abi: PassContract.abi,
 			address: import.meta.env.PUBLIC_PASS_ADDRESS as Address,
@@ -147,7 +144,6 @@ export const fetchRegistrationDate = async (address: Address, config: Config) =>
 		const block = await getBlock(config, { blockNumber: event.blockNumber });
 		return Number(block.timestamp) * 1000;
 	} catch (e) {
-		console.log(e);
 		return 0;
 	}
 };

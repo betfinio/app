@@ -3,16 +3,16 @@ import { BetValue } from '@/components/ui/BetValue.tsx';
 import { getGamesUrl, getStakingUrl } from '@/lib';
 import { useTotalStaked as useConservativeTotalStaked } from '@/lib/query/conservative.ts';
 import { useTotalProfit as useDynamicTotalProfit, useTotalStaked as useDynamicTotalStaked } from '@/lib/query/dynamic.ts';
+import { useLuroOnline } from '@/lib/query/luro.ts';
 import { usePredictOnline } from '@/lib/query/predict.ts';
 import { useBalance } from '@/lib/query/token.ts';
-import { valueToNumber } from '@betfinio/hooks/dist/utils';
+import { valueToNumber } from '@betfinio/abi/dist';
 import Bag from '@betfinio/ui/dist/icons/Bag';
 import Bank from '@betfinio/ui/dist/icons/Bank';
 import { Link } from '@tanstack/react-router';
 import cx from 'clsx';
 import type { FC, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLuroOnline } from '@/lib/query/luro.ts';
 
 export interface MainBlockProps {
 	variant: 'conservative' | 'dynamic';

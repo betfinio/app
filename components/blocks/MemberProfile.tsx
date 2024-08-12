@@ -301,7 +301,6 @@ const UsernameEdit: FC<{ label: string; allowEdit: boolean; onSave: (username: s
 	const [username, setUsername] = useState(initialValue);
 	const [editAllowed, setEditAllowed] = useState(false);
 	const { data: side } = useSide(me, address || ZeroAddress);
-	console.log(side, me, address);
 	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {

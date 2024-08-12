@@ -1,5 +1,5 @@
 import type { Stat, Timeframe } from '@/lib/types/staking';
-import { DynamicStakingContract, TokenContract } from '@betfinio/abi';
+import { DynamicStakingContract } from '@betfinio/abi';
 import { valueToNumber } from '@betfinio/abi/dist';
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { readContract } from '@wagmi/core';
