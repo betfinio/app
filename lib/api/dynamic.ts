@@ -43,16 +43,9 @@ export const fetchTotalStaked = async (config: Config, block?: bigint): Promise<
 	return data as bigint;
 };
 export const fetchTotalProfit = async (config: Config): Promise<bigint> => {
-	const balance = (await readContract(config, {
-		abi: TokenContract.abi,
-		address: import.meta.env.PUBLIC_TOKEN_ADDRESS,
-		functionName: 'balanceOf',
-		args: [import.meta.env.PUBLIC_DYNAMIC_STAKING_ADDRESS],
-	})) as bigint;
-	const realStaked = (await readContract(config, {
+	return (await readContract(config, {
 		abi: DynamicStakingContract.abi,
 		address: import.meta.env.PUBLIC_DYNAMIC_STAKING_ADDRESS,
-		functionName: 'realStaked',
+		functionName: 'totalProfit',
 	})) as bigint;
-	return balance - realStaked;
 };
