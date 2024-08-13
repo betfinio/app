@@ -1,6 +1,12 @@
 {
 	"balance": "Available:",
 	"allowance": "Wallet balance:",
+	"allowanceModal": {
+		"type": {
+			"stake": "Stake",
+			"bet": "Bet"
+		}
+	},
 	"sidebar": {
 		"staking": "Staking",
 		"staking-conservative": "Conservative",

@@ -2,6 +2,7 @@ import Footer from '@/components/blocks/Footer.tsx';
 import Header from '@/components/blocks/Header.tsx';
 import RootLayout from '@/components/blocks/RootLayout.tsx';
 import Sidebar from '@/components/blocks/Sidebar.tsx';
+import { AllowanceProvider } from '@/lib/contexts/allowance.tsx';
 import { SupabaseProvider } from '@/lib/contexts/supabase.tsx';
 import client from '@/src/config/supabase.ts';
 import instance from '@/src/i18n.ts';
@@ -40,9 +41,11 @@ export const Root: FC<{ instance: i18n; id: string }> = ({ instance, id }) => {
 			<QueryClientProvider client={queryClient}>
 				<SupabaseProvider client={client}>
 					<I18nextProvider i18n={instance}>
-						<RootLayout header={getHeader()} id={id} sidebar={getSidebar()} footer={getFooter()}>
-							<Outlet />
-						</RootLayout>
+						<AllowanceProvider>
+							<RootLayout header={getHeader()} id={id} sidebar={getSidebar()} footer={getFooter()}>
+								<Outlet />
+							</RootLayout>
+						</AllowanceProvider>
 					</I18nextProvider>
 				</SupabaseProvider>
 			</QueryClientProvider>

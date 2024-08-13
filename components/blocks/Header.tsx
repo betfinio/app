@@ -3,7 +3,7 @@ import Logo from '@/components/ui/logo.tsx';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet.tsx';
 import { Menu } from '@betfinio/ui/dist/icons';
 import { Link } from '@tanstack/react-router';
-import type { FC, PropsWithChildren, ReactNode } from 'react';
+import { type FC, type PropsWithChildren, type ReactNode, useEffect } from 'react';
 
 const Header: FC<PropsWithChildren<{ sidebar: ReactNode }>> = ({ children, sidebar }) => {
 	return (

@@ -179,7 +179,7 @@ const MemberProfile = () => {
 													<span className={'text-white'}> matching volume</span>
 												</div>
 											</div>
-											<div className={'overflow-x-scroll w-full'}>
+											<div className={'overflow-x-hidden w-full'}>
 												<table className={'w-full text-left overflow-x-hidden'}>
 													<thead className={'whitespace-nowrap'}>
 														<tr className={'text-gray-400 border-b border-gray-600'}>

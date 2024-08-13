@@ -44,9 +44,9 @@ export default defineConfig({
 					exposes: {
 						'./style': './src/style.ts',
 						'./BetValue': './components/ui/BetValue.tsx',
-						'./Action': './components/blocks/action/index.ts',
 						'./DataTable': './components/ui/DataTable.tsx',
 						'./root': './src/routes/__root.tsx',
+						'./allowance': './lib/contexts/allowance.tsx',
 						'./dialog': './components/ui/dialog.tsx',
 						'./separator': './components/ui/separator.tsx',
 						'./sheet': './components/ui/sheet.tsx',
