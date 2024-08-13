@@ -33,14 +33,8 @@ const config = defaultWagmiConfig({
 		url: import.meta.env.PUBLIC_APP_URL, // origin must match your domain & subdomain
 		icons: ['https://betfin.io/favicon.svg'],
 	},
-	connectors: [
-		injected({ target: 'metaMask', shimDisconnect: true }),
-		metaMask({
-			preferDesktop: true,
-			injectProvider: true,
-			forceInjectProvider: true,
-		}),
-	],
+	enableEIP6963: true,
+	connectors: [injected({ target: 'metaMask', shimDisconnect: true })],
 	chains: chains,
 	transports: {
 		[chainId]: fallback([
@@ -60,17 +54,21 @@ const config = defaultWagmiConfig({
 		email: false,
 	},
 	projectId: import.meta.env.PUBLIC_WALLETCONNECT_ID,
-	ssr: true,
+	ssr: false,
 });
 
 createWeb3Modal({
 	defaultChain: chains[0],
 	wagmiConfig: config,
+	connectorImages: {
+		metaMask: 'https://betfin.io/fox.png',
+	},
 	tokens: {
 		[chainId]: {
 			address: import.meta.env.PUBLIC_TOKEN_ADDRESS,
 		},
 	},
+	enableEIP6963: true,
 	projectId: import.meta.env.PUBLIC_WALLETCONNECT_ID,
 	enableAnalytics: true, // Optional - defaults to your Cloud configuration
 	enableOnramp: false, // Optional - false as default

@@ -19,7 +19,7 @@ export function Toaster() {
 							{description && <ToastDescription>{description}</ToastDescription>}
 						</div>
 					</div>
-					{action}
+					<div className={'!mr-6'}>{action}</div>
 					<ToastClose />
 				</Toast>
 			))}
