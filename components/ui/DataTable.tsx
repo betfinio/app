@@ -1,9 +1,9 @@
 import { type ColumnDef, type TableMeta, flexRender, getCoreRowModel, getPaginationRowModel, useReactTable } from '@tanstack/react-table';
 
 import { DataTablePagination, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import type { InitialTableState } from '@tanstack/react-table';
 import cx from 'clsx';
 import { Loader } from 'lucide-react';
-import type { InitialTableState } from '@tanstack/react-table';
 
 interface DataTableProps<TData, TValue> {
 	columns: ColumnDef<TData, TValue>[];
