@@ -82,10 +82,10 @@ function RequestModal({
 	}, [allowance, amount, data]);
 	return (
 		<Dialog open={open} onOpenChange={onClose}>
-			<DialogContent className={'games affiliate staking'}>
+			<DialogContent className={'games'}>
 				<DialogTitle className={'hidden'} />
 				<DialogDescription className={'hidden'} />
-				<div className={'p-2 md:p-3 lg:p-4 text-white '}>
+				<div className={'p-2 md:p-3 lg:p-4 text-white'} style={{ minWidth: '360px' }}>
 					<div className={'flex items-center flex-row justify-end gap-2'}>
 						<div className={'flex-grow'} />
 						<DialogClose>
