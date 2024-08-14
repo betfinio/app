@@ -138,3 +138,24 @@ html, body {
 .live-chat-ai-wrapper {
   z-index: 5 !important;
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0);
+  position: absolute;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 100, 100, 0.1);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

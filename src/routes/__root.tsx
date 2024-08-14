@@ -15,7 +15,7 @@ import { WagmiProvider } from 'wagmi';
 import ConnectButton, { WalletBalance } from '../../components/ui/ConnectButton.tsx';
 import { games, navigation, others } from '../config/links.tsx';
 import queryClient from '../config/query.ts';
-import config from '../config/wagmi.ts';
+import config, { archiveClient } from '../config/wagmi.ts';
 
 export const Root: FC<{ instance: i18n; id: string }> = ({ instance, id }) => {
 	const getHeader = () => {
@@ -39,7 +39,7 @@ export const Root: FC<{ instance: i18n; id: string }> = ({ instance, id }) => {
 	return (
 		<WagmiProvider config={config}>
 			<QueryClientProvider client={queryClient}>
-				<SupabaseProvider client={client}>
+				<SupabaseProvider client={client} archiveClient={archiveClient}>
 					<I18nextProvider i18n={instance}>
 						<AllowanceProvider>
 							<RootLayout header={getHeader()} id={id} sidebar={getSidebar()} footer={getFooter()}>

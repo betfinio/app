@@ -1,6 +1,6 @@
 import { defaultWagmiConfig } from '@web3modal/wagmi';
 import { createWeb3Modal } from '@web3modal/wagmi/react';
-import { http, type Chain, fallback } from 'viem';
+import { http, type Chain, createPublicClient, fallback } from 'viem';
 import { polygon, polygonAmoy } from 'viem/chains';
 import { createStorage, parseCookie } from 'wagmi';
 import { injected, metaMask } from 'wagmi/connectors';
@@ -24,8 +24,9 @@ const cookieStorage = {
 	},
 };
 
-const chains: [Chain] = import.meta.env.PUBLIC_ENVIRONMENT.includes('prod') ? [polygon] : [polygonAmoy];
+export const chains: [Chain] = import.meta.env.PUBLIC_ENVIRONMENT.includes('prod') ? [polygon] : [polygonAmoy];
 const chainId = chains[0].id;
+
 const config = defaultWagmiConfig({
 	metadata: {
 		name: 'BetFin',
@@ -75,3 +76,8 @@ createWeb3Modal({
 });
 
 export default config;
+
+export const archiveClient = createPublicClient({
+	chain: chains[0],
+	transport: http(import.meta.env.PUBLIC_ARCHIVE_RPC_URL),
+});

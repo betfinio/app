@@ -1,6 +1,7 @@
 import { type ColumnDef, type TableMeta, flexRender, getCoreRowModel, getPaginationRowModel, useReactTable } from '@tanstack/react-table';
 
 import { DataTablePagination, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import type { InitialTableState } from '@tanstack/react-table';
 import cx from 'clsx';
 import { Loader } from 'lucide-react';
 
@@ -9,9 +10,10 @@ interface DataTableProps<TData, TValue> {
 	data: TData[];
 	isLoading?: boolean;
 	meta?: TableMeta<TData>;
+	state?: InitialTableState;
 }
 
-export function DataTable<TData, TValue>({ columns, data, isLoading = false, meta }: DataTableProps<TData, TValue>) {
+export function DataTable<TData, TValue>({ columns, data, isLoading = false, meta, state }: DataTableProps<TData, TValue>) {
 	const table = useReactTable({
 		data,
 		columns,
@@ -23,6 +25,7 @@ export function DataTable<TData, TValue>({ columns, data, isLoading = false, met
 				pageSize: 5,
 				pageIndex: 0,
 			},
+			...state,
 		},
 	});
 
