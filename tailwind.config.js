@@ -1,13 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
 	darkMode: ['class'],
-	content: [
-		'./pages/**/*.{ts,tsx}',
-		'./components/**/*.{ts,tsx}',
-		'./app/**/*.{ts,tsx}',
-		'./src/**/*.{ts,tsx}',
-		'./node_modules/@betfinio/**/*.{js,ts,jsx,tsx,mdx}',
-	],
+	content: ['./components/**/*.{ts,tsx}', './src/**/*.{ts,tsx}'],
 	theme: {
 		container: {
 			center: true,
@@ -36,6 +30,9 @@ module.exports = {
 				red: {
 					600: '#B80042',
 					roulette: '#dd375f',
+				},
+				gray: {
+					800: '#1E292E',
 				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',

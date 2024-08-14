@@ -85,12 +85,9 @@ const AccountBlock = forwardRef((props: any, forwardedRef: any) => {
 	return (
 		<AnimatePresence mode={'wait'}>
 			<motion.div
-				className={cx(
-					'h-[50px] whitespace-nowrap min-w-[100px] cursor-pointer rounded-lg rounded-b-none px-4 flex flex-row items-center justify-between gap-2',
-					{
-						'bg-gray-800 animate-in w-[240px]': isOpen,
-					},
-				)}
+				className={cx('h-[50px] whitespace-nowrap min-w-[100px] cursor-pointer rounded-lg rounded-b-0 px-4 flex flex-row items-center justify-between gap-2', {
+					'bg-gray-800 animate-in w-[240px]': isOpen,
+				})}
 				{...props}
 				ref={forwardedRef}
 			>
