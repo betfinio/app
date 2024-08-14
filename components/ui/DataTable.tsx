@@ -11,9 +11,10 @@ interface DataTableProps<TData, TValue> {
 	isLoading?: boolean;
 	meta?: TableMeta<TData>;
 	state?: InitialTableState;
+	onRowClick?: (row: TData) => void;
 }
 
-export function DataTable<TData, TValue>({ columns, data, isLoading = false, meta, state }: DataTableProps<TData, TValue>) {
+export function DataTable<TData, TValue>({ columns, data, isLoading = false, meta, state = {}, onRowClick }: DataTableProps<TData, TValue>) {
 	const table = useReactTable({
 		data,
 		columns,
@@ -56,7 +57,7 @@ export function DataTable<TData, TValue>({ columns, data, isLoading = false, met
 						</TableRow>
 					) : table.getRowModel().rows?.length ? (
 						table.getRowModel().rows.map((row) => (
-							<TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
+							<TableRow key={row.id} data-state={row.getIsSelected() && 'selected'} onClick={() => onRowClick?.(row.original)}>
 								{row.getVisibleCells().map((cell) => (
 									<TableCell key={cell.id} className={cx(cell.column.columnDef.meta?.className)}>
 										{flexRender(cell.column.columnDef.cell, cell.getContext())}
