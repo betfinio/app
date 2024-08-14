@@ -227,6 +227,9 @@ export const FooterMenu = () => {
 				<Link to={getGamesUrl('roulette')} className={'cursor-pointer hover:text-[#FFC800] duration-300'}>
 					Roulette
 				</Link>
+				<Link to={getGamesUrl('luro')} className={'cursor-pointer hover:text-[#FFC800] duration-300'}>
+					Lucky Round
+				</Link>
 			</div>
 			<div
 				className={'flex flex-col items-center sm:items-baseline gap-1 text-sm font-medium col-span-3 sm:col-span-1 justify-self-center md:justify-self-end'}
