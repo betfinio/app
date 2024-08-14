@@ -31,6 +31,9 @@ module.exports = {
 					600: '#B80042',
 					roulette: '#dd375f',
 				},
+				gray: {
+					800: '#1E292E',
+				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
 					foreground: 'hsl(var(--destructive-foreground))',
