@@ -3,7 +3,7 @@ import { createWeb3Modal } from '@web3modal/wagmi/react';
 import { http, type Chain, createPublicClient, fallback } from 'viem';
 import { polygon, polygonAmoy } from 'viem/chains';
 import { createStorage } from 'wagmi';
-
+import { injected } from 'wagmi/connectors';
 export const chains: [Chain] = import.meta.env.PUBLIC_ENVIRONMENT.includes('prod') ? [polygon] : [polygonAmoy];
 const chainId = chains[0].id;
 
@@ -14,7 +14,7 @@ const config = defaultWagmiConfig({
 		url: import.meta.env.PUBLIC_APP_URL, // origin must match your domain & subdomain
 		icons: ['https://betfin.io/favicon.svg'],
 	},
-	// connectors: [injected({ target: 'metaMask', shimDisconnect: true })],
+	connectors: [injected({ target: 'metaMask', shimDisconnect: true })],
 	chains: chains,
 	transports: {
 		[chainId]: fallback([
