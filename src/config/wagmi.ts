@@ -1,6 +1,6 @@
 import { defaultWagmiConfig } from '@web3modal/wagmi';
 import { createWeb3Modal } from '@web3modal/wagmi/react';
-import { http, createPublicClient, fallback, type Chain } from 'viem';
+import { http, type Chain, createPublicClient, fallback } from 'viem';
 import { polygon, polygonAmoy } from 'viem/chains';
 import { createStorage } from 'wagmi';
 
