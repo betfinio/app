@@ -48,6 +48,7 @@
 			"conservative": {
 				"predict": "Crypto Predict",
 				"poker": "Poker",
+				"stones": "Stones",
 				"luro": "Lucky Round",
 				"gem-roulette": "Gem Roulette",
 				"info": {
