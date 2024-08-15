@@ -140,10 +140,8 @@ export const fetchRegistrationDate = async (address: Address, config: Config) =>
 			toBlock: 'latest',
 			fromBlock: 0n,
 		});
-		console.log(events);
 		if (events.length === 0) return 0;
 		const event = events[0];
-		console.log(event.blockNumber);
 		const block = await getBlock(config, { blockNumber: event.blockNumber });
 		return Number(block.timestamp) * 1000;
 	} catch (e) {

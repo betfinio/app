@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button.tsx';
 import { Dialog, DialogClose, DialogContent, DialogTitle } from '@/components/ui/dialog.tsx';
 import { Input } from '@/components/ui/input.tsx';
 import { ScrollArea } from '@/components/ui/scroll-area.tsx';
+import { getAppUrl } from '@/lib';
 import { useInviteStakingVolume, useTreeMember } from '@/lib/query/affiliate.ts';
 import { useOpenProfile, useRegistrationDate, useSide } from '@/lib/query/shared.ts';
 import { useChangeCustomUsername, useChangeUsername, useCustomUsername, useUsername } from '@/lib/query/username.ts';
@@ -77,7 +78,7 @@ const MemberProfile = () => {
 										<motion.img
 											whileHover={{ scale: 1.03 }}
 											whileTap={{ scale: 0.97 }}
-											src={'/member.png'}
+											src={`${getAppUrl()}/member.png`}
 											alt={'logo'}
 											className={'bg-yellow-200 border border-secondaryLight cursor-pointer rounded-full w-[100px] aspect-square'}
 											width={500}
@@ -294,7 +295,7 @@ const UsernameEdit: FC<{ label: string; allowEdit: boolean; onSave: (username: s
 	onSave,
 	initialValue,
 }) => {
-	const { data, close } = useOpenProfile();
+	const { data } = useOpenProfile();
 	const address = data.address;
 	const { address: me = ZeroAddress } = useAccount();
 	const [usernameError, setUsernameError] = useState('');
