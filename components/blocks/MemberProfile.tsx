@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button.tsx';
 import { Dialog, DialogClose, DialogContent, DialogTitle } from '@/components/ui/dialog.tsx';
 import { Input } from '@/components/ui/input.tsx';
 import { ScrollArea } from '@/components/ui/scroll-area.tsx';
+import { getAppUrl } from '@/lib';
 import { useInviteStakingVolume, useTreeMember } from '@/lib/query/affiliate.ts';
 import { useOpenProfile, useRegistrationDate, useSide } from '@/lib/query/shared.ts';
 import { useChangeCustomUsername, useChangeUsername, useCustomUsername, useUsername } from '@/lib/query/username.ts';
@@ -17,7 +18,6 @@ import { DateTime } from 'luxon';
 import { type ChangeEvent, type FC, useEffect, useMemo, useState } from 'react';
 import { useAccount } from 'wagmi';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip';
-import { getAppUrl } from '@/lib';
 
 const MemberProfile = () => {
 	const { data, close } = useOpenProfile();
