@@ -4,7 +4,6 @@ import { http, type Chain, createPublicClient, fallback } from 'viem';
 import { polygon, polygonAmoy } from 'viem/chains';
 import { createStorage, parseCookie } from 'wagmi';
 import { injected, metaMask } from 'wagmi/connectors';
-
 const cookieStorage = {
 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 	getItem(key: any) {
@@ -15,7 +14,7 @@ const cookieStorage = {
 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 	setItem(key: any, value: any) {
 		if (typeof window === 'undefined') return;
-		document.cookie = `${key}=${value};Domain=.betfin.io;Path=/`;
+		document.cookie = `${key}=${value};Path=/`;
 	},
 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 	removeItem(key: any) {
@@ -63,6 +62,7 @@ createWeb3Modal({
 	wagmiConfig: config,
 	connectorImages: {
 		metaMask: 'https://betfin.io/fox.png',
+		metamask: 'https://betfin.io/fox.png',
 	},
 	tokens: {
 		[chainId]: {
