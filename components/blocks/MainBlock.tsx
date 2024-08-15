@@ -37,9 +37,9 @@ const MainBlock: FC<MainBlockProps> = ({ variant }) => {
 						<Link to={`${getGamesUrl('luro')}`} className={'hidden md:flex'}>
 							<GameBlock className={'bg-game-luro'} disabled={false} label={t('luro')} online={luroOnline} loading={isLuroOnlineFetching} />
 						</Link>
-						<Link to={`${getGamesUrl()}/soon`} className={'hidden sm:flex'}>
+						<div className={'hidden sm:flex'}>
 							<GameBlock className={'bg-game-gem-roulette'} label={t('gem-roulette')} online={0} />
-						</Link>
+						</div>
 						<StakingInfo
 							icon={<Bank className={'w-[36px] h-[36px] shrink-0 text-yellow-400'} />}
 							pa={valueToNumber(conservativeBalance)}
@@ -57,15 +57,15 @@ const MainBlock: FC<MainBlockProps> = ({ variant }) => {
 			case 'dynamic':
 				return (
 					<>
-						<Link to={`${getGamesUrl()}/soon`} className={'hidden sm:flex'}>
+						<div className={'hidden sm:flex'}>
 							<GameBlock className={'bg-game-blackjack'} label={t('blackjack')} online={0} />
-						</Link>
-						<Link to={`${getGamesUrl()}/roulette`}>
+						</div>
+						<Link to={`${getGamesUrl('roulette')}`}>
 							<GameBlock disabled={false} className={'bg-game-roulette'} label={t('roulette')} online={0} />
 						</Link>
-						<Link to={`${getGamesUrl()}/soon`} className={'hidden md:flex'}>
+						<div className={'hidden md:flex'}>
 							<GameBlock className={'bg-game-slots'} label={t('slots')} online={0} />
-						</Link>
+						</div>
 						<StakingInfo
 							icon={<Bag className={'w-[36px] h-[36px] text-yellow-400 shrink-0'} />}
 							pa={valueToNumber(dynamicRevenue)}
