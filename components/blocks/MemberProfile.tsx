@@ -17,6 +17,7 @@ import { DateTime } from 'luxon';
 import { type ChangeEvent, type FC, useEffect, useMemo, useState } from 'react';
 import { useAccount } from 'wagmi';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip';
+import { getAppUrl } from '@/lib';
 
 const MemberProfile = () => {
 	const { data, close } = useOpenProfile();
@@ -77,7 +78,7 @@ const MemberProfile = () => {
 										<motion.img
 											whileHover={{ scale: 1.03 }}
 											whileTap={{ scale: 0.97 }}
-											src={'/member.png'}
+											src={`${getAppUrl()}/member.png`}
 											alt={'logo'}
 											className={'bg-yellow-200 border border-secondaryLight cursor-pointer rounded-full w-[100px] aspect-square'}
 											width={500}
@@ -294,7 +295,7 @@ const UsernameEdit: FC<{ label: string; allowEdit: boolean; onSave: (username: s
 	onSave,
 	initialValue,
 }) => {
-	const { data, close } = useOpenProfile();
+	const { data } = useOpenProfile();
 	const address = data.address;
 	const { address: me = ZeroAddress } = useAccount();
 	const [usernameError, setUsernameError] = useState('');
