@@ -3,7 +3,7 @@ import { createWeb3Modal } from '@web3modal/wagmi/react';
 import { http, type Chain, createPublicClient, fallback } from 'viem';
 import { polygon, polygonAmoy } from 'viem/chains';
 import { createStorage } from 'wagmi';
-import { injected } from 'wagmi/connectors';
+import { injected, metaMask } from 'wagmi/connectors';
 export const chains: [Chain] = import.meta.env.PUBLIC_ENVIRONMENT.includes('prod') ? [polygon] : [polygonAmoy];
 const chainId = chains[0].id;
 
@@ -23,6 +23,7 @@ const config = defaultWagmiConfig({
 			http(import.meta.env.PUBLIC_RPC_URL3, { batch: true }),
 		]),
 	},
+	multiInjectedProviderDiscovery: true,
 	enableInjected: true,
 	storage: createStorage({
 		key: `betfin-${chainId}`,
