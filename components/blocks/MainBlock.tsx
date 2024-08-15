@@ -5,6 +5,7 @@ import { useTotalStaked as useConservativeTotalStaked } from '@/lib/query/conser
 import { useTotalProfit as useDynamicTotalProfit, useTotalStaked as useDynamicTotalStaked } from '@/lib/query/dynamic.ts';
 import { useLuroOnline } from '@/lib/query/luro.ts';
 import { usePredictOnline } from '@/lib/query/predict.ts';
+import { useRouletteOnline } from '@/lib/query/roulette.ts';
 import { useBalance } from '@/lib/query/token.ts';
 import { valueToNumber } from '@betfinio/abi/dist';
 import Bag from '@betfinio/ui/dist/icons/Bag';
@@ -24,6 +25,7 @@ const MainBlock: FC<MainBlockProps> = ({ variant }) => {
 	const { data: stakedDynamic = 0n, ...dynamic } = useDynamicTotalStaked();
 	const { data: predictOnline = 0, isFetching: isPredictOnlineFetching } = usePredictOnline();
 	const { data: luroOnline = 0, isFetching: isLuroOnlineFetching } = useLuroOnline();
+	const { data: rouletteOnline = 0, isFetching: isRouletteOnlineFetching } = useRouletteOnline();
 	const { data: conservativeBalance = 0n } = useBalance(import.meta.env.PUBLIC_CONSERVATIVE_STAKING_ADDRESS);
 	const { data: dynamicRevenue = 0n } = useDynamicTotalProfit();
 	const getGameBlocks = () => {
@@ -38,7 +40,7 @@ const MainBlock: FC<MainBlockProps> = ({ variant }) => {
 							<GameBlock className={'bg-game-luro'} disabled={false} label={t('luro')} online={luroOnline} loading={isLuroOnlineFetching} />
 						</Link>
 						<div className={'hidden sm:flex'}>
-							<GameBlock className={'bg-game-gem-roulette'} label={t('gem-roulette')} online={0} />
+							<GameBlock className={'bg-game-stones'} label={t('stones')} online={0} />
 						</div>
 						<StakingInfo
 							icon={<Bank className={'w-[36px] h-[36px] shrink-0 text-yellow-400'} />}
@@ -57,12 +59,12 @@ const MainBlock: FC<MainBlockProps> = ({ variant }) => {
 			case 'dynamic':
 				return (
 					<>
+						<Link to={`${getGamesUrl('roulette')}`}>
+							<GameBlock disabled={false} className={'bg-game-roulette'} label={t('roulette')} online={rouletteOnline} loading={isRouletteOnlineFetching} />
+						</Link>
 						<div className={'hidden sm:flex'}>
 							<GameBlock className={'bg-game-blackjack'} label={t('blackjack')} online={0} />
 						</div>
-						<Link to={`${getGamesUrl('roulette')}`}>
-							<GameBlock disabled={false} className={'bg-game-roulette'} label={t('roulette')} online={0} />
-						</Link>
 						<div className={'hidden md:flex'}>
 							<GameBlock className={'bg-game-slots'} label={t('slots')} online={0} />
 						</div>

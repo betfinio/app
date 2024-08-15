@@ -2,27 +2,7 @@ import { defaultWagmiConfig } from '@web3modal/wagmi';
 import { createWeb3Modal } from '@web3modal/wagmi/react';
 import { http, type Chain, createPublicClient, fallback } from 'viem';
 import { polygon, polygonAmoy } from 'viem/chains';
-import { createStorage, parseCookie } from 'wagmi';
-import { injected, metaMask } from 'wagmi/connectors';
-
-const cookieStorage = {
-	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-	getItem(key: any) {
-		if (typeof window === 'undefined') return null;
-		const value = parseCookie(document.cookie, key);
-		return value ?? null;
-	},
-	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-	setItem(key: any, value: any) {
-		if (typeof window === 'undefined') return;
-		document.cookie = `${key}=${value};Domain=.betfin.io;Path=/`;
-	},
-	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-	removeItem(key: any) {
-		if (typeof window === 'undefined') return;
-		document.cookie = `${key}=;max-age=-1`;
-	},
-};
+import { createStorage } from 'wagmi';
 
 export const chains: [Chain] = import.meta.env.PUBLIC_ENVIRONMENT.includes('prod') ? [polygon] : [polygonAmoy];
 const chainId = chains[0].id;
@@ -34,8 +14,7 @@ const config = defaultWagmiConfig({
 		url: import.meta.env.PUBLIC_APP_URL, // origin must match your domain & subdomain
 		icons: ['https://betfin.io/favicon.svg'],
 	},
-	enableEIP6963: true,
-	connectors: [injected({ target: 'metaMask', shimDisconnect: true })],
+	// connectors: [injected({ target: 'metaMask', shimDisconnect: true })],
 	chains: chains,
 	transports: {
 		[chainId]: fallback([
@@ -45,12 +24,10 @@ const config = defaultWagmiConfig({
 		]),
 	},
 	enableInjected: true,
-	enableCoinbase: false,
-	enableWalletConnect: true,
-	multiInjectedProviderDiscovery: true,
 	storage: createStorage({
-		storage: cookieStorage,
+		key: `betfin-${chainId}`,
 	}),
+	enableWalletConnect: true,
 	auth: {
 		email: false,
 	},

@@ -1,5 +1,5 @@
 import type { Stat, Timeframe } from '@/lib/types/staking';
-import { DynamicStakingContract } from '@betfinio/abi';
+import { DynamicStakingContract, TokenContract } from '@betfinio/abi';
 import { valueToNumber } from '@betfinio/abi/dist';
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { readContract } from '@wagmi/core';
@@ -43,9 +43,16 @@ export const fetchTotalStaked = async (config: Config, block?: bigint): Promise<
 	return data as bigint;
 };
 export const fetchTotalProfit = async (config: Config): Promise<bigint> => {
-	return (await readContract(config, {
+	const balance = (await readContract(config, {
+		abi: TokenContract.abi,
+		address: import.meta.env.PUBLIC_TOKEN_ADDRESS,
+		functionName: 'balanceOf',
+		args: [import.meta.env.PUBLIC_DYNAMIC_STAKING_ADDRESS],
+	})) as bigint;
+	const realStaked = (await readContract(config, {
 		abi: DynamicStakingContract.abi,
 		address: import.meta.env.PUBLIC_DYNAMIC_STAKING_ADDRESS,
-		functionName: 'totalProfit',
+		functionName: 'realStaked',
 	})) as bigint;
+	return balance - realStaked;
 };
