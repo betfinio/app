@@ -55,10 +55,10 @@ interface DataTablePaginationProps<TData> {
 function DataTablePagination<TData>({ table }: DataTablePaginationProps<TData>) {
 	return (
 		<div className="flex items-center justify-between py-2 mt-2">
-			<div className="flex-1 text-xs text-muted-foreground">{table.getFilteredRowModel().rows.length} rows(s).</div>
+			<div className="flex-1 text-xs text-muted-foreground">{table.getFilteredRowModel().rows.length} result(s).</div>
 			<div className="flex items-center space-x-1 lg:space-x-4">
 				<div className="flex items-center space-x-1">
-					<p className="text-xs font-medium">Rows per page</p>
+					<p className="text-xs font-medium">Results per page</p>
 					<Select
 						value={`${table.getState().pagination.pageSize}`}
 						onValueChange={(value) => {
