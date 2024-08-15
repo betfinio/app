@@ -5,6 +5,7 @@ import { useTotalStaked as useConservativeTotalStaked } from '@/lib/query/conser
 import { useTotalProfit as useDynamicTotalProfit, useTotalStaked as useDynamicTotalStaked } from '@/lib/query/dynamic.ts';
 import { useLuroOnline } from '@/lib/query/luro.ts';
 import { usePredictOnline } from '@/lib/query/predict.ts';
+import { useRouletteOnline } from '@/lib/query/roulette.ts';
 import { useBalance } from '@/lib/query/token.ts';
 import { valueToNumber } from '@betfinio/abi/dist';
 import Bag from '@betfinio/ui/dist/icons/Bag';
@@ -13,7 +14,6 @@ import { Link } from '@tanstack/react-router';
 import cx from 'clsx';
 import type { FC, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useRouletteOnline } from '@/lib/query/roulette.ts';
 
 export interface MainBlockProps {
 	variant: 'conservative' | 'dynamic';
