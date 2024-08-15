@@ -1,9 +1,9 @@
 import { defaultWagmiConfig } from '@web3modal/wagmi';
-import { createWeb3Modal } from '@web3modal/wagmi/react';
 import { http, type Chain, createPublicClient, fallback } from 'viem';
 import { polygon, polygonAmoy } from 'viem/chains';
 import { createStorage, parseCookie } from 'wagmi';
 import { injected, metaMask } from 'wagmi/connectors';
+import { createWeb3Modal } from '@web3modal/wagmi/react';
 const cookieStorage = {
 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 	getItem(key: any) {
@@ -34,7 +34,6 @@ const config = defaultWagmiConfig({
 		icons: ['https://betfin.io/favicon.svg'],
 	},
 	enableEIP6963: true,
-	connectors: [injected({ target: 'metaMask', shimDisconnect: true }), metaMask()],
 	chains: chains,
 	transports: {
 		[chainId]: fallback([
@@ -50,29 +49,24 @@ const config = defaultWagmiConfig({
 	storage: createStorage({
 		storage: cookieStorage,
 	}),
-	auth: {
-		email: false,
-	},
+	enableEmail: false,
 	projectId: import.meta.env.PUBLIC_WALLETCONNECT_ID,
 	ssr: false,
 });
 
 createWeb3Modal({
-	defaultChain: chains[0],
 	wagmiConfig: config,
 	connectorImages: {
 		metaMask: 'https://betfin.io/fox.png',
 		metamask: 'https://betfin.io/fox.png',
 	},
-	tokens: {
-		[chainId]: {
-			address: import.meta.env.PUBLIC_TOKEN_ADDRESS,
-		},
-	},
-	enableEIP6963: true,
+	// tokens: {
+	// 	[chainId]: {
+	// 		address: import.meta.env.PUBLIC_TOKEN_ADDRESS,
+	// 	},
+	// },
 	projectId: import.meta.env.PUBLIC_WALLETCONNECT_ID,
 	enableAnalytics: true, // Optional - defaults to your Cloud configuration
-	enableOnramp: false, // Optional - false as default
 });
 
 export default config;
