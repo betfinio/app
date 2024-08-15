@@ -8,7 +8,7 @@ import { dependencies } from './package.json';
 function getOutput() {
 	switch (process.env.PUBLIC_ENVIRONMENT) {
 		case 'development':
-			return 'https://betfin-app-dev.web.app';
+			return 'https://app.betfin.dev';
 		case 'production':
 			return 'https://app.betfin.io';
 		case 'production-ua':
