@@ -1,9 +1,9 @@
 import { defaultWagmiConfig } from '@web3modal/wagmi';
+import { createWeb3Modal } from '@web3modal/wagmi/react';
 import { http, type Chain, createPublicClient, fallback } from 'viem';
 import { polygon, polygonAmoy } from 'viem/chains';
 import { createStorage, parseCookie } from 'wagmi';
 import { injected, metaMask } from 'wagmi/connectors';
-import { createWeb3Modal } from '@web3modal/wagmi/react';
 const cookieStorage = {
 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 	getItem(key: any) {
