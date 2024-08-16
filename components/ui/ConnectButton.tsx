@@ -5,6 +5,8 @@ import { useIsMember } from '@/lib/query/pass.ts';
 import { useOpenProfile } from '@/lib/query/shared.ts';
 import { useAllowance, useBalance, useIncreaseAllowance } from '@/lib/query/token.ts';
 import { useUsername } from '@/lib/query/username.ts';
+import { addressToColor, hexToRgbA } from '@/lib/utils.ts';
+import { ZeroAddress } from '@betfinio/abi';
 import { truncateEthAddress, valueToNumber } from '@betfinio/abi/dist';
 import { Bet, BetLogo } from '@betfinio/ui/dist/icons';
 import { useWeb3Modal } from '@web3modal/wagmi/react';
@@ -16,8 +18,6 @@ import { useTranslation } from 'react-i18next';
 import { useAccount } from 'wagmi';
 import { Button } from './button.tsx';
 import { Popover, PopoverContent, PopoverTrigger } from './popover.tsx';
-import { addressToColor, hexToRgbA } from '@/lib/utils.ts';
-import { ZeroAddress } from '@betfinio/abi';
 
 const ConnectButton = () => {
 	const { address } = useAccount();

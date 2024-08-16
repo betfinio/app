@@ -2,7 +2,7 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 import { type Config, getBlock } from '@wagmi/core';
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import {Address} from "viem";
+import type { Address } from 'viem';
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -26,7 +26,7 @@ export const addressToColor = (walletAddress: Address) => {
 		walletHash.substring(chunkLength, chunkLength * 2),
 		walletHash.substring(chunkLength * 2, walletHash.length),
 	];
-	
+
 	const red = Number.parseInt(firstChunk, 16) % 256;
 	const green = Number.parseInt(secondChunk, 16) % 256;
 	const blue = Number.parseInt(thirdChunk, 16) % 256;
