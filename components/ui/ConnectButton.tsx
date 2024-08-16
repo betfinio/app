@@ -16,6 +16,8 @@ import { useTranslation } from 'react-i18next';
 import { useAccount } from 'wagmi';
 import { Button } from './button.tsx';
 import { Popover, PopoverContent, PopoverTrigger } from './popover.tsx';
+import { addressToColor, hexToRgbA } from '@/lib/utils.ts';
+import { ZeroAddress } from '@betfinio/abi';
 
 const ConnectButton = () => {
 	const { address } = useAccount();
@@ -82,6 +84,8 @@ const AccountBlock = forwardRef((props: any, forwardedRef: any) => {
 		window.location.href = 'https://betfin.io';
 	};
 	if (!address) return <div {...props} ref={forwardedRef} />;
+
+	console.log(address);
 	return (
 		<AnimatePresence mode={'wait'}>
 			<motion.div
@@ -92,11 +96,15 @@ const AccountBlock = forwardRef((props: any, forwardedRef: any) => {
 				ref={forwardedRef}
 			>
 				{!isOpen && <UserPen className={'text-yellow-400 ml-3'} onClick={handleOpenProfile} />}
-				<BetLogo className={'border-yellow-400 border-2 aspect-square w-8 h-8 rounded-full p-1 bg-primaryLighter'} />
+				<div className={'border-2 aspect-square rounded-full '} style={{ borderColor: addressToColor(address || ZeroAddress) }}>
+					<BetLogo className={'w-8 h-8 rounded-full p-1 bg-primaryLighter'} />
+				</div>
 				<div className={'flex flex-col'}>
 					<div className={'text-sm text-gray-400'}>{truncateEthAddress(address)}</div>
 					{isMember ? (
-						<div className={'text-base text-white w-[100px] overflow-x-hidden text-ellipsis'}>{username}</div>
+						<div className={'text-base w-[100px] overflow-x-hidden text-ellipsis'} style={{ color: addressToColor(address || ZeroAddress) }}>
+							{username}
+						</div>
 					) : isLoading ? null : (
 						<Badge onClick={handleNotMember} variant={'destructive'}>
 							Not a member
