@@ -84,7 +84,7 @@
 		"C07": "Pass membership is required to stake or make bets",
 		"C08": "Insufficient allowance",
 		"PS03": "Inviter did not met requirements",
-		"PS01": "Wallet already a member",
+		"PS01": "Wallet is already a member",
 		"AF04": "Already claimed today. Please try again tomorrow",
 		"PG01": "Game is disabled. Please try another pair",
 		"PS02": "Invalid inviter",
