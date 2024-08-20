@@ -56,6 +56,7 @@ export default defineConfig({
 					manifest: {
 						filePath: 'app',
 					},
+					getPublicPath: getOutput(),
 					exposes: {
 						'./style': './src/style.ts',
 						'./BetValue': './components/ui/BetValue.tsx',
