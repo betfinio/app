@@ -8,13 +8,13 @@ import { dependencies } from './package.json';
 function getOutput() {
 	switch (process.env.PUBLIC_ENVIRONMENT) {
 		case 'development':
-			return './';
+			return '';
 		case 'production':
 			return 'https://app.betfin.io';
 		case 'production-ua':
 			return 'https://app.betfin.gg';
 		default:
-			return 'http://localhost:5555';
+			return 'http://localhost:5555/app';
 	}
 }
 
@@ -23,7 +23,7 @@ export default defineConfig({
 		port: 5555,
 	},
 	dev: {
-		assetPrefix: 'http://localhost:5555',
+		assetPrefix: 'http://localhost:5555/app',
 	},
 	html: {
 		title: 'BetFin App',
@@ -32,13 +32,14 @@ export default defineConfig({
 	output: {
 		assetPrefix: getOutput(),
 		distPath: {
-			js: '',
-			jsAsync: '',
-			css: '',
-			cssAsync: '',
-			font: '',
-			image: '',
-			svg: '',
+			js: 'app',
+			jsAsync: 'app',
+			css: 'app',
+			cssAsync: 'app',
+			font: 'app',
+			image: 'app',
+			svg: 'app',
+			html: 'app',
 		},
 	},
 	tools: {
