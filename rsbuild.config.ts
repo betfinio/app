@@ -8,7 +8,7 @@ import { dependencies } from './package.json';
 function getOutput() {
 	switch (process.env.PUBLIC_ENVIRONMENT) {
 		case 'development':
-			return 'https://app.betfin.dev';
+			return 'https://betfin.dev/app';
 		case 'production':
 			return 'https://app.betfin.io';
 		case 'production-ua':
@@ -23,7 +23,7 @@ export default defineConfig({
 		port: 5555,
 	},
 	dev: {
-		assetPrefix: '/',
+		assetPrefix: 'http://localhost:5555',
 	},
 	html: {
 		title: 'BetFin',
