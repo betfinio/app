@@ -14,7 +14,7 @@ function getOutput() {
 		case 'production-ua':
 			return 'https://app.betfin.gg';
 		default:
-			return 'http://localhost:5555/app';
+			return '';
 	}
 }
 
@@ -53,6 +53,9 @@ export default defineConfig({
 				TanStackRouterRspack(),
 				new ModuleFederationPlugin({
 					name: 'betfinio_app',
+					manifest: {
+						filePath: 'app',
+					},
 					exposes: {
 						'./style': './src/style.ts',
 						'./BetValue': './components/ui/BetValue.tsx',
