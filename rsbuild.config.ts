@@ -31,6 +31,15 @@ export default defineConfig({
 	},
 	output: {
 		assetPrefix: getOutput(),
+		distPath: {
+			js: '',
+			jsAsync: '',
+			css: '',
+			cssAsync: '',
+			font: '',
+			image: '',
+			svg: '',
+		},
 	},
 	tools: {
 		rspack: {
