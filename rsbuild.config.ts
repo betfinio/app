@@ -14,7 +14,7 @@ function getOutput() {
 		case 'production-ua':
 			return 'https://app.betfin.gg';
 		default:
-			return 'http://localhost:5555';
+			return '/';
 	}
 }
 
@@ -23,7 +23,7 @@ export default defineConfig({
 		port: 5555,
 	},
 	dev: {
-		assetPrefix: 'http://localhost:5555',
+		assetPrefix: '/',
 	},
 	html: {
 		title: 'BetFin',
