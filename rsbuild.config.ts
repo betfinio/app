@@ -40,6 +40,8 @@ export default defineConfig({
 			image: 'app',
 			svg: 'app',
 			html: 'app',
+			media: 'app',
+			wasm: 'app',
 		},
 	},
 	tools: {
