@@ -31,7 +31,7 @@
 		"@radix-ui/react-tooltip": "^1.1.2",
 		"@supabase/supabase-js": "^2.45.1",
 		"@tanstack/react-query": "^5.52.0",
-		"@tanstack/react-router": "^1.49.0",
+		"@tanstack/react-router": "^1.49.1",
 		"@tanstack/react-table": "^8.20.1",
 		"@web3modal/wagmi": "4.1.11",
 		"class-variance-authority": "^0.7.0",
@@ -50,7 +50,7 @@
 		"tailwindcss-animate": "^1.0.7",
 		"vaul": "^0.9.1",
 		"viem": "^2.19.8",
-		"wagmi": "^2.12.6"
+		"wagmi": "^2.12.7"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.8.3",
@@ -60,18 +60,8 @@
 		"@tanstack/router-plugin": "^1.48.6",
 		"@types/luxon": "^3.4.2",
 		"@types/node": "^20.16.1",
-		"@types/react": "^18.3.3",
+		"@types/react": "^18.3.4",
 		"@types/react-dom": "^18.3.0",
 		"typescript": "^5.5.4"
-	},
-	"resolutions": {
-		"@walletconnect/core": "2.14.0",
-		"@walletconnect/types": "2.14.0",
-		"@walletconnect/utils": "2.14.0"
-	},
-	"overrides": {
-		"@walletconnect/core": "2.14.0",
-		"@walletconnect/types": "2.14.0",
-		"@walletconnect/utils": "2.14.0"
 	}
 }
