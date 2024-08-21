@@ -62,6 +62,7 @@ export default defineConfig({
 						'./badge': './components/ui/badge.tsx',
 						'./use-toast': './components/ui/use-toast.ts',
 						'./table': './components/ui/table.tsx',
+						'./progress': './components/ui/progress.tsx',
 						'./drawer': './components/ui/drawer.tsx',
 						'./tooltip': './components/ui/tooltip.tsx',
 						'./skeleton': './components/ui/skeleton.tsx',
