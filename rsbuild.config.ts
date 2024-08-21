@@ -8,7 +8,7 @@ import { dependencies } from './package.json';
 function getOutput() {
 	switch (process.env.PUBLIC_ENVIRONMENT) {
 		case 'development':
-			return 'https://betfin.dev/';
+			return 'https://app.betfin.dev/';
 		case 'production':
 			return 'https://app.betfin.io';
 		case 'production-ua':
@@ -31,18 +31,6 @@ export default defineConfig({
 	},
 	output: {
 		assetPrefix: getOutput(),
-		distPath: {
-			js: 'app',
-			jsAsync: 'app',
-			css: 'app',
-			cssAsync: 'app',
-			font: 'app',
-			image: 'app',
-			svg: 'app',
-			html: 'app',
-			media: 'app',
-			wasm: 'app',
-		},
 	},
 	tools: {
 		rspack: {
@@ -53,10 +41,6 @@ export default defineConfig({
 				TanStackRouterRspack(),
 				new ModuleFederationPlugin({
 					name: 'betfinio_app',
-					manifest: {
-						filePath: 'app',
-					},
-					getPublicPath: getOutput(),
 					exposes: {
 						'./style': './src/style.ts',
 						'./BetValue': './components/ui/BetValue.tsx',
