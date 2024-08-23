@@ -20,7 +20,12 @@ module.exports = {
 				primary: '#0F121D',
 				primaryLight: '#131624',
 				primaryLighter: '#151A2A',
-				secondary: '#201C40',
+
+				secondary: {
+					DEFAULT: 'hsl(var(--secondary))',
+				//	foreground: 'hsl(var(--success-foreground))',
+				},
+			
 				secondaryLight: '#292546',
 				secondaryLighter: '#201C4080',
 				purple: {
@@ -33,6 +38,7 @@ module.exports = {
 				},
 				gray: {
 					800: '#1E292E',
+					300:"#201C40"
 				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
@@ -54,6 +60,18 @@ module.exports = {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))',
 				},
+				"card-secondary": {
+					DEFAULT: 'hsl(var(--card-secondary))',
+					foreground: 'hsl(var(--card-secondary-foreground))',
+				},
+				tertiary: {
+					DEFAULT: 'hsl(var(--tertiary))',
+					foreground: 'hsl(var(--tertiary-foreground))',
+				},
+				success: {
+					DEFAULT: 'hsl(var(--success))',
+					foreground: 'hsl(var(--success-foreground))',
+				},
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -69,6 +87,7 @@ module.exports = {
 				'game-gem-roulette': "url('./assets/games/gem-roulette.png')",
 				'game-slots': "url('./assets/games/slots.png')",
 				'game-blackjack': "url('./assets/games/blackjack.png')",
+				'primary-gradient': 'linear-gradient(to left, #1D1A3D, #7366FF 40%, #1D1A3D)',
 			},
 			keyframes: {
 				'accordion-down': {

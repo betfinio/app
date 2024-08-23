@@ -57,6 +57,7 @@ export default defineConfig({
 						'./command': './components/ui/command.tsx',
 						'./select': './components/ui/select.tsx',
 						'./tabs': './components/ui/tabs.tsx',
+						'./accordion': './components/ui/accordion.tsx',
 						'./scroll-area': './components/ui/scroll-area.tsx',
 						'./dropdown-menu': './components/ui/dropdown-menu.tsx',
 						'./badge': './components/ui/badge.tsx',

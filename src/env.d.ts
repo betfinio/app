@@ -21,5 +21,6 @@ declare global {
 			identity?: IdentityData;
 			debug?: boolean;
 		};
+		ethereum:any
 	}
 }

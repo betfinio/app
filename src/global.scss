@@ -17,20 +17,26 @@ html, body {
   :root {
     --background: 0 0% 100%;
     --foreground: 20 14.3% 4.1%;
-    --card: 0 0% 100%;
+    --card: 226 33% 12%;//#151A2A
     --card-foreground: 20 14.3% 4.1%;
+    --card-secondary: 240 29% 28%;//#33335C
+    --card-seconary-foreground: 20 14.3% 4.1%;
     --popover: 0 0% 100%;
     --popover-foreground: 20 14.3% 4.1%;
     --primary: 47.9 95.8% 53.1%;
     --primary-foreground: 26 83.3% 14.1%;
-    --secondary: 60 4.8% 95.9%;
+    --secondary: 247 39% 18%;//#201C40
     --secondary-foreground: 24 9.8% 10%;
+    --tertiary: 60 4.8% 95.9%;
+    --tertiary-foreground: 228 11% 47%;//#6A6F84
     --muted: 60 4.8% 95.9%;
     --muted-foreground: 25 5.3% 44.7%;
     --accent: 60 4.8% 95.9%;
     --accent-foreground: 24 9.8% 10%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 60 9.1% 97.8%;
+    --success: 153 54% 48%;//#38BB7F
+    --success-foreground: 60 9.1% 97.8%;
     --border: 20 5.9% 90%;
     --input: 20 5.9% 90%;
     --ring: 20 14.3% 4.1%;
