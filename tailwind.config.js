@@ -23,9 +23,9 @@ module.exports = {
 
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
-				//	foreground: 'hsl(var(--success-foreground))',
+					//	foreground: 'hsl(var(--success-foreground))',
 				},
-			
+
 				secondaryLight: '#292546',
 				secondaryLighter: '#201C4080',
 				purple: {
@@ -38,7 +38,7 @@ module.exports = {
 				},
 				gray: {
 					800: '#1E292E',
-					300:"#201C40"
+					300: '#201C40',
 				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
@@ -60,7 +60,7 @@ module.exports = {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))',
 				},
-				"card-secondary": {
+				'card-secondary': {
 					DEFAULT: 'hsl(var(--card-secondary))',
 					foreground: 'hsl(var(--card-secondary-foreground))',
 				},
