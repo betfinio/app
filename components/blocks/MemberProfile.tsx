@@ -226,7 +226,7 @@ const MemberProfile = () => {
 																			</TooltipTrigger>
 																			<TooltipContent className={cx('z-50 border- rounded-xl border-yellow-400 bg-black text-white')}>
 																				<div className={'px-4 py-2 text-xs'}>
-																					<p className={'font-bold text-center'}>
+																					<p className={'font-semibold text-center'}>
 																						This value represents <span className={'text-yellow-400'}>100% of all bets</span> <br /> of your{' '}
 																						<span className={'text-yellow-400'}>direct</span> affiliates
 																					</p>
@@ -248,7 +248,7 @@ const MemberProfile = () => {
 																			</TooltipTrigger>
 																			<TooltipContent className={cx('z-50 border-2 rounded-xl border-yellow-400 bg-black bg-opacity-75 text-white')}>
 																				<div className={'px-4 py-2 text-xs'}>
-																					<p className={'font-bold text-center'}>
+																					<p className={'font-semibold text-center'}>
 																						This value represents <span className={'text-yellow-400'}>1% of all bets</span> <br /> in your{' '}
 																						<span className={'text-yellow-400'}>binary</span> affiliate system
 																					</p>
