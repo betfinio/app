@@ -4,7 +4,7 @@ import { SupabaseProvider } from '@/lib/contexts/supabase.tsx';
 import client from '@/src/config/supabase.ts';
 import instance from '@/src/i18n.ts';
 import { QueryClientProvider } from '@tanstack/react-query';
-import { Outlet, createRootRoute, type RootRoute } from '@tanstack/react-router';
+import { Outlet, type RootRoute, createRootRoute } from '@tanstack/react-router';
 import type { i18n } from 'i18next';
 import type { FC } from 'react';
 import { I18nextProvider } from 'react-i18next';

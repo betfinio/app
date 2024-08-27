@@ -1,11 +1,11 @@
 import { Toaster } from '@/components/ui/toaster.tsx';
+import { games, navigation, others } from '@/src/config/links';
 import cx from 'clsx';
-import { useState, type FC, type PropsWithChildren, type ReactNode } from 'react';
+import { type FC, type PropsWithChildren, type ReactNode, useState } from 'react';
 import ConnectButton, { WalletBalance } from '../ui/ConnectButton';
-import Header from './Header';
-import { navigation, games, others } from '@/src/config/links';
-import Sidebar from './Sidebar';
 import Footer from './Footer';
+import Header from './Header';
+import Sidebar from './Sidebar';
 
 interface RootLayoutProps {
 	id: string;

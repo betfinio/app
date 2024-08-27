@@ -5,7 +5,7 @@ import { getAppUrl } from '@/lib';
 import Support from '@betfinio/ui/dist/icons/Support';
 import cx from 'clsx';
 import { PanelLeftClose, PanelRightClose } from 'lucide-react';
-import type { FC, PropsWithChildren, Dispatch, SetStateAction } from 'react';
+import type { Dispatch, FC, PropsWithChildren, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
 
 interface ISidebarProps extends PropsWithChildren {
