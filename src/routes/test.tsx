@@ -1,5 +1,5 @@
-import { createFileRoute, redirect } from '@tanstack/react-router';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group.tsx';
+import { createFileRoute, redirect } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/test')({
 	component: TestPage,
