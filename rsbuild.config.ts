@@ -10,9 +10,9 @@ function getOutput() {
 		case 'development':
 			return 'https://app.betfin.dev/';
 		case 'production':
-			return 'https://app.betfin.io';
+			return 'https://app.betfin.io/';
 		case 'production-ua':
-			return 'https://app.betfin.gg';
+			return 'https://app.betfin.gg/';
 		default:
 			return '';
 	}
