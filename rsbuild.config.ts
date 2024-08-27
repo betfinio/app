@@ -53,6 +53,7 @@ export default defineConfig({
 						'./popover': './components/ui/popover.tsx',
 						'./checkbox': './components/ui/checkbox.tsx',
 						'./input': './components/ui/input.tsx',
+						'./radio-group': './components/ui/radio-group.tsx',
 						'./button': './components/ui/button.tsx',
 						'./command': './components/ui/command.tsx',
 						'./select': './components/ui/select.tsx',
