@@ -5,14 +5,19 @@ import { getAppUrl } from '@/lib';
 import Support from '@betfinio/ui/dist/icons/Support';
 import cx from 'clsx';
 import { PanelLeftClose, PanelRightClose } from 'lucide-react';
-import { type FC, type PropsWithChildren, ReactNode, useState } from 'react';
+import type { FC, PropsWithChildren, Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const Sidebar: FC<PropsWithChildren<{ links: NavItemProps[][] }>> = ({ children, links }) => {
+interface ISidebarProps extends PropsWithChildren {
+	links: NavItemProps[][];
+	minimized: boolean;
+	toggleMinimized: Dispatch<SetStateAction<boolean>>;
+}
+const Sidebar: FC<ISidebarProps> = ({ children, links, minimized, toggleMinimized }) => {
 	const { t } = useTranslation('', { keyPrefix: 'shared.sidebar' });
-	const [minimized, setMinimized] = useState(false);
+
 	const toggleSidebar = () => {
-		setMinimized((p) => !p);
+		toggleMinimized((p) => !p);
 	};
 	const handleSupport = () => {
 		document.getElementById('live-chat-ai-button')?.click();
@@ -53,7 +58,7 @@ const Sidebar: FC<PropsWithChildren<{ links: NavItemProps[][] }>> = ({ children,
 					onClick={handleSupport}
 				/>
 			</div>
-			{minimized && <div className={'w-[70px] h-[100vh]'} />}
+			{minimized && <div className={'w-[70px] mr-4 h-[100vh]'} />}
 		</>
 	);
 };

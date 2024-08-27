@@ -87,6 +87,7 @@ module.exports = {
 				'game-gem-roulette': "url('./assets/games/gem-roulette.png')",
 				'game-slots': "url('./assets/games/slots.png')",
 				'game-blackjack': "url('./assets/games/blackjack.png')",
+				'primary-gradient': 'linear-gradient(to left, #1D1A3D, #7366FF 40%, #1D1A3D)',
 			},
 			keyframes: {
 				'accordion-down': {

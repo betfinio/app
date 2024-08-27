@@ -66,6 +66,8 @@ export default defineConfig({
 						'./drawer': './components/ui/drawer.tsx',
 						'./tooltip': './components/ui/tooltip.tsx',
 						'./skeleton': './components/ui/skeleton.tsx',
+						'./radio-group': './components/ui/radio-group.tsx',
+						'./accordion': './components/ui/accordion.tsx',
 						'./breadcrumb': './components/ui/breadcrumb.tsx',
 						'./supabase': './lib/contexts/supabase',
 						'./lib/api/conservative': './lib/api/conservative',
