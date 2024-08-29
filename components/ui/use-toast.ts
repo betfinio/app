@@ -1,7 +1,7 @@
 // Inspired by react-hot-toast library
 import * as React from 'react';
 
-import type { ToastActionElement, ToastProps } from '@/components/ui/toast';
+import type { ToastActionElement, ToastProps, ToastViewportProps } from '@/components/ui/toast';
 
 const TOAST_LIMIT = 5;
 const TOAST_REMOVE_DELAY = 1000000;
@@ -11,6 +11,8 @@ type ToasterToast = ToastProps & {
 	title?: React.ReactNode;
 	description?: React.ReactNode;
 	action?: ToastActionElement;
+	component?:React.ReactNode
+	
 };
 
 const actionTypes = {
@@ -140,6 +142,7 @@ function toast({ ...props }: Toast) {
 
 	const update = (props: ToasterToast) =>
 		dispatch({
+			
 			type: 'UPDATE_TOAST',
 			toast: { ...props, id },
 		});
