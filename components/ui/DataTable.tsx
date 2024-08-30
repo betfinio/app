@@ -12,9 +12,11 @@ interface DataTableProps<TData, TValue> {
 	meta?: TableMeta<TData>;
 	state?: InitialTableState;
 	onRowClick?: (row: TData) => void;
+	loaderClassName: string | undefined;
+	noResultsClassName: string | undefined;
 }
 
-export function DataTable<TData, TValue>({ columns, data, isLoading = false, meta, state = {}, onRowClick }: DataTableProps<TData, TValue>) {
+export function DataTable<TData, TValue>({ columns, data, isLoading = false, meta, state = {}, onRowClick,loaderClassName,noResultsClassName }: DataTableProps<TData, TValue>) {
 	const table = useReactTable({
 		data,
 		columns,
@@ -49,7 +51,7 @@ export function DataTable<TData, TValue>({ columns, data, isLoading = false, met
 				<TableBody>
 					{isLoading ? (
 						<TableRow>
-							<TableCell colSpan={columns.length} className="h-[200px]">
+							<TableCell colSpan={columns.length} className={cx("h-[200px]",loaderClassName)}>
 								<div className={'flex items-center justify-center'}>
 									<Loader className={'animate-spin'} />
 								</div>
@@ -67,7 +69,7 @@ export function DataTable<TData, TValue>({ columns, data, isLoading = false, met
 						))
 					) : (
 						<TableRow>
-							<TableCell colSpan={columns.length} className="h-24 text-center">
+							<TableCell colSpan={columns.length}  className={cx("h-24 text-center",noResultsClassName)}>
 								No results.
 							</TableCell>
 						</TableRow>
