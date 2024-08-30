@@ -7,13 +7,11 @@ import { cn } from '@/lib/utils';
 
 const ToastProvider = ToastPrimitives.Provider;
 
-
-
-export interface ToastViewportProps extends React.ComponentPropsWithoutRef<typeof ToastPrimitives.Viewport>{
-	fixedSize?:boolean
+export interface ToastViewportProps extends React.ComponentPropsWithoutRef<typeof ToastPrimitives.Viewport> {
+	fixedSize?: boolean;
 }
 const ToastViewport = React.forwardRef<React.ElementRef<typeof ToastPrimitives.Viewport>, ToastViewportProps>(
-	({ className,fixedSize=true, ...props }, ref) => (
+	({ className, fixedSize = true, ...props }, ref) => (
 		<ToastPrimitives.Viewport
 			ref={ref}
 			className={cn(
