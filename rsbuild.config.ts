@@ -6,18 +6,7 @@ import { TanStackRouterRspack } from '@tanstack/router-plugin/rspack';
 import { dependencies } from './package.json';
 
 function getOutput() {
-	switch (process.env.PUBLIC_ENVIRONMENT) {
-		case 'development':
-			return 'https://app.betfin.dev/';
-		case 'production':
-			return 'https://app.betfin.io/';
-		case 'production-network':
-			return 'https://app.betfin.network/';
-		case 'production-ua':
-			return 'https://app.betfin.gg/';
-		default:
-			return '';
-	}
+	return process.env.PUBLIC_OUTPUT_URL;
 }
 
 export default defineConfig({
