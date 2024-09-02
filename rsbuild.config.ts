@@ -6,7 +6,7 @@ import { TanStackRouterRspack } from '@tanstack/router-plugin/rspack';
 import { dependencies } from './package.json';
 
 function getOutput() {
-	return process.env.PUBLIC_APP_URL;
+	return process.env.PUBLIC_OUTPUT_URL;
 }
 
 export default defineConfig({
