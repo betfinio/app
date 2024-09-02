@@ -1,8 +1,8 @@
 import type { Options } from '@/lib/types';
 import { PassContract } from '@betfinio/abi';
+import { writeContract } from '@wagmi/core';
 import type { Address, WriteContractReturnType } from 'viem';
 import { readContract } from 'viem/actions';
-import { writeContract } from '@wagmi/core';
 
 export const isMember = async (address: Address | undefined, options: Options): Promise<boolean> => {
 	if (!options.config || !address) return false;

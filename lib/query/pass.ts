@@ -1,11 +1,11 @@
-import { isMember, mint } from '@/lib/api/pass.ts';
-import { useMutation, useQuery } from '@tanstack/react-query';
-import type { Address, WriteContractReturnType } from 'viem';
-import { useConfig } from 'wagmi';
 import { toast } from '@/components/ui/use-toast.ts';
-import { waitForTransactionReceipt } from 'viem/actions';
+import { isMember, mint } from '@/lib/api/pass.ts';
 import { getTransactionLink } from '@/lib/helpers.tsx';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
+import type { Address, WriteContractReturnType } from 'viem';
+import { waitForTransactionReceipt } from 'viem/actions';
+import { useConfig } from 'wagmi';
 
 export const useIsMember = (address: Address | undefined) => {
 	const config = useConfig();
