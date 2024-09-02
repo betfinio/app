@@ -11,6 +11,8 @@ function getOutput() {
 			return 'https://app.betfin.dev/';
 		case 'production':
 			return 'https://app.betfin.io/';
+		case 'production-network':
+			return 'https://app.betfin.network/';
 		case 'production-ua':
 			return 'https://app.betfin.gg/';
 		default:
