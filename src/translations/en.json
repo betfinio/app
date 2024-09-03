@@ -12,6 +12,7 @@
 		"staking-conservative": "Conservative",
 		"staking-dynamic": "Dynamic",
 		"affiliate": "Affiliate",
+		"academy": "Academy",
 		"affiliate-linear-tree": "Linear tree",
 		"affiliate-binary-tree": "Binary tree",
 		"roadmap": "Roadmap",
