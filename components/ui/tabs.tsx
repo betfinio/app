@@ -14,7 +14,7 @@ const TabsList = React.forwardRef<React.ElementRef<typeof TabsPrimitive.List>, R
 TabsList.displayName = TabsPrimitive.List.displayName;
 
 const tabVariants = cva(
-	'inline-flex items-center justify-center border  whitespace-nowrap rounded-sm  text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 ',
+	'inline-flex items-center justify-center border  whitespace-nowrap rounded-sm  text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-80 ',
 	{
 		variants: {
 			variant: {
