@@ -8,6 +8,7 @@ import { SquareArrowOutUpRight } from 'lucide-react';
 import type { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { Address } from 'viem';
+import { LuckyRound } from '@betfinio/ui/dist/icons/LuckyRound';
 
 const ETHSCAN = import.meta.env.PUBLIC_ETHSCAN;
 
@@ -18,6 +19,12 @@ const BetsTable: FC<{ data: BetInterface[]; isLoading: boolean }> = ({ data, isL
 	const renderGameIcon = (game: Address) => {
 		if (game.toLowerCase() === import.meta.env.PUBLIC_PREDICT_ADDRESS.toLowerCase()) {
 			return <Predict className={'w-6 h-6'} />;
+		}
+		if (game.toLowerCase() === import.meta.env.PUBLIC_LUCKY_ROUND_ADDRESS.toLowerCase()) {
+			return <LuckyRound className={'w-6 h-6'} />;
+		}
+		if (game.toLowerCase() === import.meta.env.PUBLIC_LUCKY_ROUND_5MIN_ADDRESS.toLowerCase()) {
+			return <LuckyRound className={'w-6 h-6'} />;
 		}
 		return <Roulette className={'w-6 h-6'} />;
 	};
