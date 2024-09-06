@@ -3,12 +3,12 @@ import { DataTable } from '@/components/ui/DataTable.tsx';
 import type { BetInterface } from '@/lib/types';
 import { ZeroAddress, truncateEthAddress, valueToNumber } from '@betfinio/abi';
 import { Predict, Roulette } from '@betfinio/ui/dist/icons';
+import { LuckyRound } from '@betfinio/ui/dist/icons/LuckyRound';
 import { createColumnHelper } from '@tanstack/react-table';
 import { SquareArrowOutUpRight } from 'lucide-react';
 import type { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { Address } from 'viem';
-import { LuckyRound } from '@betfinio/ui/dist/icons/LuckyRound';
 
 const ETHSCAN = import.meta.env.PUBLIC_ETHSCAN;
 
