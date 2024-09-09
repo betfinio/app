@@ -1,11 +1,11 @@
 import type { NavItemProps } from '@/components/ui/NavItem';
-import { getAffiliateUrl, getGamesUrl, getStakingUrl } from '@/lib';
+import { getAcademyUrl, getAffiliateUrl, getGamesUrl, getStakingUrl } from '@/lib';
 import { Affiliate, Bag, Bank, DepthAffiliate, DirectAffiliate, Predict, Roadmap, Roulette, Slots, Staking } from '@betfinio/ui/dist/icons';
 import { Binary } from '@betfinio/ui/dist/icons/Binary';
 import { Dice } from '@betfinio/ui/dist/icons/Dice';
 import { LuckyRound } from '@betfinio/ui/dist/icons/LuckyRound';
 import { Stones } from '@betfinio/ui/dist/icons/Stones';
-import { PaperclipIcon } from 'lucide-react';
+import { BookA, PaperclipIcon } from 'lucide-react';
 
 const navigation: NavItemProps[] = [
 	{
@@ -42,6 +42,7 @@ const games: NavItemProps[] = [
 const others: NavItemProps[] = [
 	{ label: 'documentation', icon: <Roadmap />, external: true, href: 'https://betfin.gitbook.io/betfin-public' },
 	{ label: 'about', icon: <PaperclipIcon className={'w-6 h-6'} />, external: true, href: 'https://betfin.gitbook.io/betfin-public/v/about-betfin-1' },
+	{ label: 'academy', icon: <BookA className={'w-6 h-6'} />, disabled: false, href: getAcademyUrl('/advanced') },
 ];
 
 export { navigation, games, others };

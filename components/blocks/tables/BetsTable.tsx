@@ -3,6 +3,7 @@ import { DataTable } from '@/components/ui/DataTable.tsx';
 import type { BetInterface } from '@/lib/types';
 import { ZeroAddress, truncateEthAddress, valueToNumber } from '@betfinio/abi';
 import { Predict, Roulette } from '@betfinio/ui/dist/icons';
+import { LuckyRound } from '@betfinio/ui/dist/icons/LuckyRound';
 import { createColumnHelper } from '@tanstack/react-table';
 import { SquareArrowOutUpRight } from 'lucide-react';
 import type { FC } from 'react';
@@ -18,6 +19,12 @@ const BetsTable: FC<{ data: BetInterface[]; isLoading: boolean }> = ({ data, isL
 	const renderGameIcon = (game: Address) => {
 		if (game.toLowerCase() === import.meta.env.PUBLIC_PREDICT_ADDRESS.toLowerCase()) {
 			return <Predict className={'w-6 h-6'} />;
+		}
+		if (game.toLowerCase() === import.meta.env.PUBLIC_LUCKY_ROUND_ADDRESS.toLowerCase()) {
+			return <LuckyRound className={'w-6 h-6'} />;
+		}
+		if (game.toLowerCase() === import.meta.env.PUBLIC_LUCKY_ROUND_5MIN_ADDRESS.toLowerCase()) {
+			return <LuckyRound className={'w-6 h-6'} />;
 		}
 		return <Roulette className={'w-6 h-6'} />;
 	};
