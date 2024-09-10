@@ -38,6 +38,7 @@
 		"@web3modal/wagmi": "4.1.11",
 		"class-variance-authority": "^0.7.0",
 		"cmdk": "^1.0.0",
+		"embla-carousel-react": "^8.2.1",
 		"framer-motion": "^11.3.31",
 		"i18next": "^23.14.0",
 		"lefthook": "^1.7.14",

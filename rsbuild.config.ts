@@ -59,6 +59,7 @@ export default defineConfig({
 						'./skeleton': './components/ui/skeleton.tsx',
 						'./radio-group': './components/ui/radio-group.tsx',
 						'./accordion': './components/ui/accordion.tsx',
+						'./carousel': './components/ui/carousel.tsx',
 						'./breadcrumb': './components/ui/breadcrumb.tsx',
 						'./supabase': './lib/contexts/supabase',
 						'./lib/api/conservative': './lib/api/conservative',
