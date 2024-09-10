@@ -78,6 +78,7 @@ export default defineConfig({
 						'./lib': './lib/index',
 						'./locales/ru': './src/translations/ru.json',
 						'./locales/en': './src/translations/en.json',
+						'./locales/cz': './src/translations/cz.json',
 					},
 					shared: {
 						react: {
