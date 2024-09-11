@@ -85,7 +85,6 @@ const AccountBlock = forwardRef((props: any, forwardedRef: any) => {
 	};
 	if (!address) return <div {...props} ref={forwardedRef} />;
 
-	console.log(address);
 	return (
 		<AnimatePresence mode={'wait'}>
 			<motion.div

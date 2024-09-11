@@ -32,12 +32,12 @@ export const BetValue: FC<BetValueProps> = ({
 		<TooltipProvider delayDuration={300}>
 			<Tooltip>
 				<TooltipTrigger asChild>
-					<span className={cx(className, 'flex flex-row items-center cursor-pointer justify-start w-fit gap-1')}>
+					<div className={cx(className, 'flex flex-row items-center cursor-pointer justify-start w-fit gap-1')}>
 						{millify(amount, { precision: precision })}
 						{withIcon && <Bet className={cx('w-4 h-4 stroke-0', iconClassName)} />}
-					</span>
+					</div>
 				</TooltipTrigger>
-				<TooltipContent side={place}>
+				<TooltipContent side={place} className={'bg-primaryLighter text-white border-gray-800'}>
 					{prefix} {amount.toFixed(2)} {postfix}
 				</TooltipContent>
 			</Tooltip>
