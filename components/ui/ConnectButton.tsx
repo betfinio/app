@@ -62,7 +62,6 @@ const ConnectButton = () => {
 
 export default ConnectButton;
 
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 const AccountBlock = forwardRef((props: any, forwardedRef: any) => {
 	const { address } = useAccount();
 	const { data: username } = useUsername(address);

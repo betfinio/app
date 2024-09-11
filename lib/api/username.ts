@@ -3,7 +3,6 @@ import logger from '@/src/config/logger';
 import { ZeroAddress } from '@betfinio/abi';
 import type { SupabaseClient } from '@supabase/supabase-js';
 import type { Address } from 'viem';
-import type { UseSignMessageReturnType } from 'wagmi/src/hooks/useSignMessage.ts';
 
 export const fetchUsername = async (member: Address | undefined, options: Options): Promise<string> => {
 	logger.start('fetchUsername', member);
@@ -29,7 +28,7 @@ export const fetchCustomUsername = async (address: Address | undefined, user: Ad
 	return username;
 };
 
-export const saveUsername = async (username: string, me: Address, sign: UseSignMessageReturnType, options: Options) => {
+export const saveUsername = async (username: string, me: Address, sign: any, options: Options) => {
 	logger.start('saveUsername:', username, me);
 	const message = `USERNAME:${username}`;
 	const res = await sign({ message: message });
@@ -44,7 +43,7 @@ export const saveUsername = async (username: string, me: Address, sign: UseSignM
 	return true;
 };
 
-export const saveCustomUsername = async (username: string, address: Address, user: Address, sign: UseSignMessageReturnType, options: Options) => {
+export const saveCustomUsername = async (username: string, address: Address, user: Address, sign: any, options: Options) => {
 	logger.start('saveCustomUsername', username, address, user);
 	const message = `USERNAME:${username}:${address}`;
 	const res = await sign({ message: message });
