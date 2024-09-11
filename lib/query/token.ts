@@ -1,6 +1,7 @@
 import { toast } from '@/components/ui/use-toast.ts';
 import { fetchAllowance, fetchBalance, increaseAllowance } from '@/lib/api/token';
 import { getTransactionLink } from '@/lib/helpers.tsx';
+import logger from '@/src/config/logger';
 import queryClient from '@/src/config/query.ts';
 import config from '@/src/config/wagmi.ts';
 import { TokenContract, ZeroAddress } from '@betfinio/abi';
@@ -74,7 +75,12 @@ export const useIncreaseAllowance = () => {
 	return useMutation<WriteContractReturnType, WriteContractErrorType, void>({
 		mutationKey: ['app', 'account', 'increaseAllowance'],
 		mutationFn: () => increaseAllowance({ config }),
+		onMutate: () => {
+			logger.start('increaseAllowance');
+		},
 		onError: (e) => {
+			logger.error('increaseAllowance');
+			logger.error(e);
 			// @ts-ignore
 			if (e?.cause?.reason) {
 				toast({
@@ -92,6 +98,7 @@ export const useIncreaseAllowance = () => {
 		},
 		onSuccess: async (data) => {
 			if (data !== undefined) {
+				logger.success('increaseAllowance');
 				const { id, update } = toast({
 					title: 'Increasing allowance',
 					description: 'Transaction submitted',

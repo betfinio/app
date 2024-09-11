@@ -1,5 +1,5 @@
-import { fetchCustomUsername, fetchUsername } from '@/lib/api/username.ts';
 import type { BetInterface, Options, Stake } from '@/lib/types';
+import logger from '@/src/config/logger';
 import { BetInterfaceContract, BetsMemoryContract, ConservativeStakingContract, DynamicStakingContract, PassContract } from '@betfinio/abi';
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { getBlock, readContract } from '@wagmi/core';
@@ -36,8 +36,6 @@ export async function fetchBetInterface(address: Address, member: Address, optio
 		functionName: 'getBetInfo',
 		args: [],
 	})) as [Address, Address, bigint, bigint, bigint, bigint];
-	const username = await fetchUsername(data[0], options);
-	const customUsername = await fetchCustomUsername(member, data[0] as Address, options.supabase);
 	return {
 		address: address,
 		player: data[0],
@@ -46,8 +44,6 @@ export async function fetchBetInterface(address: Address, member: Address, optio
 		result: data[3],
 		status: data[4],
 		created: data[5],
-		username: username,
-		customUsername: customUsername,
 	} as BetInterface;
 }
 
@@ -104,16 +100,7 @@ export async function fetchLastStakes(count: number, address: Address, options: 
 		hash: e.transactionHash,
 		block: Number(e.blockNumber),
 	})) as Stake[];
-	return await Promise.all(
-		[...conservativeStakes, ...dynamicStakes]
-			.sort((a, b) => (b.block || 0) - (a.block || 0))
-			.slice(0, count)
-			.map(async (stake) => ({
-				...stake,
-				username: await fetchUsername(stake.staker, options),
-				customUsername: await fetchCustomUsername(address, stake.staker as Address, options.supabase),
-			})),
-	);
+	return await Promise.all([...conservativeStakes, ...dynamicStakes].sort((a, b) => (b.block || 0) - (a.block || 0)).slice(0, count));
 }
 
 export const fetchMemberSide = async (parent: Address, member: Address, supabase: SupabaseClient | undefined): Promise<'left' | 'right' | null> => {
@@ -129,7 +116,7 @@ export const fetchMemberSide = async (parent: Address, member: Address, supabase
 
 export const fetchRegistrationDate = async (address: Address, config: Config) => {
 	try {
-		console.log('fetching registration date', address);
+		logger.start('fetching registration date');
 		const events = await getContractEvents(config.getClient(), {
 			abi: PassContract.abi,
 			address: import.meta.env.PUBLIC_PASS_ADDRESS as Address,
