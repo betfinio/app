@@ -5,7 +5,7 @@ import { useIsMember } from '@/lib/query/pass.ts';
 import { useOpenProfile } from '@/lib/query/shared.ts';
 import { useAllowance, useBalance, useIncreaseAllowance } from '@/lib/query/token.ts';
 import { useUsername } from '@/lib/query/username.ts';
-import { addressToColor, hexToRgbA } from '@/lib/utils.ts';
+import { addressToColor } from '@/lib/utils.ts';
 import { ZeroAddress } from '@betfinio/abi';
 import { truncateEthAddress, valueToNumber } from '@betfinio/abi/dist';
 import { Bet, BetLogo } from '@betfinio/ui/dist/icons';
@@ -62,11 +62,10 @@ const ConnectButton = () => {
 
 export default ConnectButton;
 
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-const AccountBlock = forwardRef((props: any, forwardedRef: any) => {
+const AccountBlock = forwardRef<HTMLDivElement, any>((props, forwardedRef) => {
 	const { address } = useAccount();
 	const { data: username } = useUsername(address);
-	const { data: profile, open: openProfile } = useOpenProfile();
+	const { open: openProfile } = useOpenProfile();
 	const { data: isMember = false, isLoading } = useIsMember(address);
 	const { open } = useWeb3Modal();
 
@@ -85,7 +84,6 @@ const AccountBlock = forwardRef((props: any, forwardedRef: any) => {
 	};
 	if (!address) return <div {...props} ref={forwardedRef} />;
 
-	console.log(address);
 	return (
 		<AnimatePresence mode={'wait'}>
 			<motion.div
