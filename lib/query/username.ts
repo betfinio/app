@@ -3,7 +3,7 @@ import { useSupabase } from '@/lib/contexts/supabase';
 import { ZeroAddress } from '@betfinio/abi';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
-import { type Address, WriteContractReturnType } from 'viem';
+import type { Address } from 'viem';
 import { useAccount, useSignMessage } from 'wagmi';
 import { fetchCustomUsername, fetchUsername, saveCustomUsername, saveUsername } from '../api/username';
 
