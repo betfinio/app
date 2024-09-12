@@ -11,7 +11,6 @@ export async function fetchLuroOnline(options: Options): Promise<number> {
 		address: LURO_ADDRESS,
 		functionName: 'getCurrentRound',
 	});
-	console.log(round);
 	return Number(
 		await readContract(options.config, {
 			abi: LuckyRoundContract.abi,
