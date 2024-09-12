@@ -21,7 +21,6 @@ declare global {
 			identity?: IdentityData;
 			debug?: boolean;
 		};
-		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 		ethereum: any;
 	}
 }

@@ -21,8 +21,8 @@ html, body {
     --card-foreground: 20 14.3% 4.1%;
     --card-secondary: 240 29% 28%; //#33335C
     --card-seconary-foreground: 20 14.3% 4.1%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 20 14.3% 4.1%;
+    --popover: #0F121D;
+    --popover-foreground: #e5e7eb;
     --primary: 47.9 95.8% 53.1%;
     --primary-foreground: 26 83.3% 14.1%;
     --secondary: 247 39% 18%; //#201C40
@@ -32,7 +32,7 @@ html, body {
     --muted: 60 4.8% 95.9%;
     --muted-foreground: 25 5.3% 44.7%;
     --accent: 60 4.8% 95.9%;
-    --accent-foreground: 24 9.8% 10%;
+    --accent-foreground: 220 13% 91%; //#e5e7eb
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 60 9.1% 97.8%;
     --success: 153 54% 48%; //#38BB7F
@@ -73,53 +73,6 @@ html, body {
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
-  }
-
-
-  @font-face {
-    font-family: Rounds;
-    font-weight: 400;
-    src: url('/src/fonts/rounds/TT Rounds Neue Trial Regular.ttf') format("truetype");
-  }
-  @font-face {
-    font-family: Rounds;
-    font-weight: 700;
-    src: url('/src/fonts/rounds/TT Rounds Neue Trial ExtraBold.ttf') format("truetype");
-  }
-  @font-face {
-    font-family: Rounds;
-    font-weight: 900;
-    src: url('/src/fonts/rounds/TT Rounds Neue Trial Black.ttf') format("truetype");
-  }
-  @font-face {
-    font-family: Rounds;
-    font-weight: 100;
-    src: url('/src/fonts/rounds/TT Rounds Neue Trial Thin.ttf') format("truetype");
-  }
-  @font-face {
-    font-family: Rounds;
-    font-weight: 200;
-    src: url('/src/fonts/rounds/TT Rounds Neue Trial ExtraLight.ttf') format("truetype");
-  }
-  @font-face {
-    font-family: Rounds;
-    font-weight: 300;
-    src: url('/src/fonts/rounds/TT Rounds Neue Trial Light.ttf') format("truetype");
-  }
-  @font-face {
-    font-family: Rounds;
-    font-weight: 500;
-    src: url('/src/fonts/rounds/TT Rounds Neue Trial Medium.ttf') format("truetype");
-  }
-  @font-face {
-    font-family: Rounds;
-    font-weight: 600;
-    src: url('/src/fonts/rounds/TT Rounds Neue Trial DemiBold.ttf') format("truetype");
-  }
-  @font-face {
-    font-family: Rounds;
-    font-weight: 800;
-    src: url('/src/fonts/rounds/TT Rounds Neue Trial Black.ttf') format("truetype");
   }
 }
 
