@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -21,8 +23,8 @@ html, body {
     --card-foreground: 20 14.3% 4.1%;
     --card-secondary: 240 29% 28%; //#33335C
     --card-seconary-foreground: 20 14.3% 4.1%;
-    --popover: #0F121D;
-    --popover-foreground: #e5e7eb;
+    --popover: 227.14 31.82% 8.63%; // #0F121D
+    --popover-foreground: 220 13% 91%; //#e5e7eb
     --primary: 47.9 95.8% 53.1%;
     --primary-foreground: 26 83.3% 14.1%;
     --secondary: 247 39% 18%; //#201C40

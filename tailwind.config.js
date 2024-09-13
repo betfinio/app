@@ -100,7 +100,7 @@ module.exports = {
 				},
 			},
 			fontFamily: {
-				sans: ['Rounds', 'sans-serif'],
+				sans: ['Rubik', 'sans-serif'],
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
