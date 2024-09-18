@@ -1,5 +1,5 @@
 query GetMember($member: Bytes) {
-    newMembers {
+    newMembers(where: { member: $member }) {
         member
         blockTimestamp
     }

@@ -1,5 +1,6 @@
 import { ModuleFederationPlugin } from '@module-federation/enhanced/rspack';
 import { defineConfig } from '@rsbuild/core';
+import { pluginNodePolyfill } from '@rsbuild/plugin-node-polyfill';
 import { pluginReact } from '@rsbuild/plugin-react';
 import { pluginSass } from '@rsbuild/plugin-sass';
 import { TanStackRouterRspack } from '@tanstack/router-plugin/rspack';
@@ -140,5 +141,5 @@ export default defineConfig({
 			],
 		},
 	},
-	plugins: [pluginReact(), pluginSass()],
+	plugins: [pluginReact(), pluginSass(), pluginNodePolyfill()],
 });

@@ -6,6 +6,9 @@ import type { Address } from 'viem';
 export const fetchRegistrationDate = async (address: Address) => {
 	logger.start('fetching registration date');
 	const data: ExecutionResult<GetMemberQuery> = await execute(GetMemberDocument, { member: address });
-	console.log(data);
-	return 0;
+	logger.success('fetching registration date', data.data?.newMembers.length);
+	if (!data.data) {
+		return 0;
+	}
+	return Number(data.data.newMembers[0].blockTimestamp) * 1000;
 };

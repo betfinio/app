@@ -1,12 +1,9 @@
 import type { BetInterface, Options, Stake } from '@/lib/types';
-import logger from '@/src/config/logger';
-import { archiveClient } from '@/src/config/wagmi.ts';
-import { BetInterfaceContract, BetsMemoryContract, ConservativeStakingContract, DynamicStakingContract, ZeroAddress } from '@betfinio/abi';
+import { BetInterfaceContract, BetsMemoryContract, ConservativeStakingContract, DynamicStakingContract } from '@betfinio/abi';
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { getBlock, readContract } from '@wagmi/core';
-import { type Address, parseAbiItem } from 'viem';
+import type { Address } from 'viem';
 import { getContractEvents } from 'viem/actions';
-import type { Config } from 'wagmi';
 
 export const fetchLastBets = async (count: number, address: Address, options: Options) => {
 	if (!options.config) return [];
