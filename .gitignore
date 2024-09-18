@@ -22,3 +22,5 @@ yarn.lock
 .firebase/
 
 @mf-types/
+
+.graphclient

@@ -25,6 +25,7 @@ export default defineConfig({
 	},
 	tools: {
 		rspack: {
+			ignoreWarnings: [/Critical dependency: the request of a dependency is an expression/],
 			output: {
 				uniqueName: 'betfinio_app',
 			},
