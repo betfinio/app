@@ -3,7 +3,9 @@ import { Button } from '@/components/ui/button.tsx';
 import { Dialog, DialogClose, DialogContent, DialogTitle } from '@/components/ui/dialog.tsx';
 import { Input } from '@/components/ui/input.tsx';
 import { ScrollArea } from '@/components/ui/scroll-area.tsx';
-import { getAppUrl } from '@/lib';
+import faviconSvg from '@/src/assets/favicon.svg';
+
+import { toast } from '@/components/ui/use-toast.ts';
 import { useInviteStakingVolume, useTreeMember } from '@/lib/query/affiliate.ts';
 import { useOpenProfile, useRegistrationDate, useSide } from '@/lib/query/shared.ts';
 import { useChangeCustomUsername, useChangeUsername, useCustomUsername, useUsername } from '@/lib/query/username.ts';
@@ -13,11 +15,25 @@ import { truncateEthAddress, valueToNumber } from '@betfinio/abi/dist';
 import { Blackjack, Hero, People } from '@betfinio/ui/dist/icons';
 import cx from 'clsx';
 import { motion } from 'framer-motion';
-import { AlertCircle, ArrowLeftCircleIcon, ArrowRightCircleIcon, Copy, Layers3, LinkIcon, Loader, Medal, PencilIcon, X } from 'lucide-react';
+import { AlertCircle, ArrowLeftCircleIcon, ArrowRightCircleIcon, CheckIcon, Copy, Layers3, LinkIcon, Loader, Medal, PencilIcon, X } from 'lucide-react';
 import { DateTime } from 'luxon';
-import { type ChangeEvent, type FC, useEffect, useMemo, useState } from 'react';
+import { type ChangeEvent, type FC, type PropsWithChildren, useEffect, useMemo, useState } from 'react';
 import { useAccount } from 'wagmi';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip';
+
+const fadeIn = {
+	initial: { opacity: 0 },
+	animate: { opacity: 1 },
+	transition: { duration: 0.5 },
+};
+
+const FadeInDiv = ({ key, children }: PropsWithChildren<{ key: number }>) => {
+	return (
+		<motion.div key={key} initial={fadeIn.initial} transition={fadeIn.transition} animate={fadeIn.animate}>
+			{children}
+		</motion.div>
+	);
+};
 
 const MemberProfile = () => {
 	const { data, close } = useOpenProfile();
@@ -38,11 +54,25 @@ const MemberProfile = () => {
 	const totalVolume = useMemo(() => {
 		return member ? valueToNumber(member.volumeLeft + member.volumeRight + member.betsRight / 100n + member.betsLeft / 100n) : 0;
 	}, [member]);
-	if (!data.open || !data.address || !me) return null;
+
+	const [addressCopied, setAddressCopied] = useState(false);
+	const [linkCopied, setLinkCopied] = useState(false);
 	const address = data.address;
+	const link = useMemo<string>(() => {
+		return `${window.origin}/academy/new?code=${me + address}`;
+	}, [me, address]);
+	if (!data.open || !address || !me) return null;
 
 	const handleCopyAddress = async () => {
+		toast({
+			title: 'Copied to clipboard!',
+			variant: 'default',
+		});
 		await navigator.clipboard.writeText(address);
+		setAddressCopied(true);
+		setTimeout(() => {
+			setAddressCopied(false);
+		}, 5000);
 	};
 
 	const handleSaveUsername = async (username: string) => {
@@ -53,8 +83,17 @@ const MemberProfile = () => {
 		saveCustomUsername({ username, address });
 		return true;
 	};
-	const handleCopyLink = () => {
-		alert('copy');
+
+	const handleCopyLink = async (text: string) => {
+		toast({
+			title: 'Copied to clipboard!',
+			variant: 'default',
+		});
+		await navigator.clipboard.writeText(text);
+		setLinkCopied(true);
+		setTimeout(() => {
+			setLinkCopied(false);
+		}, 5000);
 	};
 	return (
 		<Dialog open={true} onOpenChange={handleClose}>
@@ -78,9 +117,9 @@ const MemberProfile = () => {
 										<motion.img
 											whileHover={{ scale: 1.03 }}
 											whileTap={{ scale: 0.97 }}
-											src={`${getAppUrl()}/member.png`}
+											src={faviconSvg as string}
 											alt={'logo'}
-											className={'bg-yellow-200 border border-secondaryLight cursor-pointer rounded-full w-[100px] aspect-square'}
+											className={'bg-primaryLighter border border-secondaryLight cursor-pointer rounded-full w-[100px] aspect-square'}
 											width={500}
 											height={500}
 										/>
@@ -90,7 +129,17 @@ const MemberProfile = () => {
 											<label className={'flex flex-col px-2 relative text-sm'}>
 												<div className={'text-gray-400 font-medium'}>Member wallet</div>
 												<div className={'p-2 px-2 pr-8 rounded-lg border bg-primaryLight text-sm border-purple-box'}>{truncateEthAddress(address, 15)}</div>
-												<Copy className={'absolute bottom-2.5 right-4 w-5 h-5 cursor-pointer text-purple-box'} onClick={handleCopyAddress} />
+												<div className={'absolute bottom-2.5 right-4 w-5 h-5'}>
+													{addressCopied ? (
+														<FadeInDiv key={1}>
+															<CheckIcon className={'text-green-500 '} />
+														</FadeInDiv>
+													) : (
+														<FadeInDiv key={2}>
+															<Copy className={'text-purple-box cursor-pointer'} onClick={handleCopyAddress} />
+														</FadeInDiv>
+													)}
+												</div>
 											</label>
 										</div>
 										<div className={''}>
@@ -269,14 +318,27 @@ const MemberProfile = () => {
 							<div className={'bg-yellow-400  text-primaryLight w-full'}>
 								<Hero className={'w-full'} />
 							</div>
-							<div className={'bg-yellow-400 rounded-b-3xl p-6 flex flex-col items-center gap-2'}>
+							<div className={'bg-yellow-400 rounded-b-3xl p-6 flex flex-col items-center gap-2 w-full'}>
 								<div className={'text-black font-semibold'}>Invite link</div>
 								<div
-									className={'bg-primaryLight rounded-xl p-2 text-xs  px-4 text-white flex flex-row gap-2 items-center cursor-pointer break-all'}
-									onClick={handleCopyLink}
+									className={
+										'bg-primaryLight rounded-xl p-2 text-xs line-clamp-1 overflow-ellipsis max-w-[90%]  px-4 text-white flex flex-row gap-2 items-center cursor-pointer break-all'
+									}
+									onClick={() => handleCopyLink(link)}
 								>
-									<LinkIcon className={'w-6 h-6 text-yellow-400'} />
-									{window.origin}/?code={me + address}
+									<div className={'w-6 h-6'}>
+										{linkCopied ? (
+											<FadeInDiv key={3}>
+												<CheckIcon className={'text-green-500 '} />
+											</FadeInDiv>
+										) : (
+											<FadeInDiv key={4}>
+												<LinkIcon className={' text-yellow-400'} />
+											</FadeInDiv>
+										)}
+									</div>
+
+									<span className={'line-clamp-1 overflow-ellipsis w-full'}>{link}</span>
 								</div>
 							</div>
 						</motion.div>
@@ -289,12 +351,12 @@ const MemberProfile = () => {
 
 export default MemberProfile;
 
-const UsernameEdit: FC<{ label: string; allowEdit: boolean; onSave: (username: string) => Promise<boolean>; initialValue: string }> = ({
-	label,
-	allowEdit,
-	onSave,
-	initialValue,
-}) => {
+const UsernameEdit: FC<{
+	label: string;
+	allowEdit: boolean;
+	onSave: (username: string) => Promise<boolean>;
+	initialValue: string;
+}> = ({ label, allowEdit, onSave, initialValue }) => {
 	const { data } = useOpenProfile();
 	const address = data.address;
 	const { address: me = ZeroAddress } = useAccount();
