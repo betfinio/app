@@ -109,7 +109,7 @@ const MemberProfile = () => {
 												<span className={'text-gray-400 font-medium'}>Registration date</span>
 												<input
 													type="text"
-													value={DateTime.fromMillis(regDate).toFormat('DD T')}
+													value={regDate > 0 ? DateTime.fromMillis(regDate).toFormat('DD T') : 'Unknown'}
 													className={cx('text-sm p-2 px-4 rounded-lg border bg-primaryLight border-purple-box', regDateOther.isFetching && 'blur-sm')}
 													disabled
 												/>
