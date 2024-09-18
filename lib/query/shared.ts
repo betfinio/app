@@ -1,5 +1,6 @@
-import { fetchLastBets, fetchLastStakes, fetchMemberSide, fetchPlayerBets, fetchRegistrationDate } from '@/lib/api/shared.ts';
+import { fetchLastBets, fetchLastStakes, fetchMemberSide, fetchPlayerBets } from '@/lib/api/shared.ts';
 import { useSupabase } from '@/lib/contexts/supabase.tsx';
+import { fetchRegistrationDate } from '@/lib/gql';
 import type { BetInterface, Stake } from '@/lib/types';
 import { ZeroAddress } from '@betfinio/abi';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
@@ -84,10 +85,9 @@ const useSide = (parent: Address, member: Address) => {
 	});
 };
 export const useRegistrationDate = (address: Address) => {
-	const config = useConfig();
 	return useQuery<number>({
 		queryKey: ['profile', 'registration', address],
-		queryFn: () => fetchRegistrationDate(address, config),
+		queryFn: () => fetchRegistrationDate(address),
 	});
 };
 export { useBets, usePlayerBets, useAllStakes, useOpenProfile, useSide };
