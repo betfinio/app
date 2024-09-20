@@ -7,6 +7,35 @@
 			"bet": "Bet"
 		}
 	},
+	"profileModal": {
+		"title": "Member profile",
+		"wallet": "Member wallet",
+		"username": "Username",
+		"customUsername": "Custom username",
+		"registration": "Registration date",
+		"inviter": "Inviter",
+		"network": "Network size",
+		"direct": "direct",
+		"total": "total",
+		"volume": {
+			"title": "Member's volume",
+			"staking": "Staking volume",
+			"betting": "Betting volume"
+		},
+		"networkTable": {
+			"title": "Member's network volume",
+			"product": "Product",
+			"direct": "Direct volume",
+			"binary": "Binary volume",
+			"staking": "Staking",
+			"betting": "Betting",
+			"totalStaking": "total staking",
+			"totalBets": "total bets",
+			"matching": "matching volume"
+		},
+		"copied": "Copied to clipboard!",
+		"link": "Invite link"
+	},
 	"sidebar": {
 		"staking": "Staking",
 		"staking-conservative": "Conservative",
@@ -120,6 +149,7 @@
 		"0xfb8f41b2": "Insufficient allowance",
 		"0xe450d38c": "Insufficient balance",
 		"unknown": "Transaction cancelled",
-		"undefined": "Transaction failed"
+		"undefined": "Transaction failed",
+		"default": "Transaction failed"
 	}
 }
