@@ -83,6 +83,7 @@ export default defineConfig({
 						'./locales/ru': './src/translations/ru.json',
 						'./locales/en': './src/translations/en.json',
 						'./locales/cz': './src/translations/cz.json',
+						'./locales/index': './src/translations/index.ts',
 					},
 					shared: {
 						react: {
