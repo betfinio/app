@@ -79,9 +79,9 @@ export default defineConfig({
 						'./lib/utils': './lib/utils',
 						'./lib/types': './lib/types',
 						'./lib': './lib/index',
-						'./locales/ru': './src/translations/ru.json',
-						'./locales/en': './src/translations/en.json',
-						'./locales/cz': './src/translations/cz.json',
+						'./locales/ru': './src/translations/ru/shared.json',
+						'./locales/en': './src/translations/en/shared.json',
+						'./locales/cz': './src/translations/cz/shared.json',
 						'./locales/index': './src/translations/index.ts',
 					},
 					shared: {

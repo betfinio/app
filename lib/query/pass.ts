@@ -17,7 +17,7 @@ export const useIsMember = (address: Address | undefined) => {
 
 export const useMint = () => {
 	const config = useConfig();
-	const { t } = useTranslation('', { keyPrefix: 'shared.errors' });
+	const { t } = useTranslation('shared', { keyPrefix: 'errors' });
 	return useMutation<WriteContractReturnType, unknown, { address: Address; inviter: Address; parent: Address }>({
 		mutationKey: ['mint'],
 		mutationFn: (params) => mint(params.address, params.inviter, params.parent, { config }),

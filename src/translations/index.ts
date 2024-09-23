@@ -1,6 +1,6 @@
-import cz from './cz.json';
-import en from './cz.json';
-import ru from './cz.json';
+import cz from './cz/shared.json';
+import en from './cz/shared.json';
+import ru from './cz/shared.json';
 
 export const sharedLang = {
 	cz,

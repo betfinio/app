@@ -25,7 +25,7 @@ export const useCustomUsername = (address: Address | undefined, user: Address | 
 export const useChangeUsername = () => {
 	const { client } = useSupabase();
 	const { address: me = ZeroAddress } = useAccount();
-	const { t } = useTranslation('', { keyPrefix: 'shared.errors' });
+	const { t } = useTranslation('shared', { keyPrefix: 'errors' });
 	const queryClient = useQueryClient();
 	const { signMessageAsync } = useSignMessage();
 	return useMutation({
@@ -59,7 +59,7 @@ export const useChangeUsername = () => {
 
 export const useChangeCustomUsername = () => {
 	const { client: supabase } = useSupabase();
-	const { t } = useTranslation('', { keyPrefix: 'shared.errors' });
+	const { t } = useTranslation('shared', { keyPrefix: 'errors' });
 	const { signMessageAsync } = useSignMessage();
 	const queryClient = useQueryClient();
 	const { address: me = ZeroAddress } = useAccount();
