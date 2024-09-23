@@ -161,7 +161,8 @@
 		"0xfb8f41b2": "Insufficient allowance",
 		"0xe450d38c": "Insufficient balance",
 		"unknown": "Transaction cancelled",
-		"undefined": "Transaction failed"
+		"undefined": "Transaction failed",
+		"default": "Transaction failed"
 	},
 	"gameBlock": {
 		"soon": "Soon",
