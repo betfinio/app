@@ -129,7 +129,7 @@ const MemberProfile = () => {
 									</motion.div>
 									<div className={'col-span-3 flex flex-col gap-3'}>
 										<div className={''}>
-											<label className={'flex flex-col px-2 relative text-sm'}>
+											<div className={'flex flex-col px-2 relative text-sm'}>
 												<div className={'text-gray-400 font-medium'}>{t('memberWallet')}</div>
 												<div className={'p-2 px-2 pr-8 rounded-lg border bg-primaryLight text-sm border-purple-box'}>{truncateEthAddress(address, 15)}</div>
 												<div className={'absolute bottom-2.5 right-4 w-5 h-5'}>
@@ -143,7 +143,7 @@ const MemberProfile = () => {
 														</FadeInDiv>
 													)}
 												</div>
-											</label>
+											</div>
 										</div>
 										<div className={''}>
 											<UsernameEdit
@@ -404,7 +404,7 @@ const UsernameEdit: FC<{
 		setUsernameError('');
 	};
 	return (
-		<label className={'flex flex-col px-2 py-1 relative text-sm'}>
+		<div className={'flex flex-col px-2 py-1 relative text-sm'}>
 			<span className={'text-gray-400 font-medium'}>{label}</span>
 			<div className={'absolute text-xs -bottom-3.5 text-red-500'}>{usernameError}</div>
 			<Input
@@ -472,6 +472,6 @@ const UsernameEdit: FC<{
 					</Button>
 				</>
 			)}
-		</label>
+		</div>
 	);
 };

@@ -175,6 +175,8 @@
 		"inviter": "Inviter",
 		"direct": "direct",
 		"total": "total",
+		"network": "Network",
+		"copied": "Copied to clipboard",
 		"membersVolume": "Member's volume",
 		"stakingVolume": "Staking volume",
 		"bettingVolume": "Betting volume",
