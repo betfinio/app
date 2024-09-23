@@ -62,6 +62,7 @@ const MemberProfile = () => {
 	const [linkCopied, setLinkCopied] = useState(false);
 	const address = data.address;
 	const link = useMemo<string>(() => {
+		if (!me || !address) return '';
 		return `${window.origin}/academy/new?code=${me + address}`;
 	}, [me, address]);
 	if (!data.open || !address || !me) return null;
