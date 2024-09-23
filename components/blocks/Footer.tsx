@@ -21,6 +21,7 @@ const ETHSCAN = import.meta.env.PUBLIC_ETHSCAN;
 const PARTNER = import.meta.env.PUBLIC_PARTNER_ADDRESS;
 
 const Footer = () => {
+	const { t } = useTranslation('shared', { keyPrefix: 'footer' });
 	const handleAdd = () => {
 		window.ethereum.request({
 			method: 'wallet_watchAsset',
@@ -41,10 +42,7 @@ const Footer = () => {
 					<BetLogo />
 					<Menu className={'text-white'} />
 				</div>
-				<p className={'mt-4 text-[#9BA9B4]'}>
-					Betfin is decentralized web3 application that allows anyone to bet or stake through trustless contracts. This website is only an interface of the web3
-					application and runs as a non profit public service.
-				</p>
+				<p className={'mt-4 text-[#9BA9B4]'}>{t('betfinIs')}</p>
 
 				<div className={'mt-6 flex gap-4 items-center'}>
 					<div className="w-8 h-8 flex items-center justify-center rounded-full bg-[#25282C] text-white">
@@ -64,7 +62,7 @@ const Footer = () => {
 					</div>
 				</div>
 
-				<p className={'mt-6 text-sm text-[#9BA9B4]'}>All right reserved 2024</p>
+				<p className={'mt-6 text-sm text-[#9BA9B4]'}>{t('allRightsReserved')} 2024</p>
 			</div>
 
 			<div className={'block  text-[#9BA9B4] FOOTER text-sm border-t border-primaryLighter pt-10'}>
@@ -78,7 +76,7 @@ const Footer = () => {
 								md:text-left
 							`}
 							>
-								This site is part of BetFin decentralized ecosystem
+								{t('thisSiteIsAPartOf')}
 							</p>
 
 							<div
@@ -86,7 +84,7 @@ const Footer = () => {
 								mt-3 font-semibold text-center
 								md:text-left`}
 							>
-								<p className={'text-[#6A6F84]'}>Verify partner contract</p>
+								<p className={'text-[#6A6F84]'}>{t('verifyPartnerContract')}</p>
 								<a href={`${ETHSCAN}/address/${PARTNER}`} target={'_blank'} className={'text-white hover:text-[#FFC800] duration-300'} rel="noreferrer">
 									{truncateEthAddress(PARTNER)}
 								</a>
@@ -97,7 +95,7 @@ const Footer = () => {
 
 					<div className={'py-6 border-b border-[#151A2A] mt-[30px] flex flex-col justify-between items-center font-semibold text-[#CFD4DD] gap-5 sm:flex-row'}>
 						<div className={'flex flex-col items-center gap-5 sm:flex-row'}>
-							<p>Socials:</p>
+							<p>{t('socials')}:</p>
 							<div className={'flex gap-[10px] items-center'}>
 								<a
 									href={'https://twitter.com/betf1n1865/status/1787832131835613411'}
@@ -130,7 +128,7 @@ const Footer = () => {
 							</div>
 						</div>
 						<div className={'flex flex-col items-center gap-5 sm:flex-row'}>
-							<p>Exchanges:</p>
+							<p>{t('exchanges')}:</p>
 							<div className={'flex gap-5 items-center'}>
 								<a
 									target={'_blank'}
@@ -155,7 +153,7 @@ const Footer = () => {
 							className={'text-sm text-gray-400 hover:text-white duration-300 cursor-pointer flex justify-center grow items-center gap-1'}
 							onClick={handleAdd}
 						>
-							Add <Bet className={'w-3 h-3'} /> token to Wallet
+							{t('add')} <Bet className={'w-3 h-3'} /> {t('tokenToWallet')}
 						</div>
 						<div className={'grow flex justify-center'}>
 							<div className={'flex flex-col gap-4 overflow-x-auto SCROLLBAR sm:flex-row'}>
@@ -165,7 +163,7 @@ const Footer = () => {
 									className={'py-2 px-3 border hover:border-yellow-400 duration-300 rounded-lg shrink-0 border-[#212121] flex gap-[10px] items-center'}
 									rel="noreferrer"
 								>
-									<span className={'text-sm text-[#CFD4DD]'}>Audited by:</span>
+									<span className={'text-sm text-[#CFD4DD]'}>{t('auditedBy')}:</span>
 									<CertikWithIcon />
 								</a>
 								<a
@@ -174,7 +172,7 @@ const Footer = () => {
 									className={'py-2 px-3 border hover:border-yellow-400 duration-300 rounded-lg shrink-0 border-[#212121] flex gap-[10px] items-center'}
 									rel="noreferrer"
 								>
-									<span className={'text-sm text-[#CFD4DD]'}>Powered by:</span>
+									<span className={'text-sm text-[#CFD4DD]'}>{t('poweredBy')}:</span>
 									<PolygonWithIcon />
 								</a>
 								<a
@@ -183,14 +181,14 @@ const Footer = () => {
 									className={'py-2 px-3 border hover:border-yellow-400 duration-300 rounded-lg shrink-0 border-[#212121] flex gap-[10px] items-center'}
 									rel="noreferrer"
 								>
-									<span className={'text-sm text-[#CFD4DD]'}>Protected by:</span>
+									<span className={'text-sm text-[#CFD4DD]'}>{t('protectedBy')}:</span>
 									<ChainlinkWithIcon />
 								</a>
 							</div>
 						</div>
 						<div className={'flex items-center justify-center gap-7 grow'}>
 							<div className={'text-[#CFD4DD] hover:text-[#FFC800] group cursor-pointer duration-300 flex items-center gap-2'}>
-								<p>Support</p>
+								<p>{t('support')}</p>
 								<Support />
 							</div>
 
@@ -211,8 +209,10 @@ import { getAffiliateUrl, getGamesUrl, getStakingUrl } from '@/lib';
 import { truncateEthAddress } from '@betfinio/abi';
 import Support from '@betfinio/ui/dist/icons/Support';
 import { Link } from '@tanstack/react-router';
+import { useTranslation } from 'react-i18next';
 
 export const FooterMenu = () => {
+	const { t } = useTranslation('shared', { keyPrefix: 'footer' });
 	return (
 		<div className={'hidden mt-10 md:mt-0 lg:grid grid-cols-3 gap-10 sm:gap-0 col-span-5 md:col-span-4 xl:col-span-3'}>
 			<div
@@ -220,29 +220,29 @@ export const FooterMenu = () => {
 					'flex flex-col items-center sm:items-baseline gap-1 md:pr-5 text-sm font-medium col-span-3 sm:col-span-1 justify-self-center md:justify-self-end'
 				}
 			>
-				<p className={'text-[#D9E3EA] font-semibold'}>Betfin Games</p>
+				<p className={'text-[#D9E3EA] font-semibold'}>{t('betfinGames')}</p>
 				<Link to={getGamesUrl('predict')} className={'cursor-pointer hover:text-[#FFC800] duration-300'}>
-					Predict
+					{t('predict')}
 				</Link>
 				<Link to={getGamesUrl('roulette')} className={'cursor-pointer hover:text-[#FFC800] duration-300'}>
-					Roulette
+					{t('roulette')}
 				</Link>
 				<Link to={getGamesUrl('luro')} className={'cursor-pointer hover:text-[#FFC800] duration-300'}>
-					Lucky Round
+					{t('luckyRound')}
 				</Link>
 			</div>
 			<div
 				className={'flex flex-col items-center sm:items-baseline gap-1 text-sm font-medium col-span-3 sm:col-span-1 justify-self-center md:justify-self-end'}
 			>
-				<p className={'text-[#D9E3EA] font-semibold'}>Finance Reward System</p>
+				<p className={'text-[#D9E3EA] font-semibold'}>{t('rewardSystem')}</p>
 				<Link to={getStakingUrl('conservative')} className={'cursor-pointer hover:text-[#FFC800] duration-300'}>
-					Conservative staking
+					{t('conservativeStaking')}
 				</Link>
 				<Link to={getStakingUrl('dynamic')} className={'cursor-pointer hover:text-[#FFC800] duration-300'}>
-					Dynamic staking
+					{t('dynamicStaking')}
 				</Link>
 				<Link to={getAffiliateUrl('')} className={'cursor-pointer hover:text-[#FFC800] duration-300'}>
-					Affiliate & binary matching
+					{t('affilateBinaryMatching')}
 				</Link>
 				<a
 					href={'https://betfin.gitbook.io/betfin-public/v/for-partners'}
@@ -250,21 +250,21 @@ export const FooterMenu = () => {
 					className={'cursor-pointer hover:text-[#FFC800] duration-300'}
 					rel="noreferrer"
 				>
-					Become a partner
+					{t('becomeAPartner')}
 				</a>
 			</div>
 			<div
 				className={'flex flex-col items-center sm:items-baseline gap-1 text-sm font-medium col-span-3 sm:col-span-1 justify-self-center md:justify-self-end'}
 			>
-				<p className={'text-[#D9E3EA] font-semibold'}>About Betfin</p>
-				<p className={'hidden cursor-pointer hover:text-[#FFC800] duration-300'}>All terms & conditions</p>
+				<p className={'text-[#D9E3EA] font-semibold'}>{t('aboutBetfin')}</p>
+				<p className={'hidden cursor-pointer hover:text-[#FFC800] duration-300'}>{t('termsAndConditions')}</p>
 				<a
 					href={'https://betfin.gitbook.io/betfin-public/v/about-betfin-1/betfin-governance/betfin-contract-addresses'}
 					target={'_blank'}
 					className={'cursor-pointer hover:text-[#FFC800] duration-300'}
 					rel="noreferrer"
 				>
-					Official contracts
+					{t('officialContracts')}
 				</a>
 				<a
 					href={'https://betfin.gitbook.io/betfin-public/v/about-betfin-1/audits-and-bug-bounty/certik-audit'}
@@ -272,9 +272,9 @@ export const FooterMenu = () => {
 					className={'cursor-pointer hover:text-[#FFC800] duration-300'}
 					rel="noreferrer"
 				>
-					Audits
+					{t('audits')}
 				</a>
-				<p className={' hidden cursor-pointer hover:text-[#FFC800] duration-300'}>Legal disclaimers</p>
+				<p className={' hidden cursor-pointer hover:text-[#FFC800] duration-300'}>{t('legalDisclaimers')}</p>
 			</div>
 		</div>
 	);

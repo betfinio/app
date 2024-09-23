@@ -25,7 +25,7 @@ export const useCustomUsername = (address: Address | undefined, user: Address | 
 export const useChangeUsername = () => {
 	const { client } = useSupabase();
 	const { address: me = ZeroAddress } = useAccount();
-	const { t } = useTranslation('shared', { keyPrefix: 'errors' });
+	const { t } = useTranslation('shared');
 	const queryClient = useQueryClient();
 	const { signMessageAsync } = useSignMessage();
 	return useMutation({
@@ -34,13 +34,13 @@ export const useChangeUsername = () => {
 		onError: (e) => {
 			if (e.message) {
 				toast({
-					title: 'Failed to save username',
+					title: t('toasts.failedToSaveUsername'),
 					description: e.message,
 					variant: 'destructive',
 				});
 			} else {
 				toast({
-					title: t('unknown'),
+					title: t('errors.unknown'),
 					variant: 'destructive',
 				});
 			}
@@ -49,7 +49,7 @@ export const useChangeUsername = () => {
 			await queryClient.invalidateQueries({ queryKey: ['app', 'username'] });
 			if (data) {
 				toast({
-					title: 'Username changed',
+					title: t('toasts.usernameChanged'),
 					variant: 'default',
 				});
 			}
@@ -59,7 +59,7 @@ export const useChangeUsername = () => {
 
 export const useChangeCustomUsername = () => {
 	const { client: supabase } = useSupabase();
-	const { t } = useTranslation('shared', { keyPrefix: 'errors' });
+	const { t } = useTranslation('shared');
 	const { signMessageAsync } = useSignMessage();
 	const queryClient = useQueryClient();
 	const { address: me = ZeroAddress } = useAccount();
@@ -69,13 +69,13 @@ export const useChangeCustomUsername = () => {
 		onError: (e) => {
 			if (e.message) {
 				toast({
-					title: 'Failed to save username',
+					title: t('toasts.failedToSaveUsername'),
 					description: e.message,
 					variant: 'destructive',
 				});
 			} else {
 				toast({
-					title: t('unknown'),
+					title: t('errors.unknown'),
 					variant: 'destructive',
 				});
 			}
@@ -84,7 +84,7 @@ export const useChangeCustomUsername = () => {
 			await queryClient.invalidateQueries({ queryKey: ['app', 'username'] });
 			if (data) {
 				toast({
-					title: 'Username changed',
+					title: t('toasts.usernameChanged'),
 					variant: 'default',
 				});
 			}

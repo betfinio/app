@@ -119,10 +119,10 @@ function RequestModal({
 										)}
 									</div>
 								</div>
-								<div className={'flex-grow'}>{isApproving ? 'Approving...' : 'Approve allowance'}</div>
+								<div className={'flex-grow'}>{isApproving ? t('approving') : t('approveAllowance')}</div>
 								{state === 'allowance' && (
 									<Button className={'h-auto rounded-full py-1'} disabled={isApproving} onClick={() => increase()}>
-										Approve
+										{t('approve')}
 									</Button>
 								)}
 							</div>
@@ -138,10 +138,10 @@ function RequestModal({
 										<HandCoins className={'w-6 h-6'} />
 									</div>
 								</div>
-								<div className={'flex-grow'}>Execute transaction</div>
+								<div className={'flex-grow'}>{t('executeTransaction')}</div>
 								{state === 'transaction' && (
 									<Button className={'h-auto rounded-full py-1'} onClick={onRequested}>
-										Execute
+										{t('execute')}
 									</Button>
 								)}
 							</div>
@@ -152,7 +152,7 @@ function RequestModal({
 										<CircleCheck className={'w-6 h-6'} />
 									</div>
 								</div>
-								{data !== undefined ? getTransactionLink(data, 'Transaction') : 'Result'}
+								{data !== undefined ? getTransactionLink(data, 'Transaction') : t('result')}
 							</div>
 						</div>
 					</div>

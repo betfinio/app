@@ -17,7 +17,7 @@ export const useIsMember = (address: Address | undefined) => {
 
 export const useMint = () => {
 	const config = useConfig();
-	const { t } = useTranslation('shared', { keyPrefix: 'errors' });
+	const { t } = useTranslation('shared');
 	return useMutation<WriteContractReturnType, unknown, { address: Address; inviter: Address; parent: Address }>({
 		mutationKey: ['mint'],
 		mutationFn: (params) => mint(params.address, params.inviter, params.parent, { config }),
@@ -25,14 +25,14 @@ export const useMint = () => {
 			// @ts-ignore
 			if (e?.cause?.reason) {
 				toast({
-					title: 'Failed to mint passes',
+					title: t('toasts.failedToMintPasses'),
 					// @ts-ignore
 					description: t(e.cause.reason),
 					variant: 'destructive',
 				});
 			} else {
 				toast({
-					title: t('unknown'),
+					title: t('errors.unknown'),
 					variant: 'destructive',
 				});
 			}
@@ -40,8 +40,8 @@ export const useMint = () => {
 		onSuccess: async (data) => {
 			if (data !== undefined) {
 				const { id, update } = toast({
-					title: 'Minting a pass',
-					description: 'Transaction submitted',
+					title: t('toasts.mintingAPass'),
+					description: t('toasts.transactionSubmitted'),
 					variant: 'loading',
 					duration: 60 * 1000,
 				});
@@ -49,8 +49,8 @@ export const useMint = () => {
 					hash: data,
 				});
 				update({
-					title: 'Pass was minted',
-					description: 'Transaction confirmed',
+					title: t('toasts.passWasMinted'),
+					description: t('toasts.transactionSubmitted'),
 					variant: 'default',
 					duration: 5 * 1000,
 					id: id,
@@ -58,7 +58,7 @@ export const useMint = () => {
 				});
 			} else {
 				toast({
-					title: t('unknown'),
+					title: t('errors.unknown'),
 					variant: 'destructive',
 				});
 			}
