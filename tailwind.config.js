@@ -37,7 +37,7 @@ module.exports = {
 					roulette: '#dd375f',
 				},
 				gray: {
-					800: '#1E292E',
+					800: 'hsl(var(--border))',
 					300: '#201C40',
 				},
 				destructive: {
