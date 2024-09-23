@@ -22,7 +22,8 @@ export const resources = {
 const instance: i18n = i18.createInstance();
 instance.use(initReactI18next).init({
 	resources,
-	lng: 'ru', // default language
+	lng: 'en', // default language
+	fallbackLng: 'en',
 	defaultNS,
 	interpolation: { escapeValue: false },
 	react: { useSuspense: true },
