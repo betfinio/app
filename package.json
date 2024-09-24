@@ -5,7 +5,7 @@
 	"scripts": {
 		"prebuild": "graphclient build",
 		"build": "rsbuild build",
-		"check": "biome check",
+		"check": "biome check --write",
 		"dev": "bun run build:schema:dev && rsbuild dev --open",
 		"prod": "bun run build:schema:prod && rsbuild dev --env-mode production --open",
 		"local": "bun run build:schema:local && rsbuild dev --env-mode localhost --open",
@@ -29,6 +29,7 @@
 		"@radix-ui/react-scroll-area": "^1.1.0",
 		"@radix-ui/react-select": "^2.1.1",
 		"@radix-ui/react-separator": "^1.1.0",
+		"@radix-ui/react-slider": "^1.2.0",
 		"@radix-ui/react-slot": "^1.1.0",
 		"@radix-ui/react-tabs": "^1.1.0",
 		"@radix-ui/react-toast": "^1.2.1",
@@ -64,8 +65,8 @@
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.1",
 		"@graphprotocol/client-cli": "^3.0.7",
-		"@rsbuild/core": "^1.0.4",
-		"@rsbuild/plugin-node-polyfill": "^1.0.4",
+		"@rsbuild/core": "1.0.4",
+		"@rsbuild/plugin-node-polyfill": "1.0.4",
 		"@rsbuild/plugin-react": "^1.0.2",
 		"@rsbuild/plugin-sass": "^1.0.1",
 		"@tanstack/router-plugin": "^1.57.15",

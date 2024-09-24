@@ -3,6 +3,7 @@ import { Dialog, DialogClose, DialogContent, DialogDescription, DialogTitle } fr
 import { Separator } from '@/components/ui/separator.tsx';
 import { getTransactionLink } from '@/lib/helpers.tsx';
 import { useAllowance, useIncreaseAllowance } from '@/lib/query/token.ts';
+import { ILanguageKeys } from '@/src/i18next';
 import { valueToNumber } from '@betfinio/abi/dist';
 import { Bet } from '@betfinio/ui/dist/icons';
 import cx from 'clsx';
@@ -65,9 +66,15 @@ function RequestModal({
 	onStateChange,
 	data,
 	onRequested,
-}: { open: boolean; onClose: () => void; data?: Address; onStateChange: (state: State) => void; onRequested: () => void }) {
+}: {
+	open: boolean;
+	onClose: () => void;
+	data?: Address;
+	onStateChange: (state: State) => void;
+	onRequested: () => void;
+}) {
 	const { state, type, amount = 0n } = useAllowanceModal();
-	const { t } = useTranslation('', { keyPrefix: 'shared.allowanceModal' });
+	const { t } = useTranslation('shared', { keyPrefix: 'allowanceModal' });
 	const { mutate: increase, isPending: isApproving } = useIncreaseAllowance();
 	const { address } = useAccount();
 	const { data: allowance = 0n } = useAllowance(address);
@@ -93,7 +100,7 @@ function RequestModal({
 						</DialogClose>
 					</div>
 					<div className={'flex flex-col items-start'}>
-						<div className={'text-gray-500 text-sm'}>{t(`type.${type}`)}</div>
+						<div className={'text-gray-500 text-sm'}>{type && t(`type.${type}`)}</div>
 						<div className={'flex flex-row justify-between w-full py-2'}>
 							<div className={'text-xl'}>{valueToNumber(amount)}</div>
 							<Bet className={'w-6 h-6'} />
@@ -112,10 +119,10 @@ function RequestModal({
 										)}
 									</div>
 								</div>
-								<div className={'flex-grow'}>{isApproving ? 'Approving...' : 'Approve allowance'}</div>
+								<div className={'flex-grow'}>{isApproving ? t('approving') : t('approveAllowance')}</div>
 								{state === 'allowance' && (
 									<Button className={'h-auto rounded-full py-1'} disabled={isApproving} onClick={() => increase()}>
-										Approve
+										{t('approve')}
 									</Button>
 								)}
 							</div>
@@ -131,10 +138,10 @@ function RequestModal({
 										<HandCoins className={'w-6 h-6'} />
 									</div>
 								</div>
-								<div className={'flex-grow'}>Execute transaction</div>
+								<div className={'flex-grow'}>{t('executeTransaction')}</div>
 								{state === 'transaction' && (
 									<Button className={'h-auto rounded-full py-1'} onClick={onRequested}>
-										Execute
+										{t('execute')}
 									</Button>
 								)}
 							</div>
@@ -145,7 +152,7 @@ function RequestModal({
 										<CircleCheck className={'w-6 h-6'} />
 									</div>
 								</div>
-								{data !== undefined ? getTransactionLink(data, 'Transaction') : 'Result'}
+								{data !== undefined ? getTransactionLink(data, 'Transaction') : t('result')}
 							</div>
 						</div>
 					</div>
