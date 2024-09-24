@@ -28,7 +28,7 @@ const fadeIn = {
 	transition: { duration: 0.5 },
 };
 
-const FadeInDiv = ({ key, children }: PropsWithChildren<{ key: number }>) => {
+const FadeInDiv = ({ key, children }: PropsWithChildren<{ key: number | string }>) => {
 	return (
 		<motion.div key={key} initial={fadeIn.initial} transition={fadeIn.transition} animate={fadeIn.animate}>
 			{children}
@@ -135,11 +135,11 @@ const MemberProfile = () => {
 												<div className={'p-2 px-2 pr-8 rounded-lg border bg-primaryLight text-sm border-purple-box'}>{truncateEthAddress(address, 15)}</div>
 												<div className={'absolute bottom-2.5 right-4 w-5 h-5'}>
 													{addressCopied ? (
-														<FadeInDiv key={1}>
+														<FadeInDiv key={'check-icon-address'}>
 															<CheckIcon className={'text-green-500 '} />
 														</FadeInDiv>
 													) : (
-														<FadeInDiv key={2}>
+														<FadeInDiv key={'copy-icon-address'}>
 															<Copy className={'text-purple-box cursor-pointer'} onClick={handleCopyAddress} />
 														</FadeInDiv>
 													)}
@@ -332,12 +332,12 @@ const MemberProfile = () => {
 								>
 									<div className={'w-6 h-6'}>
 										{linkCopied ? (
-											<FadeInDiv key={3}>
+											<FadeInDiv key={'check-icon-link'}>
 												<CheckIcon className={'text-green-500 '} />
 											</FadeInDiv>
 										) : (
-											<FadeInDiv key={4}>
-												<LinkIcon className={' text-yellow-400'} />
+											<FadeInDiv key={'link-icon-link'}>
+												<LinkIcon className={'text-yellow-400'} />
 											</FadeInDiv>
 										)}
 									</div>
