@@ -37,8 +37,7 @@ const FadeInDiv = ({ key, children }: PropsWithChildren<{ key: number }>) => {
 };
 
 const MemberProfile = () => {
-	const { t } = useTranslation('', { keyPrefix: 'shared.profileModal' });
-
+	const { t } = useTranslation('shared', { keyPrefix: 'member' });
 	const { data, close } = useOpenProfile();
 	const { address: me } = useAccount();
 	const { data: regDate = 0, ...regDateOther } = useRegistrationDate(data.address || ZeroAddress);
@@ -115,7 +114,7 @@ const MemberProfile = () => {
 									/>
 								</DialogClose>
 
-								<div className={'flex items-center justify-center text-lg font-semibold'}>{t('title')}</div>
+								<div className={'flex items-center justify-center text-lg font-semibold'}>{t('memberProfile')}</div>
 								<div className={'grid lg:grid-cols-6 grid-cols-1 gap-0 lg:gap-4 my-4'}>
 									<motion.div className={'col-span-1 py-4'}>
 										<motion.img
@@ -130,8 +129,8 @@ const MemberProfile = () => {
 									</motion.div>
 									<div className={'col-span-3 flex flex-col gap-3'}>
 										<div className={''}>
-											<label className={'flex flex-col px-2 relative text-sm'}>
-												<div className={'text-gray-400 font-medium'}>{t('wallet')}</div>
+											<div className={'flex flex-col px-2 relative text-sm'}>
+												<div className={'text-gray-400 font-medium'}>{t('memberWallet')}</div>
 												<div className={'p-2 px-2 pr-8 rounded-lg border bg-primaryLight text-sm border-purple-box'}>{truncateEthAddress(address, 15)}</div>
 												<div className={'absolute bottom-2.5 right-4 w-5 h-5'}>
 													{addressCopied ? (
@@ -144,11 +143,11 @@ const MemberProfile = () => {
 														</FadeInDiv>
 													)}
 												</div>
-											</label>
+											</div>
 										</div>
 										<div className={''}>
 											<UsernameEdit
-												label={t('username')}
+												label={t('userName')}
 												onSave={handleSaveUsername}
 												allowEdit={me.toLowerCase() === address.toLowerCase()}
 												initialValue={username || ''}
@@ -159,10 +158,10 @@ const MemberProfile = () => {
 										</div>
 										<div className={'text-sm'}>
 											<label className={'flex flex-col px-2 py-1 relative'}>
-												<span className={'text-gray-400 font-medium'}>{t('registration')}</span>
+												<span className={'text-gray-400 font-medium'}>{t('registrationDate')}</span>
 												<input
 													type="text"
-													value={regDate > 0 ? DateTime.fromMillis(regDate).toFormat('DD T') : 'Unknown'}
+													value={regDate > 0 ? DateTime.fromMillis(regDate).toFormat('DD T') : t('unknown')}
 													className={cx('text-sm p-2 px-4 rounded-lg border bg-primaryLight border-purple-box', regDateOther.isFetching && 'blur-sm')}
 													disabled
 												/>
@@ -198,12 +197,12 @@ const MemberProfile = () => {
 								</div>
 								<div className={'grid grid-cols-1 lg:grid-cols-3 gap-0 lg:gap-4'}>
 									<div className={'col-span-1'}>
-										<div className={'text-xl font-semibold py-4 px-2'}>{t('volume.title')}</div>
+										<div className={'text-xl font-semibold py-4 px-2'}>{t('membersVolume')}</div>
 										<div className={'flex flex-col gap-4 '}>
 											<div className={'border border-gray-800 bg-primaryLighter rounded-3xl p-6 flex flex-row gap-4'}>
 												<Layers3 className={'w-12 h-12 text-yellow-400'} />
 												<div className={'flex flex-col justify-center'}>
-													<div className={'text-sm'}>{t('volume.staking')}</div>
+													<div className={'text-sm'}>{t('stakingVolume')}</div>
 													<div className={'font-medium'}>
 														<BetValue value={member.volume} withIcon />
 													</div>
@@ -212,7 +211,7 @@ const MemberProfile = () => {
 											<div className={'border border-gray-800 bg-primaryLighter rounded-3xl p-6 flex flex-row gap-4'}>
 												<Blackjack className={'w-12 h-12 text-yellow-400'} />
 												<div className={'flex flex-col justify-center'}>
-													<div className={'text-sm'}>{t('volume.betting')}</div>
+													<div className={'text-sm'}>{t('bettingVolume')}</div>
 													<div className={'font-medium'}>
 														<BetValue value={member.bets} withIcon />
 													</div>
@@ -221,7 +220,7 @@ const MemberProfile = () => {
 										</div>
 									</div>
 									<div className={'col-span-2'}>
-										<div className={'text-xl font-semibold py-4 px-2'}>{t('networkTable.title')}</div>
+										<div className={'text-xl font-semibold py-4 px-2'}>{t('membersNetworkVolume')}</div>
 										<div className={'border border-gray-800 bg-primaryLighter rounded-3xl px-4 py-4 flex flex-row gap-4 relative'}>
 											<div
 												className={
@@ -230,59 +229,59 @@ const MemberProfile = () => {
 											>
 												<div className={'text-yellow-400 font-medium flex flex-row min-w-[200px] items-center justify-center gap-2'}>
 													<BetValue precision={2} value={totalVolume} withIcon />
-													<span className={'text-white'}> {t('networkTable.matching')}</span>
+													<span className={'text-white'}> {t('matchingVolume')}</span>
 												</div>
 											</div>
 											<div className={'overflow-x-hidden w-full'}>
 												<table className={'w-full text-left overflow-x-hidden'}>
 													<thead className={'whitespace-nowrap'}>
 														<tr className={'text-gray-400 border-b border-gray-600'}>
-															<th className={'w-1/3 pb-4 hidden md:block'}>{t('networkTable.product')}</th>
-															<th className={'w-1/3 pb-4 pl-2'}>{t('networkTable.direct')}</th>
-															<th className={'w-1/3 pb-4 pl-2'}>{t('networkTable.binary')}</th>
+															<th className={'w-1/3 pb-4 hidden md:block'}>{t('product')}</th>
+															<th className={'w-1/3 pb-4 pl-2'}>{t('directVolume')}</th>
+															<th className={'w-1/3 pb-4 pl-2'}>{t('binaryVolume')}</th>
 														</tr>
 													</thead>
 													<tbody className={'whitespace-nowrap'}>
 														<tr className={'border-b border-gray-600'}>
 															<td className={'hidden md:table-cell'}>
 																<div className={'flex flex-row items-center gap-2'}>
-																	<Layers3 className={'w-4 h-4 text-yellow-400'} /> {t('networkTable.staking')}
+																	<Layers3 className={'w-4 h-4 text-yellow-400'} /> {t('staking')}
 																</div>
 															</td>
 															<td className={'py-2 pl-2'}>
 																<div className={'flex flex-col'}>
 																	<BetValue value={volume[0]} withIcon />
-																	<span className={'text-sm'}>{t('networkTable.totalStaking')}</span>
+																	<span className={'text-sm'}>{t('totalStaking')}</span>
 																</div>
 															</td>
 															<td className={'py-2 pl-2'}>
 																<div className={'flex flex-col'}>
 																	<BetValue value={member.volumeLeft + member.volumeRight} withIcon />
-																	<span className={'text-sm'}>{t('networkTable.totalStaking')}g</span>
+																	<span className={'text-sm'}>{t('totalStaking')}</span>
 																</div>
 															</td>
 														</tr>
 														<tr>
 															<td className={'hidden md:table-cell'}>
 																<div className={'flex flex-row items-center gap-2'}>
-																	<Blackjack className={'w-4 h-4 text-yellow-400'} /> {t('networkTable.betting')}
+																	<Blackjack className={'w-4 h-4 text-yellow-400'} /> {t('betting')}
 																</div>
 															</td>
 															<td className={'py-2 pl-2'}>
 																<div className={'flex flex-col'}>
 																	<BetValue value={volume[1] / 100n} withIcon />
 																	<div className={'text-sm flex gap-1'}>
-																		{t('networkTable.totalBets')}
+																		{t('totalBets')}
 																		<Tooltip>
 																			<TooltipTrigger>
 																				<AlertCircle className={'text-yellow-400'} width={18} />
 																			</TooltipTrigger>
 																			<TooltipContent className={cx('z-50 border- rounded-xl border-yellow-400 bg-black text-white')}>
 																				<div className={'px-4 py-2 text-xs'}>
-																					<p className={'font-semibold text-center'}>
-																						This value represents <span className={'text-yellow-400'}>100% of all bets</span> <br /> of your{' '}
-																						<span className={'text-yellow-400'}>direct</span> affiliates
-																					</p>
+																					<p
+																						className={'font-semibold text-center [&_span]:text-yellow-400'}
+																						dangerouslySetInnerHTML={{ __html: t('theValueRepresentsDirect') }}
+																					/>
 																				</div>
 																			</TooltipContent>
 																		</Tooltip>
@@ -294,17 +293,17 @@ const MemberProfile = () => {
 																<div className={'flex flex-col'}>
 																	<BetValue value={member.betsLeft / 100n + member.betsRight / 100n} withIcon />
 																	<div className={'text-sm flex gap-1'}>
-																		{t('networkTable.totalBets')}
+																		{t('totalBets')}
 																		<Tooltip>
 																			<TooltipTrigger>
 																				<AlertCircle className={'text-yellow-400'} width={18} />
 																			</TooltipTrigger>
 																			<TooltipContent className={cx('z-50 border-2 rounded-xl border-yellow-400 bg-black bg-opacity-75 text-white')}>
 																				<div className={'px-4 py-2 text-xs'}>
-																					<p className={'font-semibold text-center'}>
-																						This value represents <span className={'text-yellow-400'}>1% of all bets</span> <br /> in your{' '}
-																						<span className={'text-yellow-400'}>binary</span> affiliate system
-																					</p>
+																					<p
+																						className={'font-semibold text-center [&_span]:text-yellow-400'}
+																						dangerouslySetInnerHTML={{ __html: t('theValueRepresentsBinary') }}
+																					/>
 																				</div>
 																			</TooltipContent>
 																		</Tooltip>
@@ -323,7 +322,7 @@ const MemberProfile = () => {
 								<Hero className={'w-full'} />
 							</div>
 							<div className={'bg-yellow-400 rounded-b-3xl p-6 flex flex-col items-center gap-2 w-full'}>
-								<div className={'text-black font-semibold'}>{t('link')}</div>
+								<div className={'text-black font-semibold'}>{t('inviteLink')}</div>
 								<div
 									className={
 										'bg-primaryLight rounded-xl p-2 text-xs line-clamp-1 overflow-ellipsis max-w-[90%]  px-4 text-white flex flex-row gap-2 items-center cursor-pointer break-all'
@@ -361,6 +360,7 @@ const UsernameEdit: FC<{
 	onSave: (username: string) => Promise<boolean>;
 	initialValue: string;
 }> = ({ label, allowEdit, onSave, initialValue }) => {
+	const { t } = useTranslation('shared', { keyPrefix: 'member' });
 	const { data } = useOpenProfile();
 	const address = data.address;
 	const { address: me = ZeroAddress } = useAccount();
@@ -379,7 +379,7 @@ const UsernameEdit: FC<{
 		if (RegExp(/^[a-zA-Z0-9_]{3,32}$/).test(username)) {
 			setUsernameError('');
 		} else {
-			setUsernameError('At least 3 symbols. Allowed: a-z, A-Z, 0-9, _');
+			setUsernameError(`${t('alowedSymbols')} a-z, A-Z, 0-9, _`);
 		}
 		setUsername(username);
 	};
@@ -404,7 +404,7 @@ const UsernameEdit: FC<{
 		setUsernameError('');
 	};
 	return (
-		<label className={'flex flex-col px-2 py-1 relative text-sm'}>
+		<div className={'flex flex-col px-2 py-1 relative text-sm'}>
 			<span className={'text-gray-400 font-medium'}>{label}</span>
 			<div className={'absolute text-xs -bottom-3.5 text-red-500'}>{usernameError}</div>
 			<Input
@@ -412,7 +412,7 @@ const UsernameEdit: FC<{
 				onChange={handleUsernameChange}
 				type="text"
 				value={username}
-				placeholder={username === '' ? 'not set' : ''}
+				placeholder={username === '' ? t('notSet') : ''}
 				className={cx(
 					'p-2 px-4 rounded-lg border text-sm bg-primaryLight border-purple-box outline:none active:ring-0 placeholder:text-gray-500 ring-0 focus:outline-0 focus:ring-0 ',
 					usernameError && 'border-red-500',
@@ -427,12 +427,12 @@ const UsernameEdit: FC<{
 			>
 				{side === 'left' && (
 					<>
-						<ArrowLeftCircleIcon className={'w-5 h-5'} /> Left
+						<ArrowLeftCircleIcon className={'w-5 h-5'} /> {t('left')}
 					</>
 				)}
 				{side === 'right' && (
 					<>
-						<ArrowRightCircleIcon className={'w-5 h-5'} /> Right
+						<ArrowRightCircleIcon className={'w-5 h-5'} /> {t('right')}
 					</>
 				)}
 			</div>
@@ -444,7 +444,7 @@ const UsernameEdit: FC<{
 						!allowEdit && 'hidden',
 					)}
 				>
-					<PencilIcon className={'w-4 h-4'} /> Edit
+					<PencilIcon className={'w-4 h-4'} /> {t('edit')}
 				</div>
 			) : (
 				<>
@@ -459,7 +459,7 @@ const UsernameEdit: FC<{
 							!allowEdit && 'hidden',
 						)}
 					>
-						Save
+						{t('save')}
 					</button>
 					<Button
 						size={'sm'}
@@ -472,6 +472,6 @@ const UsernameEdit: FC<{
 					</Button>
 				</>
 			)}
-		</label>
+		</div>
 	);
 };

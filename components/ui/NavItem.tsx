@@ -1,5 +1,6 @@
 import { Badge } from '@/components/ui/badge.tsx';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip.tsx';
+import type { ILanguageKeys } from '@/src/i18next';
 import { Link, useRouterState } from '@tanstack/react-router';
 import { cx } from 'class-variance-authority';
 import type { FC, ReactNode } from 'react';
@@ -35,7 +36,7 @@ const NavItem: FC<NavItemProps> = ({
 	minimized = false,
 	onClick,
 }) => {
-	const { t } = useTranslation();
+	const { t } = useTranslation('shared');
 	const {
 		location: { pathname, href: url },
 	} = useRouterState();
@@ -99,7 +100,7 @@ const NavItem: FC<NavItemProps> = ({
 						minimized={minimized}
 						{...item}
 						className={cx(!minimized && 'pl-6 !gap-3')}
-						label={t(`shared.sidebar.${item.label}`)}
+						label={t(`sidebar.${item.label as keyof ILanguageKeys['sidebar']}`)}
 						active={isActive(item.href)}
 					/>
 				))}
