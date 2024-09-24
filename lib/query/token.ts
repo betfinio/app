@@ -71,7 +71,7 @@ export const useAllowance = (address: Address | undefined) => {
 };
 
 export const useIncreaseAllowance = () => {
-	const { t } = useTranslation('translation', { keyPrefix: 'shared.errors' });
+	const { t } = useTranslation('shared');
 	return useMutation<WriteContractReturnType, WriteContractErrorType, void>({
 		mutationKey: ['app', 'account', 'increaseAllowance'],
 		mutationFn: () => increaseAllowance({ config }),
@@ -84,14 +84,14 @@ export const useIncreaseAllowance = () => {
 			// @ts-ignore
 			if (e?.cause?.reason) {
 				toast({
-					title: 'Failed to mint passes',
+					title: t('toasts.failedToMintPasses'),
 					// @ts-ignore
 					description: t(e.cause.reason),
 					variant: 'destructive',
 				});
 			} else {
 				toast({
-					title: t('unknown'),
+					title: t('errors.unknown'),
 					variant: 'destructive',
 				});
 			}
@@ -100,8 +100,8 @@ export const useIncreaseAllowance = () => {
 			if (data !== undefined) {
 				logger.success('increaseAllowance');
 				const { id, update } = toast({
-					title: 'Increasing allowance',
-					description: 'Transaction submitted',
+					title: t('toasts.increasingAllowance'),
+					description: t('toasts.transactionSubmitted'),
 					variant: 'loading',
 					duration: 60 * 1000,
 				});
@@ -109,8 +109,8 @@ export const useIncreaseAllowance = () => {
 					hash: data,
 				});
 				update({
-					title: 'Allowance was increased',
-					description: 'Transaction confirmed',
+					title: t('toasts.allowanceWasIncreased'),
+					description: t('toasts.transactionConfirmed'),
 					variant: 'default',
 					duration: 5 * 1000,
 					id: id,
@@ -118,7 +118,7 @@ export const useIncreaseAllowance = () => {
 				});
 			} else {
 				toast({
-					title: t('unknown'),
+					title: t('errors.unknown'),
 					variant: 'destructive',
 				});
 			}

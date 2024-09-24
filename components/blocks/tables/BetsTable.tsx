@@ -15,7 +15,7 @@ const ETHSCAN = import.meta.env.PUBLIC_ETHSCAN;
 const columnHelper = createColumnHelper<BetInterface>();
 
 const BetsTable: FC<{ data: BetInterface[]; isLoading: boolean }> = ({ data, isLoading }) => {
-	const { t } = useTranslation('', { keyPrefix: 'shared.homepage.tables' });
+	const { t } = useTranslation('shared', { keyPrefix: 'homepage.tables' });
 	const renderGameIcon = (game: Address) => {
 		if (game.toLowerCase() === import.meta.env.PUBLIC_PREDICT_ADDRESS.toLowerCase()) {
 			return <Predict className={'w-6 h-6'} />;

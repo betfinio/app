@@ -2,6 +2,7 @@ import { defaultWagmiConfig } from '@web3modal/wagmi';
 import { createWeb3Modal } from '@web3modal/wagmi/react';
 import { http, type Chain, createPublicClient, fallback } from 'viem';
 import { polygon, polygonAmoy } from 'viem/chains';
+
 export const chains: [Chain] = import.meta.env.PUBLIC_ENVIRONMENT.includes('prod') ? [polygon] : [polygonAmoy];
 const chainId = chains[0].id;
 
@@ -36,13 +37,8 @@ createWeb3Modal({
 		metaMask: 'https://betfin.io/fox.png',
 		metamask: 'https://betfin.io/fox.png',
 	},
-	// tokens: {
-	// 	[chainId]: {
-	// 		address: import.meta.env.PUBLIC_TOKEN_ADDRESS,
-	// 	},
-	// },
 	projectId: import.meta.env.PUBLIC_WALLETCONNECT_ID,
-	enableAnalytics: true, // Optional - defaults to your Cloud configuration
+	enableAnalytics: true,
 });
 
 export default config;

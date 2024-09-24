@@ -1,11 +1,9 @@
 import type { BetInterface, Options, Stake } from '@/lib/types';
-import logger from '@/src/config/logger';
-import { BetInterfaceContract, BetsMemoryContract, ConservativeStakingContract, DynamicStakingContract, PassContract } from '@betfinio/abi';
+import { BetInterfaceContract, BetsMemoryContract, ConservativeStakingContract, DynamicStakingContract } from '@betfinio/abi';
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { getBlock, readContract } from '@wagmi/core';
 import type { Address } from 'viem';
 import { getContractEvents } from 'viem/actions';
-import type { Config } from 'wagmi';
 
 export const fetchLastBets = async (count: number, address: Address, options: Options) => {
 	if (!options.config) return [];
@@ -112,27 +110,4 @@ export const fetchMemberSide = async (parent: Address, member: Address, supabase
 		return result[0].side === 2 ? 'right' : result[0].side === 1 ? 'left' : null;
 	}
 	return null;
-};
-
-export const fetchRegistrationDate = async (address: Address, config: Config) => {
-	try {
-		logger.start('fetching registration date');
-		const events = await getContractEvents(config.getClient(), {
-			abi: PassContract.abi,
-			address: import.meta.env.PUBLIC_PASS_ADDRESS as Address,
-			eventName: 'NewMember',
-			args: {
-				member: address,
-			},
-			toBlock: 'latest',
-			fromBlock: 0n,
-		});
-		if (events.length === 0) return 0;
-		const event = events[0];
-		const block = await getBlock(config, { blockNumber: event.blockNumber });
-		return Number(block.timestamp) * 1000;
-	} catch (e) {
-		console.log(e);
-		return 0;
-	}
 };
