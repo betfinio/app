@@ -87,6 +87,7 @@ const AccountBlock = forwardRef<HTMLDivElement, any>((props, forwardedRef) => {
 	return (
 		<AnimatePresence mode={'wait'}>
 			<motion.div
+				key={'connect-button'}
 				className={cx('h-[50px] whitespace-nowrap min-w-[100px] cursor-pointer rounded-lg rounded-b-0 px-4 flex flex-row items-center justify-between gap-2', {
 					'bg-gray-800 animate-in w-[240px]': isOpen,
 				})}
