@@ -5,7 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useTranslation } from 'react-i18next';
 
 const Tables = () => {
-	const { t } = useTranslation('', { keyPrefix: 'shared.homepage.tables' });
+	const { t } = useTranslation('shared', { keyPrefix: 'homepage.tables' });
 	return (
 		<Tabs defaultValue="allBets" className="w-full">
 			<TabsList>

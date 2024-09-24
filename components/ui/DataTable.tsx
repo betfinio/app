@@ -12,8 +12,8 @@ interface DataTableProps<TData, TValue> {
 	meta?: TableMeta<TData>;
 	state?: InitialTableState;
 	onRowClick?: (row: TData) => void;
-	loaderClassName: string | undefined;
-	noResultsClassName: string | undefined;
+	loaderClassName?: string;
+	noResultsClassName?: string;
 }
 
 export function DataTable<TData, TValue>({

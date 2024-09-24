@@ -125,7 +125,7 @@ const AccountBlock = forwardRef<HTMLDivElement, any>((props, forwardedRef) => {
 
 export const WalletBalance: FC<{ className?: string }> = ({ className = '' }) => {
 	const { address } = useAccount();
-	const { t } = useTranslation('', { keyPrefix: 'shared' });
+	const { t } = useTranslation('shared');
 	const { data: balance = 0n } = useBalance(address);
 	const { data: allowance = 0n } = useAllowance(address);
 	const { mutate: increaseAllowance, isPending } = useIncreaseAllowance();

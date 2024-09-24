@@ -2,6 +2,7 @@ import { Badge } from '@/components/ui/badge';
 import { MoneyHand } from '@betfinio/ui/dist/icons';
 import cx from 'clsx';
 import type { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export interface GameBlockProps {
 	className?: string;
@@ -13,6 +14,7 @@ export interface GameBlockProps {
 }
 
 const GameBlock: FC<GameBlockProps> = ({ className = '', label, online, disabled = true, loading = false }) => {
+	const { t } = useTranslation('shared', { keyPrefix: 'gameBlock' });
 	return (
 		<div
 			className={cx(
@@ -25,13 +27,13 @@ const GameBlock: FC<GameBlockProps> = ({ className = '', label, online, disabled
 			<div className={'flex flex-row items-center gap-2 text-sm md:text-normal'}>
 				{disabled ? (
 					<Badge className={'px-4 py-1 text-base lowercase'} variant={'outline'}>
-						Soon
+						{t('soon')}
 					</Badge>
 				) : (
 					<>
 						<MoneyHand className={'w-5 aspect-square text-yellow-400'} />
 						<div className={cx('font-medium', loading && 'blur-sm animate-pulse text-yellow-400')}>{online}</div>
-						active bets
+						{t('activeBets')}
 					</>
 				)}
 			</div>

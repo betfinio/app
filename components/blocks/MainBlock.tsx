@@ -20,7 +20,7 @@ export interface MainBlockProps {
 }
 
 const MainBlock: FC<MainBlockProps> = ({ variant }) => {
-	const { t } = useTranslation('', { keyPrefix: `shared.homepage.staking.${variant}` });
+	const { t } = useTranslation('shared', { keyPrefix: `homepage.staking.${variant}` });
 	const { data: stakedConservative = 0n, ...conservative } = useConservativeTotalStaked();
 	const { data: stakedDynamic = 0n, ...dynamic } = useDynamicTotalStaked();
 	const { data: predictOnline = 0, isFetching: isPredictOnlineFetching } = usePredictOnline();

@@ -14,7 +14,7 @@ interface ISidebarProps extends PropsWithChildren {
 	toggleMinimized: Dispatch<SetStateAction<boolean>>;
 }
 const Sidebar: FC<ISidebarProps> = ({ children, links, minimized, toggleMinimized }) => {
-	const { t } = useTranslation('', { keyPrefix: 'shared.sidebar' });
+	const { t } = useTranslation('shared', { keyPrefix: 'sidebar' });
 
 	const toggleSidebar = () => {
 		toggleMinimized((p) => !p);

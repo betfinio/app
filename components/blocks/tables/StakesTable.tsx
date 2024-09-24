@@ -8,10 +8,12 @@ import { Link } from '@tanstack/react-router';
 import { createColumnHelper } from '@tanstack/react-table';
 import { SquareArrowOutUpRight } from 'lucide-react';
 import type { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const columnHelper = createColumnHelper<Stake>();
 
 const StakesTable: FC = () => {
+	const { t } = useTranslation('shared');
 	const { data = [], isLoading, isFetching } = useAllStakes(10);
 	const getStakingIcon = (staking: string) => {
 		if (staking.toLowerCase() === import.meta.env.PUBLIC_CONSERVATIVE_STAKING_ADDRESS.toLowerCase()) {
@@ -33,7 +35,7 @@ const StakesTable: FC = () => {
 			),
 		}),
 		columnHelper.accessor('hash', {
-			header: 'Transaction',
+			header: t('tables.stakesTable.transaction'),
 			cell: (props) => (
 				<a
 					href={`${import.meta.env.PUBLIC_ETHSCAN}/tx/${props.getValue()}`}
@@ -48,7 +50,7 @@ const StakesTable: FC = () => {
 		}),
 		columnHelper.accessor('staker', {
 			enableColumnFilter: true,
-			header: 'Staker',
+			header: t('tables.stakesTable.staker'),
 			cell: (props) => (
 				<a
 					href={`${import.meta.env.PUBLIC_ETHSCAN}/address/${props.getValue()}`}
@@ -62,7 +64,7 @@ const StakesTable: FC = () => {
 			),
 		}),
 		columnHelper.accessor('amount', {
-			header: 'Amount',
+			header: t('tables.stakesTable.amount'),
 			cell: (props) => <BetValue value={valueToNumber(props.getValue())} withIcon />,
 		}),
 	];
