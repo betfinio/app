@@ -1,0 +1,14 @@
+sources:
+  - name: pass
+    handler:
+      graphql:
+        endpoint: ${PUBLIC_PASS_GRAPH_URL}
+
+
+codegen:
+  scalars:
+    BigInt: bigint
+    Bytes: string
+
+documents:
+  - ./src/schema.graphql

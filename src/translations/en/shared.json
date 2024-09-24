@@ -5,7 +5,48 @@
 		"type": {
 			"stake": "Stake",
 			"bet": "Bet"
+		},
+		"approve": "Approve",
+		"approving": "Approving...",
+		"approveAllowance": "Approve allowance",
+		"executeTransaction": "Execute transaction",
+		"execute": "Execute",
+		"result": "Result"
+	},
+	"tables": {
+		"stakesTable": {
+			"transaction": "Transaction",
+			"staker": "Staker",
+			"amount": "Amount"
 		}
+	},
+	"footer": {
+		"betfinIs": "Betfin is decentralized web3 application that allows anyone to bet or stake through trustless contracts. This website is only an interface of the web3 application and runs as a non profit public service.",
+		"allRightsReserved": "All right reserved",
+		"thisSiteIsAPartOf": "This site is part of BetFin decentralized ecosystem",
+		"verifyPartnerContract": "Verify partner contract",
+		"socials": "Socials",
+		"exchanges": "Exchanges",
+		"add": "Add",
+		"tokenToWallet": "token to Wallet",
+		"auditedBy": "Audited by",
+		"poweredBy": "Powered by",
+		"protectedBy": "Protected by",
+		"support": "Support",
+		"betfinGames": "Betfin Games",
+		"predict": "Predict",
+		"roulette": "Roulette",
+		"luckyRound": "Lucky Round",
+		"rewardSystem": "Finance Reward System",
+		"conservativeStaking": "Conservative staking",
+		"dynamicStaking": "Dynamic staking",
+		"affilateBinaryMatching": "Affiliate & binary matching",
+		"becomeAPartner": "Become a partner",
+		"aboutBetfin": "About Betfin",
+		"termsAndConditions": "All terms & conditions",
+		"officialContracts": "Official contracts",
+		"audits": "Audits",
+		"legalDisclaimers": "Legal disclaimers"
 	},
 	"sidebar": {
 		"staking": "Staking",
@@ -120,6 +161,56 @@
 		"0xfb8f41b2": "Insufficient allowance",
 		"0xe450d38c": "Insufficient balance",
 		"unknown": "Transaction cancelled",
-		"undefined": "Transaction failed"
+		"undefined": "Transaction failed",
+		"default": "Transaction failed"
+	},
+	"gameBlock": {
+		"soon": "Soon",
+		"activeBets": "active bets"
+	},
+	"member": {
+		"memberProfile": "Member profile",
+		"memberWallet": "Member wallet",
+		"registrationDate": "Registration date",
+		"inviter": "Inviter",
+		"direct": "direct",
+		"total": "total",
+		"network": "Network",
+		"copied": "Copied to clipboard",
+		"membersVolume": "Member's volume",
+		"stakingVolume": "Staking volume",
+		"bettingVolume": "Betting volume",
+		"membersNetworkVolume": "Member's network volume",
+		"matchingVolume": "matching volume",
+		"product": "Product",
+		"directVolume": "Direct volume",
+		"binaryVolume": "Binary volume",
+		"staking": "Staking",
+		"totalStaking": "total staking",
+		"betting": "Betting",
+		"totalBets": "total bets",
+		"theValueRepresentsDirect": "This value represents <span>100% of all bets</span> <br /> of your<span> direct</span> affiliates",
+		"theValueRepresentsBinary": "This value represents <span>1% of all bets</span> <br /> in your <span >binary</span> affiliate system",
+		"inviteLink": "Invite link",
+		"alowedSymbols": "At least 3 symbols. Allowed:",
+		"left": "Left",
+		"right": "Right",
+		"edit": "Edit",
+		"save": "Save",
+		"userName": "Username",
+		"customUsername": "Custom username",
+		"unknown": "Unknown",
+		"notSet": "not set"
+	},
+	"toasts": {
+		"failedToMintPasses": "Failed to mint passes",
+		"mintingAPass": "Minting a pass",
+		"transactionSubmitted": "Transaction submitted",
+		"passWasMinted": "Pass was minted",
+		"transactionConfirmed": "Transaction confirmed",
+		"increasingAllowance": "Increasing allowance",
+		"allowanceWasIncreased": "Allowance was increased",
+		"failedToSaveUsername": "Failed to save username",
+		"usernameChanged": "Username changed"
 	}
 }

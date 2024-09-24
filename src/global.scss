@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -21,8 +23,8 @@ html, body {
     --card-foreground: 20 14.3% 4.1%;
     --card-secondary: 240 29% 28%; //#33335C
     --card-seconary-foreground: 20 14.3% 4.1%;
-    --popover: #0F121D;
-    --popover-foreground: #e5e7eb;
+    --popover: 227.14 31.82% 8.63%; // #0F121D
+    --popover-foreground: 220 13% 91%; //#e5e7eb
     --primary: 47.9 95.8% 53.1%;
     --primary-foreground: 26 83.3% 14.1%;
     --secondary: 247 39% 18%; //#201C40
@@ -37,7 +39,7 @@ html, body {
     --destructive-foreground: 60 9.1% 97.8%;
     --success: 153 54% 48%; //#38BB7F
     --success-foreground: 60 9.1% 97.8%;
-    --border: 20 5.9% 90%;
+    --border: 198.75 21.05% 14.9%; // #1E292E
     --input: 20 5.9% 90%;
     --ring: 20 14.3% 4.1%;
     --radius: 0.5rem;
@@ -65,7 +67,7 @@ html, body {
     --accent-foreground: 60 9.1% 97.8%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 60 9.1% 97.8%;
-    --border: 12 6.5% 15.1%;
+    --border: 198.75 21.05% 14.9%;
     --input: 12 6.5% 15.1%;
     --ring: 35.5 91.7% 32.9%;
     --chart-1: 220 70% 50%;

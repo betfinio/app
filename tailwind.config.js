@@ -37,7 +37,7 @@ module.exports = {
 					roulette: '#dd375f',
 				},
 				gray: {
-					800: '#1E292E',
+					800: 'hsl(var(--border))',
 					300: '#201C40',
 				},
 				destructive: {
@@ -100,7 +100,7 @@ module.exports = {
 				},
 			},
 			fontFamily: {
-				sans: ['Rounds', 'sans-serif'],
+				sans: ['Rubik', 'sans-serif'],
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
