@@ -1,4 +1,7 @@
+import { getAffiliateUrl, getGamesUrl, getStakingUrl } from '@/lib';
+import { getVersion } from '@/lib/utils.ts';
 import logoSvg from '@/src/assets/logo.svg';
+import { truncateEthAddress } from '@betfinio/abi';
 import {
 	Bet,
 	BetLogo,
@@ -15,7 +18,10 @@ import {
 	Twitter,
 	Uniswap,
 } from '@betfinio/ui';
+import Support from '@betfinio/ui/dist/icons/Support';
+import { Link } from '@tanstack/react-router';
 import { Globe, Send } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const ETHSCAN = import.meta.env.PUBLIC_ETHSCAN;
 const PARTNER = import.meta.env.PUBLIC_PARTNER_ADDRESS;
@@ -149,6 +155,7 @@ const Footer = () => {
 					</div>
 
 					<div className={'mt-[30px] flex items-center justify-between flex-wrap gap-7'}>
+						<div>Version: {getVersion()}</div>
 						<div
 							className={'text-sm text-gray-400 hover:text-white duration-300 cursor-pointer flex justify-center grow items-center gap-1'}
 							onClick={handleAdd}
@@ -186,7 +193,7 @@ const Footer = () => {
 								</a>
 							</div>
 						</div>
-						<div className={'flex items-center justify-center gap-7 grow'}>
+						<div className={'flex items-center justify-between gap-7 grow'}>
 							<div className={'text-[#CFD4DD] hover:text-[#FFC800] group cursor-pointer duration-300 flex items-center gap-2'}>
 								<p>{t('support')}</p>
 								<Support />
@@ -204,12 +211,6 @@ const Footer = () => {
 	);
 };
 export default Footer;
-
-import { getAffiliateUrl, getGamesUrl, getStakingUrl } from '@/lib';
-import { truncateEthAddress } from '@betfinio/abi';
-import Support from '@betfinio/ui/dist/icons/Support';
-import { Link } from '@tanstack/react-router';
-import { useTranslation } from 'react-i18next';
 
 export const FooterMenu = () => {
 	const { t } = useTranslation('shared', { keyPrefix: 'footer' });
