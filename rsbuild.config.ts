@@ -1,16 +1,21 @@
 import { ModuleFederationPlugin } from '@module-federation/enhanced/rspack';
-import { defineConfig } from '@rsbuild/core';
+import { defineConfig, loadEnv } from '@rsbuild/core';
 import { pluginNodePolyfill } from '@rsbuild/plugin-node-polyfill';
 import { pluginReact } from '@rsbuild/plugin-react';
 import { pluginSass } from '@rsbuild/plugin-sass';
 import { TanStackRouterRspack } from '@tanstack/router-plugin/rspack';
 import { dependencies } from './package.json';
 
+const { publicVars } = loadEnv({ prefixes: ['AWS_'] });
+
 function getOutput() {
 	return process.env.PUBLIC_OUTPUT_URL;
 }
 
 export default defineConfig({
+	source: {
+		define: publicVars,
+	},
 	server: {
 		port: 5555,
 	},
