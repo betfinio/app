@@ -1,4 +1,5 @@
 import { getAffiliateUrl, getGamesUrl, getStakingUrl } from '@/lib';
+import { getVersion } from '@/lib/utils.ts';
 import logoSvg from '@/src/assets/logo.svg';
 import { truncateEthAddress } from '@betfinio/abi';
 import {
@@ -154,7 +155,7 @@ const Footer = () => {
 					</div>
 
 					<div className={'mt-[30px] flex items-center justify-between flex-wrap gap-7'}>
-						<div>Version: {import.meta.env.AWS_COMMIT_ID || 'local'}</div>
+						<div>Version: {getVersion()}</div>
 						<div
 							className={'text-sm text-gray-400 hover:text-white duration-300 cursor-pointer flex justify-center grow items-center gap-1'}
 							onClick={handleAdd}

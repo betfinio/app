@@ -6,15 +6,19 @@ import { pluginSass } from '@rsbuild/plugin-sass';
 import { TanStackRouterRspack } from '@tanstack/router-plugin/rspack';
 import { dependencies } from './package.json';
 
-const { publicVars } = loadEnv({ prefixes: ['AWS_'] });
+const { publicVars } = loadEnv({ prefixes: ['AWS_', 'PUBLIC_'] });
 
 function getOutput() {
 	return process.env.PUBLIC_OUTPUT_URL;
 }
+const version = publicVars['process.env.AWS_COMMIT_ID'] || process.env.PUBLIC_VERSION || 'local';
 
 export default defineConfig({
 	source: {
-		define: publicVars,
+		define: {
+			'process.env.PUBLIC_VERSION': version,
+			'import.meta.env.PUBLIC_VERSION': version,
+		},
 	},
 	server: {
 		port: 5555,
