@@ -1,7 +1,7 @@
 import { Toaster } from '@/components/ui/toaster.tsx';
 import { games, navigation, others } from '@/src/config/links';
 import cx from 'clsx';
-import { type FC, type PropsWithChildren, type ReactNode, useState } from 'react';
+import { type FC, type PropsWithChildren, useState } from 'react';
 import ConnectButton, { WalletBalance } from '../ui/ConnectButton';
 import Footer from './Footer';
 import Header from './Header';

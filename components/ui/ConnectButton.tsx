@@ -88,9 +88,12 @@ const AccountBlock = forwardRef<HTMLDivElement, any>((props, forwardedRef) => {
 		<AnimatePresence mode={'wait'}>
 			<motion.div
 				key={'connect-button'}
-				className={cx('h-[50px] whitespace-nowrap min-w-[100px] cursor-pointer rounded-lg rounded-b-0 px-4 flex flex-row items-center justify-between gap-2', {
-					'bg-gray-800 animate-in w-[240px]': isOpen,
-				})}
+				className={cx(
+					'h-[50px] whitespace-nowrap min-w-[100px] cursor-pointer rounded-lg px-4 rounded-b-none flex flex-row items-center justify-between gap-2',
+					{
+						'bg-gray-800 animate-in w-[240px]': isOpen,
+					},
+				)}
 				{...props}
 				ref={forwardedRef}
 			>
@@ -111,6 +114,7 @@ const AccountBlock = forwardRef<HTMLDivElement, any>((props, forwardedRef) => {
 					)}
 				</div>
 				<motion.div
+					key={'expand'}
 					className={'flex flex-row items-center justify-center gap-2'}
 					initial={{ opacity: 0 }}
 					transition={{ duration: 0.1 }}
