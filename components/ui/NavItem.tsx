@@ -40,7 +40,6 @@ const NavItem: FC<NavItemProps> = ({
 	const {
 		location: { pathname, href: url },
 	} = useRouterState();
-
 	const handleSoon = () => {
 		toast({ title: 'Coming soon' });
 	};
@@ -60,6 +59,7 @@ const NavItem: FC<NavItemProps> = ({
 	const isActive = (href: string): boolean => {
 		return (window.location.origin + pathname).includes(href);
 	};
+	console.log(href, active, children);
 
 	return (
 		<>
@@ -93,7 +93,7 @@ const NavItem: FC<NavItemProps> = ({
 				</TooltipProvider>
 			)}
 
-			{(active || children?.length) &&
+			{active &&
 				children?.map((item, index) => (
 					<NavItem
 						key={index + item.href}

@@ -46,7 +46,7 @@ const Footer = () => {
 
 				<div className={'mt-6 flex gap-4 items-center'}>
 					<div className="w-8 h-8 flex items-center justify-center rounded-full bg-[#25282C] text-white">
-						<Twitter />
+						<Twitter className={'w-4 h-4'} />
 					</div>
 					<div className="w-8 h-8 flex items-center justify-center rounded-full bg-[#25282C] text-white">
 						<Github />
@@ -98,12 +98,12 @@ const Footer = () => {
 							<p>{t('socials')}:</p>
 							<div className={'flex gap-[10px] items-center'}>
 								<a
-									href={'https://twitter.com/betf1n1865/status/1787832131835613411'}
+									href={'https://twitter.com/betfin_official'}
 									target={'_blank'}
 									className="w-8 h-8 flex items-center justify-center rounded-full bg-[#25282C] text-white cursor-pointer hover:text-black hover:bg-[#FFC800] duration-300"
 									rel="noreferrer"
 								>
-									<Twitter />
+									<Twitter className={'w-4 h-4'} />
 								</a>
 								{/*<div*/}
 								{/*	className="w-8 h-8 flex items-center justify-center rounded-full bg-[#25282C] text-white cursor-pointer hover:text-black hover:bg-[#FFC800] duration-300">*/}
