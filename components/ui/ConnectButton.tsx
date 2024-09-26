@@ -120,8 +120,8 @@ const AccountBlock = forwardRef<HTMLDivElement, any>((props, forwardedRef) => {
 					transition={{ duration: 0.1 }}
 					animate={{ opacity: isOpen ? 1 : 0, width: isOpen ? 'auto' : '0' }}
 				>
-					<UserPen className={'text-yellow-400'} onClick={handleOpenProfile} />
-					<LogOut className={'text-red-roulette'} onClick={handleOpenModal} />
+					<UserPen key={'edit'} className={'text-yellow-400'} onClick={handleOpenProfile} />
+					<LogOut key={'logout'} className={'text-red-roulette'} onClick={handleOpenModal} />
 				</motion.div>
 			</motion.div>
 		</AnimatePresence>
