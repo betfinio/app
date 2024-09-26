@@ -1,10 +1,18 @@
 import NavGroup from '@/components/ui/NavGroup.tsx';
 import NavItem, { type NavItemProps } from '@/components/ui/NavItem.tsx';
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuLabel,
+	DropdownMenuSeparator,
+	DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu.tsx';
 import Logo from '@/components/ui/logo.tsx';
 import { getAppUrl } from '@/lib';
 import Support from '@betfinio/ui/dist/icons/Support';
 import cx from 'clsx';
-import { PanelLeftClose, PanelRightClose } from 'lucide-react';
+import { ChevronDown, Globe, PanelLeftClose, PanelRightClose } from 'lucide-react';
 import type { Dispatch, FC, PropsWithChildren, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -14,13 +22,31 @@ interface ISidebarProps extends PropsWithChildren {
 	toggleMinimized: Dispatch<SetStateAction<boolean>>;
 }
 const Sidebar: FC<ISidebarProps> = ({ children, links, minimized, toggleMinimized }) => {
-	const { t } = useTranslation('shared', { keyPrefix: 'sidebar' });
+	const { t, i18n } = useTranslation('shared', { keyPrefix: 'sidebar' });
 
 	const toggleSidebar = () => {
 		toggleMinimized((p) => !p);
 	};
 	const handleSupport = () => {
 		document.getElementById('live-chat-ai-button')?.click();
+	};
+
+	const handleLanguageChange = async (lang: string) => {
+		await i18n.changeLanguage(lang);
+	};
+
+	const getLanguage = () => {
+		const lang = i18n.language;
+		switch (lang) {
+			case 'en':
+				return 'English';
+			case 'cz':
+				return 'Čeština';
+			case 'ru':
+				return 'Русский';
+			default:
+				return 'English';
+		}
 	};
 	return (
 		<>
@@ -57,7 +83,26 @@ const Sidebar: FC<ISidebarProps> = ({ children, links, minimized, toggleMinimize
 					disabled={false}
 					onClick={handleSupport}
 				/>
+				<DropdownMenu>
+					<DropdownMenuTrigger asChild>
+						<div className={'border w-full rounded-md p-2 mt-2 px-4 cursor-pointer flex flex-row items-center justify-start text-gray-400 gap-2 text-sm'}>
+							<Globe className={'w-4 h-4'} />
+							{getLanguage()}
+							<div className={'flex-grow flex flex-row items-center justify-end'}>
+								<ChevronDown className={'w-3 h-3'} />
+							</div>
+						</div>
+					</DropdownMenuTrigger>
+					<DropdownMenuContent className={'min-w-[210px]'}>
+						<DropdownMenuLabel>{t('language')}</DropdownMenuLabel>
+						<DropdownMenuSeparator />
+						<DropdownMenuItem onClick={() => handleLanguageChange('en')}>English</DropdownMenuItem>
+						<DropdownMenuItem onClick={() => handleLanguageChange('cz')}>Čeština</DropdownMenuItem>
+						<DropdownMenuItem onClick={() => handleLanguageChange('ru')}>Русский</DropdownMenuItem>
+					</DropdownMenuContent>
+				</DropdownMenu>
 			</div>
+
 			{minimized && <div className={'w-[70px] mr-4 h-[100vh]'} />}
 		</>
 	);
