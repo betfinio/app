@@ -1,10 +1,11 @@
 import NavGroup from '@/components/ui/NavGroup.tsx';
 import NavItem, { type NavItemProps } from '@/components/ui/NavItem.tsx';
 import Logo from '@/components/ui/logo.tsx';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select.tsx';
 import { getAppUrl } from '@/lib';
 import Support from '@betfinio/ui/dist/icons/Support';
 import cx from 'clsx';
-import { PanelLeftClose, PanelRightClose } from 'lucide-react';
+import { Globe, PanelLeftClose, PanelRightClose } from 'lucide-react';
 import type { Dispatch, FC, PropsWithChildren, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -14,13 +15,31 @@ interface ISidebarProps extends PropsWithChildren {
 	toggleMinimized: Dispatch<SetStateAction<boolean>>;
 }
 const Sidebar: FC<ISidebarProps> = ({ children, links, minimized, toggleMinimized }) => {
-	const { t } = useTranslation('shared', { keyPrefix: 'sidebar' });
+	const { t, i18n } = useTranslation('shared', { keyPrefix: 'sidebar' });
 
 	const toggleSidebar = () => {
 		toggleMinimized((p) => !p);
 	};
 	const handleSupport = () => {
 		document.getElementById('live-chat-ai-button')?.click();
+	};
+
+	const handleLanguageChange = async (lang: string) => {
+		await i18n.changeLanguage(lang);
+	};
+
+	const getLanguage = () => {
+		const lang = i18n.language;
+		switch (lang) {
+			case 'en':
+				return 'English';
+			case 'cz':
+				return 'Čeština';
+			case 'ru':
+				return 'Русский';
+			default:
+				return 'English';
+		}
 	};
 	return (
 		<>
@@ -57,7 +76,21 @@ const Sidebar: FC<ISidebarProps> = ({ children, links, minimized, toggleMinimize
 					disabled={false}
 					onClick={handleSupport}
 				/>
+				<Select defaultValue={i18n.language} onValueChange={handleLanguageChange}>
+					<SelectTrigger className="w-full min-w-[210px] mt-2 ">
+						<div className={'flex flex-row items-center justify-start gap-2'}>
+							<Globe className={'w-4 h-4'} />
+							<SelectValue placeholder={t('language')} />
+						</div>
+					</SelectTrigger>
+					<SelectContent>
+						<SelectItem value={'en'}>English</SelectItem>
+						<SelectItem value={'cz'}>Čeština</SelectItem>
+						<SelectItem value={'ru'}>Русский</SelectItem>
+					</SelectContent>
+				</Select>
 			</div>
+
 			{minimized && <div className={'w-[70px] mr-4 h-[100vh]'} />}
 		</>
 	);
