@@ -92,7 +92,7 @@ export default defineConfig({
 						'./locales/ru': './src/translations/ru/shared.json',
 						'./locales/en': './src/translations/en/shared.json',
 						'./locales/cz': './src/translations/cz/shared.json',
-						'./locales/index': './src/translations/index.ts',
+						'./locales/index': './src/translations/index',
 					},
 					shared: {
 						react: {

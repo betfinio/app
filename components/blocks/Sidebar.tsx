@@ -28,19 +28,6 @@ const Sidebar: FC<ISidebarProps> = ({ children, links, minimized, toggleMinimize
 		await i18n.changeLanguage(lang);
 	};
 
-	const getLanguage = () => {
-		const lang = i18n.language;
-		switch (lang) {
-			case 'en':
-				return 'English';
-			case 'cz':
-				return 'Čeština';
-			case 'ru':
-				return 'Русский';
-			default:
-				return 'English';
-		}
-	};
 	return (
 		<>
 			<div
