@@ -54,7 +54,6 @@ const NavItem: FC<NavItemProps> = ({
 	const isActive = (href: string): boolean => {
 		return (window.location.origin + pathname).includes(href);
 	};
-	console.log(href, active, children);
 
 	return (
 		<>
