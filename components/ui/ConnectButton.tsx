@@ -183,7 +183,7 @@ export const WalletBalance: FC<{ className?: string }> = ({ className = '' }) =>
 					rel="noreferrer"
 				>
 					<Button variant={'outline'} className={'w-full gap-1 border-yellow-400 hover:bg-yellow-400/10'}>
-						<Bet className={'w-4 h-4 text-[#FFC800]'} /> Buy
+						<Bet className={'w-4 h-4 text-yellow-400'} /> Buy
 					</Button>
 				</a>
 			</div>
