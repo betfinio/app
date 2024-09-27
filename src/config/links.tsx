@@ -40,7 +40,7 @@ const games: NavItemProps[] = [
 
 const others: NavItemProps[] = [
 	{ label: 'documentation', icon: <Roadmap className={'w-6 h-6'} />, external: true, href: 'https://betfin.gitbook.io/betfin-public/v/about-betfin-1' },
-	{ label: 'stats', icon: <ChartSpline className={'w-6 h-6'} />, disabled: true, href: getGamesUrl('/stats') },
+	{ label: 'stats', icon: <ChartSpline className={'w-6 h-6'} />, disabled: false, href: getStakingUrl('/statistics') },
 	{ label: 'academy', icon: <BookA className={'w-6 h-6'} />, disabled: false, href: getAcademyUrl('/advanced') },
 ];
 

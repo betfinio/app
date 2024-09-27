@@ -19,12 +19,6 @@ export const getGamesUrl = (iPathname = '/') => {
 	return import.meta.env.PUBLIC_GAMES_URL + pathname;
 };
 
-export const getStatsUrl = (iPathname = '/') => {
-	let pathname = iPathname;
-	if (!pathname.startsWith('/')) pathname = `/${pathname}`;
-	if (window.location.origin === import.meta.env.PUBLIC_STATS_URL) return pathname;
-	return import.meta.env.PUBLIC_STATS_URL + pathname;
-};
 export const getAcademyUrl = (iPathname = '/') => {
 	let pathname = iPathname;
 	if (!pathname.startsWith('/')) pathname = `/${pathname}`;
