@@ -49,6 +49,7 @@
 		"legalDisclaimers": "Legal disclaimers"
 	},
 	"sidebar": {
+		"language": "Language",
 		"staking": "Staking",
 		"staking-conservative": "Conservative",
 		"staking-dynamic": "Dynamic",
