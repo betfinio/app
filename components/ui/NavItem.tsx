@@ -40,7 +40,6 @@ const NavItem: FC<NavItemProps> = ({
 	const {
 		location: { pathname, href: url },
 	} = useRouterState();
-
 	const handleSoon = () => {
 		toast({ title: 'Coming soon' });
 	};
@@ -88,7 +87,7 @@ const NavItem: FC<NavItemProps> = ({
 				</TooltipProvider>
 			)}
 
-			{(active || children?.length) &&
+			{active &&
 				children?.map((item, index) => (
 					<NavItem
 						key={index + item.href}

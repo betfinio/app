@@ -51,7 +51,7 @@ const Footer = () => {
 
 				<div className={'mt-6 flex gap-4 items-center'}>
 					<div className="w-8 h-8 flex items-center justify-center rounded-full bg-[#25282C] text-white">
-						<Twitter />
+						<Twitter className={'w-4 h-4'} />
 					</div>
 					<div className="w-8 h-8 flex items-center justify-center rounded-full bg-[#25282C] text-white">
 						<Github />
@@ -90,7 +90,7 @@ const Footer = () => {
 								md:text-left`}
 							>
 								<p className={'text-[#6A6F84]'}>{t('verifyPartnerContract')}</p>
-								<a href={`${ETHSCAN}/address/${PARTNER}`} target={'_blank'} className={'text-white hover:text-[#FFC800] duration-300'} rel="noreferrer">
+								<a href={`${ETHSCAN}/address/${PARTNER}`} target={'_blank'} className={'text-white hover:text-yellow-400 duration-300'} rel="noreferrer">
 									{truncateEthAddress(PARTNER)}
 								</a>
 							</div>
@@ -103,29 +103,29 @@ const Footer = () => {
 							<p>{t('socials')}:</p>
 							<div className={'flex gap-[10px] items-center'}>
 								<a
-									href={'https://twitter.com/betf1n1865/status/1787832131835613411'}
+									href={'https://twitter.com/betfin_official'}
 									target={'_blank'}
-									className="w-8 h-8 flex items-center justify-center rounded-full bg-[#25282C] text-white cursor-pointer hover:text-black hover:bg-[#FFC800] duration-300"
+									className="w-8 h-8 flex items-center justify-center rounded-full bg-[#25282C] text-white cursor-pointer hover:text-black hover:bg-yellow-400 duration-300"
 									rel="noreferrer"
 								>
-									<Twitter />
+									<Twitter className={'w-4 h-4'} />
 								</a>
 								{/*<div*/}
-								{/*	className="w-8 h-8 flex items-center justify-center rounded-full bg-[#25282C] text-white cursor-pointer hover:text-black hover:bg-[#FFC800] duration-300">*/}
+								{/*	className="w-8 h-8 flex items-center justify-center rounded-full bg-[#25282C] text-white cursor-pointer hover:text-black hover:bg-yellow-400 duration-300">*/}
 								{/*	<Github/>*/}
 								{/*</div>*/}
 								{/*<div*/}
-								{/*	className="w-8 h-8 flex items-center justify-center rounded-full bg-[#25282C] text-white cursor-pointer hover:text-black hover:bg-[#FFC800] duration-300">*/}
+								{/*	className="w-8 h-8 flex items-center justify-center rounded-full bg-[#25282C] text-white cursor-pointer hover:text-black hover:bg-yellow-400 duration-300">*/}
 								{/*	<Facebook/>*/}
 								{/*</div>*/}
 								{/*<div*/}
-								{/*	className="w-8 h-8 flex items-center justify-center rounded-full bg-[#25282C] text-white cursor-pointer hover:text-black hover:bg-[#FFC800] duration-300">*/}
+								{/*	className="w-8 h-8 flex items-center justify-center rounded-full bg-[#25282C] text-white cursor-pointer hover:text-black hover:bg-yellow-400 duration-300">*/}
 								{/*	<Instagram/>*/}
 								{/*</div>*/}
 								<a
 									href={'https://t.me/betfin_official'}
 									target={'_blank'}
-									className="w-8 h-8 flex items-center justify-center rounded-full bg-[#25282C] text-white cursor-pointer hover:text-black hover:bg-[#FFC800] duration-300"
+									className="w-8 h-8 flex items-center justify-center rounded-full bg-[#25282C] text-white cursor-pointer hover:text-black hover:bg-yellow-400 duration-300"
 									rel="noreferrer"
 								>
 									<Send className={'w-4 h-4'} />
@@ -192,12 +192,12 @@ const Footer = () => {
 							</div>
 						</div>
 						<div className={'flex items-center justify-between gap-7 grow'}>
-							<div className={'text-[#CFD4DD] hover:text-[#FFC800] group cursor-pointer duration-300 flex items-center gap-2'}>
+							<div className={'text-[#CFD4DD] hover:text-yellow-400 group cursor-pointer duration-300 flex items-center gap-2'}>
 								<p>{t('support')}</p>
 								<Support />
 							</div>
 
-							<div className={'text-[#CFD4DD] hover:text-[#FFC800] group cursor-pointer duration-300 flex items-center gap-2'}>
+							<div className={'text-[#CFD4DD] hover:text-yellow-400 group cursor-pointer duration-300 flex items-center gap-2'}>
 								<Globe />
 								<p>EN</p>
 							</div>
@@ -220,13 +220,13 @@ export const FooterMenu = () => {
 				}
 			>
 				<p className={'text-[#D9E3EA] font-semibold'}>{t('betfinGames')}</p>
-				<Link to={getGamesUrl('predict')} className={'cursor-pointer hover:text-[#FFC800] duration-300'}>
+				<Link to={getGamesUrl('predict')} className={'cursor-pointer hover:text-yellow-400 duration-300'}>
 					{t('predict')}
 				</Link>
-				<Link to={getGamesUrl('roulette')} className={'cursor-pointer hover:text-[#FFC800] duration-300'}>
+				<Link to={getGamesUrl('roulette')} className={'cursor-pointer hover:text-yellow-400 duration-300'}>
 					{t('roulette')}
 				</Link>
-				<Link to={getGamesUrl('luro')} className={'cursor-pointer hover:text-[#FFC800] duration-300'}>
+				<Link to={getGamesUrl('luro')} className={'cursor-pointer hover:text-yellow-400 duration-300'}>
 					{t('luckyRound')}
 				</Link>
 			</div>
@@ -234,19 +234,19 @@ export const FooterMenu = () => {
 				className={'flex flex-col items-center sm:items-baseline gap-1 text-sm font-medium col-span-3 sm:col-span-1 justify-self-center md:justify-self-end'}
 			>
 				<p className={'text-[#D9E3EA] font-semibold'}>{t('rewardSystem')}</p>
-				<Link to={getStakingUrl('conservative')} className={'cursor-pointer hover:text-[#FFC800] duration-300'}>
+				<Link to={getStakingUrl('conservative')} className={'cursor-pointer hover:text-yellow-400 duration-300'}>
 					{t('conservativeStaking')}
 				</Link>
-				<Link to={getStakingUrl('dynamic')} className={'cursor-pointer hover:text-[#FFC800] duration-300'}>
+				<Link to={getStakingUrl('dynamic')} className={'cursor-pointer hover:text-yellow-400 duration-300'}>
 					{t('dynamicStaking')}
 				</Link>
-				<Link to={getAffiliateUrl('')} className={'cursor-pointer hover:text-[#FFC800] duration-300'}>
+				<Link to={getAffiliateUrl('')} className={'cursor-pointer hover:text-yellow-400 duration-300'}>
 					{t('affilateBinaryMatching')}
 				</Link>
 				<a
 					href={'https://betfin.gitbook.io/betfin-public/v/for-partners'}
 					target={'_blank'}
-					className={'cursor-pointer hover:text-[#FFC800] duration-300'}
+					className={'cursor-pointer hover:text-yellow-400 duration-300'}
 					rel="noreferrer"
 				>
 					{t('becomeAPartner')}
@@ -256,11 +256,11 @@ export const FooterMenu = () => {
 				className={'flex flex-col items-center sm:items-baseline gap-1 text-sm font-medium col-span-3 sm:col-span-1 justify-self-center md:justify-self-end'}
 			>
 				<p className={'text-[#D9E3EA] font-semibold'}>{t('aboutBetfin')}</p>
-				<p className={'hidden cursor-pointer hover:text-[#FFC800] duration-300'}>{t('termsAndConditions')}</p>
+				<p className={'hidden cursor-pointer hover:text-yellow-400 duration-300'}>{t('termsAndConditions')}</p>
 				<a
 					href={'https://betfin.gitbook.io/betfin-public/v/about-betfin-1/betfin-governance/betfin-contract-addresses'}
 					target={'_blank'}
-					className={'cursor-pointer hover:text-[#FFC800] duration-300'}
+					className={'cursor-pointer hover:text-yellow-400 duration-300'}
 					rel="noreferrer"
 				>
 					{t('officialContracts')}
@@ -268,12 +268,12 @@ export const FooterMenu = () => {
 				<a
 					href={'https://betfin.gitbook.io/betfin-public/v/about-betfin-1/audits-and-bug-bounty/certik-audit'}
 					target={'_blank'}
-					className={'cursor-pointer hover:text-[#FFC800] duration-300'}
+					className={'cursor-pointer hover:text-yellow-400 duration-300'}
 					rel="noreferrer"
 				>
 					{t('audits')}
 				</a>
-				<p className={' hidden cursor-pointer hover:text-[#FFC800] duration-300'}>{t('legalDisclaimers')}</p>
+				<p className={' hidden cursor-pointer hover:text-yellow-400 duration-300'}>{t('legalDisclaimers')}</p>
 			</div>
 		</div>
 	);
