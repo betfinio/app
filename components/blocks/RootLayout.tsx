@@ -1,7 +1,7 @@
 import { Toaster } from '@/components/ui/toaster.tsx';
 import { games, navigation, others } from '@/src/config/links';
 import cx from 'clsx';
-import { type FC, type PropsWithChildren, type ReactNode, useState } from 'react';
+import { type FC, type PropsWithChildren, useState } from 'react';
 import ConnectButton, { WalletBalance } from '../ui/ConnectButton';
 import Footer from './Footer';
 import Header from './Header';
@@ -12,10 +12,19 @@ interface RootLayoutProps {
 }
 
 const RootLayout: FC<PropsWithChildren<RootLayoutProps>> = ({ children, id }) => {
-	const [minimized, setMinimized] = useState<boolean>(false);
+	const [minimized, setMinimized] = useState<boolean>(localStorage.getItem('sidebar-minimized') === 'true');
+	const handleMinimize = (minimize: boolean | ((prev: boolean) => boolean)) => {
+		setMinimized((prev) => {
+			const newMinimize = typeof minimize === 'function' ? minimize(prev) : minimize;
+
+			localStorage.setItem('sidebar-minimized', newMinimize ? 'true' : 'false');
+
+			return newMinimize;
+		});
+	};
 	const getSidebar = (minimized?: boolean) => {
 		return (
-			<Sidebar links={[navigation, games, others]} minimized={minimized || false} toggleMinimized={setMinimized}>
+			<Sidebar links={[navigation, games, others]} minimized={minimized || false} toggleMinimized={handleMinimize}>
 				<WalletBalance className={'mt-2'} />
 			</Sidebar>
 		);
