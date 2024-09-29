@@ -46,3 +46,11 @@ export function hexToRgbA(hex: string) {
 	}
 	throw new Error('Bad Hex');
 }
+
+export const getVersion = () => {
+	try {
+		return import.meta.env.PUBLIC_VERSION;
+	} catch {
+		return 'local';
+	}
+};
