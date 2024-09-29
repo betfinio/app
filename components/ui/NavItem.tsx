@@ -40,18 +40,12 @@ const NavItem: FC<NavItemProps> = ({
 	const {
 		location: { pathname, href: url },
 	} = useRouterState();
-
 	const handleSoon = () => {
 		toast({ title: 'Coming soon' });
 	};
 	if (external) {
 		return (
-			<a
-				className={cx('flex flex-row items-center gap-5 text-white font-medium hover:text-yellow-400', className)}
-				href={href}
-				target={'_blank'}
-				rel="noreferrer"
-			>
+			<a className={cx('flex flex-row items-center gap-5 text-white hover:text-yellow-400', className)} href={href} target={'_blank'} rel="noreferrer">
 				{icon || <div className={'w-6'} />} {!minimized && label}
 			</a>
 		);
@@ -67,7 +61,7 @@ const NavItem: FC<NavItemProps> = ({
 				<div
 					onClick={handleSoon}
 					className={cx(
-						'flex flex-row relative items-center gap-5 w-full font-medium hover:text-yellow-400',
+						'flex flex-row relative items-center gap-5 w-full hover:text-yellow-400',
 						active && 'text-yellow-400',
 						className,
 						'opacity-50 cursor-not-allowed',
@@ -82,7 +76,7 @@ const NavItem: FC<NavItemProps> = ({
 						<TooltipTrigger>
 							<Link
 								onClick={onClick}
-								className={cx('flex flex-row items-center gap-5 font-medium hover:text-yellow-400', active && 'text-yellow-400', className)}
+								className={cx('flex flex-row items-center gap-5 hover:text-yellow-400', active && 'text-yellow-400', className)}
 								to={disabled ? '/soon' : href}
 							>
 								{icon || <div className={'w-6'} />} {!minimized && label}
@@ -93,7 +87,7 @@ const NavItem: FC<NavItemProps> = ({
 				</TooltipProvider>
 			)}
 
-			{(active || children?.length) &&
+			{active &&
 				children?.map((item, index) => (
 					<NavItem
 						key={index + item.href}

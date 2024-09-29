@@ -2,10 +2,9 @@ import type { NavItemProps } from '@/components/ui/NavItem';
 import { getAcademyUrl, getAffiliateUrl, getGamesUrl, getStakingUrl } from '@/lib';
 import { Affiliate, Bag, Bank, DepthAffiliate, DirectAffiliate, Predict, Roadmap, Roulette, Slots, Staking } from '@betfinio/ui/dist/icons';
 import { Binary } from '@betfinio/ui/dist/icons/Binary';
-import { Dice } from '@betfinio/ui/dist/icons/Dice';
 import { LuckyRound } from '@betfinio/ui/dist/icons/LuckyRound';
 import { Stones } from '@betfinio/ui/dist/icons/Stones';
-import { BookA, PaperclipIcon } from 'lucide-react';
+import { ArrowUpDown, BookA, ChartSpline, PaperclipIcon } from 'lucide-react';
 
 const navigation: NavItemProps[] = [
 	{
@@ -33,15 +32,15 @@ const games: NavItemProps[] = [
 	{ label: 'predict', icon: <Predict />, href: getGamesUrl('/predict'), disabled: false },
 	{ label: 'roulette', icon: <Roulette />, href: getGamesUrl('/roulette'), disabled: false },
 	{ label: 'luro', icon: <LuckyRound className={'w-6 h-6'} />, href: getGamesUrl('/luro'), disabled: false },
-	{ label: 'dice', icon: <Dice />, href: getGamesUrl('/dice') },
+	{ label: 'hilo', icon: <ArrowUpDown />, href: getGamesUrl('/hilo') },
 	{ label: 'binary', icon: <Binary />, href: getGamesUrl('/poker') },
 	{ label: 'slots', icon: <Slots />, href: getGamesUrl('/slots') },
 	{ label: 'stones', icon: <Stones />, href: getGamesUrl('/stones') },
 ];
 
 const others: NavItemProps[] = [
-	{ label: 'documentation', icon: <Roadmap />, external: true, href: 'https://betfin.gitbook.io/betfin-public' },
-	{ label: 'about', icon: <PaperclipIcon className={'w-6 h-6'} />, external: true, href: 'https://betfin.gitbook.io/betfin-public/v/about-betfin-1' },
+	{ label: 'documentation', icon: <Roadmap className={'w-6 h-6'} />, external: true, href: 'https://betfin.gitbook.io/betfin-public/v/about-betfin-1' },
+	{ label: 'stats', icon: <ChartSpline className={'w-6 h-6'} />, disabled: false, href: getStakingUrl('/statistics') },
 	{ label: 'academy', icon: <BookA className={'w-6 h-6'} />, disabled: false, href: getAcademyUrl('/advanced') },
 ];
 
