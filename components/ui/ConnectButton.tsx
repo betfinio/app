@@ -11,7 +11,7 @@ import { truncateEthAddress, valueToNumber } from '@betfinio/abi/dist';
 import { Bet, BetLogo } from '@betfinio/ui/dist/icons';
 import { useWeb3Modal } from '@web3modal/wagmi/react';
 import { cx } from 'class-variance-authority';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ArrowLeftRight, Loader, LogOut, Unplug, UserPen } from 'lucide-react';
 import { type FC, type MouseEvent, forwardRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -85,41 +85,41 @@ const AccountBlock = forwardRef<HTMLDivElement, any>((props, forwardedRef) => {
 	if (!address) return <div {...props} ref={forwardedRef} />;
 
 	return (
-		<AnimatePresence mode={'wait'}>
+		<motion.div
+			key={'connect-button'}
+			className={cx('h-[50px] whitespace-nowrap min-w-[100px] cursor-pointer rounded-lg px-4 rounded-b-none flex flex-row items-center justify-between gap-2', {
+				'bg-gray-800 animate-in w-[240px]': isOpen,
+			})}
+			{...props}
+			ref={forwardedRef}
+		>
+			{!isOpen && <UserPen className={'text-yellow-400 ml-3'} onClick={handleOpenProfile} />}
+			<div className={'border-2 aspect-square rounded-full '} style={{ borderColor: addressToColor(address || ZeroAddress) }}>
+				<BetLogo className={'w-8 h-8 rounded-full p-1 bg-primaryLighter'} />
+			</div>
+			<div className={'flex flex-col'}>
+				<div className={'text-sm text-gray-400'}>{truncateEthAddress(address)}</div>
+				{isMember ? (
+					<div className={'text-base w-[100px] overflow-x-hidden text-ellipsis'} style={{ color: addressToColor(address || ZeroAddress) }}>
+						{username}
+					</div>
+				) : isLoading ? null : (
+					<Badge onClick={handleNotMember} variant={'destructive'}>
+						Not a member
+					</Badge>
+				)}
+			</div>
 			<motion.div
-				className={cx('h-[50px] whitespace-nowrap min-w-[100px] cursor-pointer rounded-lg rounded-b-0 px-4 flex flex-row items-center justify-between gap-2', {
-					'bg-gray-800 animate-in w-[240px]': isOpen,
-				})}
-				{...props}
-				ref={forwardedRef}
+				key={'expand'}
+				className={'flex flex-row items-center justify-center gap-2'}
+				initial={{ opacity: 0 }}
+				transition={{ duration: 0.1 }}
+				animate={{ opacity: isOpen ? 1 : 0, width: isOpen ? 'auto' : '0' }}
 			>
-				{!isOpen && <UserPen className={'text-yellow-400 ml-3'} onClick={handleOpenProfile} />}
-				<div className={'border-2 aspect-square rounded-full '} style={{ borderColor: addressToColor(address || ZeroAddress) }}>
-					<BetLogo className={'w-8 h-8 rounded-full p-1 bg-primaryLighter'} />
-				</div>
-				<div className={'flex flex-col'}>
-					<div className={'text-sm text-gray-400'}>{truncateEthAddress(address)}</div>
-					{isMember ? (
-						<div className={'text-base w-[100px] overflow-x-hidden text-ellipsis'} style={{ color: addressToColor(address || ZeroAddress) }}>
-							{username}
-						</div>
-					) : isLoading ? null : (
-						<Badge onClick={handleNotMember} variant={'destructive'}>
-							Not a member
-						</Badge>
-					)}
-				</div>
-				<motion.div
-					className={'flex flex-row items-center justify-center gap-2'}
-					initial={{ opacity: 0 }}
-					transition={{ duration: 0.1 }}
-					animate={{ opacity: isOpen ? 1 : 0, width: isOpen ? 'auto' : '0' }}
-				>
-					<UserPen className={'text-yellow-400'} onClick={handleOpenProfile} />
-					<LogOut className={'text-red-roulette'} onClick={handleOpenModal} />
-				</motion.div>
+				<UserPen key={'edit'} className={'text-yellow-400'} onClick={handleOpenProfile} />
+				<LogOut key={'logout'} className={'text-red-roulette'} onClick={handleOpenModal} />
 			</motion.div>
-		</AnimatePresence>
+		</motion.div>
 	);
 });
 
@@ -183,7 +183,7 @@ export const WalletBalance: FC<{ className?: string }> = ({ className = '' }) =>
 					rel="noreferrer"
 				>
 					<Button variant={'outline'} className={'w-full gap-1 border-yellow-400 hover:bg-yellow-400/10'}>
-						<Bet className={'w-4 h-4'} /> Buy
+						<Bet className={'w-4 h-4 text-yellow-400'} /> Buy
 					</Button>
 				</a>
 			</div>

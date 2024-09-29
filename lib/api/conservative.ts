@@ -42,3 +42,13 @@ export const fetchTotalStaked = async (config: Config, block?: bigint): Promise<
 		blockNumber: block || undefined,
 	})) as bigint;
 };
+
+export const fetchStaked = async (config: Config, address: Address, block?: bigint): Promise<bigint> => {
+	return (await readContract(config, {
+		abi: ConservativeStakingContract.abi,
+		address: import.meta.env.PUBLIC_CONSERVATIVE_STAKING_ADDRESS as Address,
+		functionName: 'getStaked',
+		args: [address],
+		blockNumber: block || undefined,
+	})) as bigint;
+};
