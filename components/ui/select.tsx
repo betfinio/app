@@ -11,9 +11,9 @@ const SelectGroup = SelectPrimitive.Group;
 const SelectValue = SelectPrimitive.Value;
 
 const SelectTrigger = React.forwardRef<
-	React.ElementRef<typeof SelectPrimitive.Trigger & { minimized: boolean }>,
-	React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger & { minimized: boolean }>
->(({ className, minimized, children, ...props }, ref) => (
+	React.ElementRef<typeof SelectPrimitive.Trigger>,
+	React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger> & { minimized?: boolean }
+>(({ className, minimized = false, children, ...props }, ref) => (
 	<SelectPrimitive.Trigger
 		ref={ref}
 		className={cn(
