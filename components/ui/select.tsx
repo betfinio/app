@@ -10,23 +10,27 @@ const SelectGroup = SelectPrimitive.Group;
 
 const SelectValue = SelectPrimitive.Value;
 
-const SelectTrigger = React.forwardRef<React.ElementRef<typeof SelectPrimitive.Trigger>, React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>>(
-	({ className, children, ...props }, ref) => (
-		<SelectPrimitive.Trigger
-			ref={ref}
-			className={cn(
-				'flex h-8 w-full items-center justify-between rounded-md border border-gray-800 bg-primaryLighter px-3 py-2 text-sm  placeholder:text-muted-foreground focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1',
-				className,
-			)}
-			{...props}
-		>
-			{children}
+const SelectTrigger = React.forwardRef<
+	React.ElementRef<typeof SelectPrimitive.Trigger & { minimized: boolean }>,
+	React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger & { minimized: boolean }>
+>(({ className, minimized, children, ...props }, ref) => (
+	<SelectPrimitive.Trigger
+		ref={ref}
+		className={cn(
+			'flex h-8 w-full items-center justify-between rounded-md border border-gray-800 bg-primaryLighter px-3 py-2 text-sm  placeholder:text-muted-foreground focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1',
+			minimized && '!px-0 !py-0 !border-0',
+			className,
+		)}
+		{...props}
+	>
+		{children}
+		{!minimized && (
 			<SelectPrimitive.Icon asChild>
 				<ChevronDown className="h-4 w-4 opacity-50" />
 			</SelectPrimitive.Icon>
-		</SelectPrimitive.Trigger>
-	),
-);
+		)}
+	</SelectPrimitive.Trigger>
+));
 SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
 
 const SelectScrollUpButton = React.forwardRef<
