@@ -7,10 +7,13 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { Outlet, type RootRoute, createRootRoute } from '@tanstack/react-router';
 import type { i18n } from 'i18next';
 import { type FC, useEffect } from 'react';
+import ReactGA from 'react-ga4';
 import { I18nextProvider } from 'react-i18next';
 import { WagmiProvider } from 'wagmi';
 import queryClient from '../config/query.ts';
 import config, { archiveClient } from '../config/wagmi.ts';
+
+ReactGA.initialize(import.meta.env.PUBLIC_GTAG);
 
 export const Root: FC<{ instance: i18n; id: string }> = ({ instance, id }) => {
 	useEffect(() => {
