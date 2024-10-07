@@ -1,6 +1,6 @@
 {
 	"balance": "Dostupné:",
-	"allowance": "Zůstatek peněženky:",
+	"allowance": "Zůstatek:",
 	"allowanceModal": {
 		"type": {
 			"stake": "Stake",
@@ -83,7 +83,7 @@
 		"tables": {
 			"allBets": "Všechny sázky",
 			"myBets": "Moje sázky",
-			"allStakes": "Všechny stakey",
+			"allStakes": "Všechny staky",
 			"transaction": "Transakce",
 			"player": "Hráč",
 			"amount": "Částka"
@@ -101,7 +101,7 @@
 					"subtitle": "(ze Sharebet)",
 					"totalLabel": "Celkem stakováno",
 					"paLabel": "Příjem",
-					"buttonLabel": "Stakeovat nyní"
+					"buttonLabel": "Stake"
 				}
 			},
 			"dynamic": {
@@ -114,7 +114,7 @@
 					"total": "{total} BET",
 					"totalLabel": "Celkem stakováno",
 					"paLabel": "Příjem",
-					"buttonLabel": "Stakeovat nyní"
+					"buttonLabel": "Stake"
 				}
 			}
 		}
