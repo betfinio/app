@@ -5,6 +5,7 @@ import client from '@/src/config/supabase.ts';
 import instance from '@/src/i18n.ts';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { Outlet, type RootRoute, createRootRoute } from '@tanstack/react-router';
+import { motion } from 'framer-motion';
 import type { i18n } from 'i18next';
 import { type FC, useEffect } from 'react';
 import ReactGA from 'react-ga4';
@@ -21,12 +22,23 @@ export const Root: FC<{ instance: i18n; id: string }> = ({ instance, id }) => {
 			instance.changeLanguage('cz');
 		}
 	}, []);
+	const isProd = import.meta.env.PUBLIC_ENVIRONMENT === 'production';
 	return (
 		<WagmiProvider config={config}>
 			<QueryClientProvider client={queryClient}>
 				<SupabaseProvider client={client} archiveClient={archiveClient}>
 					<I18nextProvider i18n={instance}>
 						<AllowanceProvider>
+							<div className={'w-full bg-red-roulette text-white'}>
+								<motion.div
+									initial={{ x: '-300px' }}
+									animate={{ x: '100%' }}
+									transition={{ duration: 10, ease: 'linear', repeat: Number.POSITIVE_INFINITY }}
+									className={''}
+								>
+									This is a test version of BETFIN
+								</motion.div>
+							</div>
 							<RootLayout id={id}>
 								<Outlet />
 							</RootLayout>
