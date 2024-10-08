@@ -1,5 +1,4 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
-import { type Config, getBlock } from '@wagmi/core';
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import type { Address } from 'viem';
@@ -13,10 +12,6 @@ export async function getBlockByTimestamp(timestamp: number, supabase: SupabaseC
 	return result?.data ? BigInt(result.data) : 0n;
 }
 
-export async function getTimeByBlock(block: bigint, config: Config): Promise<number> {
-	const data = await getBlock(config, { blockNumber: block });
-	return Number(data.timestamp);
-}
 export const addressToColor = (walletAddress: Address) => {
 	if (!walletAddress) return '#ffffff';
 	const walletHash = walletAddress.substring(2);
@@ -34,23 +29,12 @@ export const addressToColor = (walletAddress: Address) => {
 	return `#${result}`;
 };
 
-export function hexToRgbA(hex: string) {
-	let c: string | string[];
-	if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
-		c = hex.substring(1).split('');
-		if (c.length === 3) {
-			c = [c[0], c[0], c[1], c[1], c[2], c[2]];
-		}
-		c = `0x${c.join('')}`;
-		return `rgba(${[(Number.parseInt(c, 16) >> 16) & 255, (Number.parseInt(c, 16) >> 8) & 255, Number.parseInt(c, 16) & 255].join(',')},1)`;
-	}
-	throw new Error('Bad Hex');
-}
+export const isItemVisible = (item: number): boolean => {
+	const SIDEBAR = BigInt(import.meta.env.PUBLIC_SIDEBAR || '0') || 0n;
 
-export const getVersion = () => {
-	try {
-		return import.meta.env.PUBLIC_VERSION;
-	} catch {
-		return 'local';
-	}
+	if (SIDEBAR === 0n || item === 0) return true;
+
+	const itemBigInt = BigInt(item);
+
+	return (SIDEBAR & itemBigInt) !== 0n;
 };

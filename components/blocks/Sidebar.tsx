@@ -55,6 +55,8 @@ const Sidebar: FC<ISidebarProps> = ({ children, links, minimized, toggleMinimize
 					<NavGroup key={index} links={items} minimized={minimized} />
 				))}
 				<NavItem
+					keyIndex={0}
+					key={'support'}
 					minimized={minimized}
 					label={t('support')}
 					href={''}
