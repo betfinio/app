@@ -1,5 +1,6 @@
 import { Badge } from '@/components/ui/badge.tsx';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip.tsx';
+import { isItemVisible } from '@/lib/utils.ts';
 import type { ILanguageKeys } from '@/src/i18next';
 import { Link, useRouterState } from '@tanstack/react-router';
 import { cx } from 'class-variance-authority';
@@ -13,6 +14,7 @@ export interface NavItemProps {
 	icon?: ReactNode;
 	label: string;
 	href: string;
+	keyIndex: number;
 	soon?: boolean;
 	active?: boolean;
 	children?: NavItemProps[];
@@ -90,9 +92,10 @@ const NavItem: FC<NavItemProps> = ({
 			{active &&
 				children?.map((item, index) => (
 					<NavItem
-						key={index + item.href}
-						minimized={minimized}
+						key={item.keyIndex}
 						{...item}
+						keyIndex={item.keyIndex}
+						minimized={minimized}
 						className={cx(!minimized && 'pl-6 !gap-3')}
 						label={t(`sidebar.${item.label as keyof ILanguageKeys['sidebar']}`)}
 						active={isActive(item.href)}
