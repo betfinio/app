@@ -4,6 +4,7 @@ import * as React from 'react';
 import { Button } from '@/components/ui/button.tsx';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select.tsx';
 import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-react';
 
 const Table = React.forwardRef<HTMLTableElement, React.HTMLAttributes<HTMLTableElement>>(({ className, ...props }, ref) => (
@@ -53,8 +54,16 @@ interface DataTablePaginationProps<TData> {
 }
 
 function DataTablePagination<TData>({ table }: DataTablePaginationProps<TData>) {
+	if (table.getFilteredRowModel().rows.length === 0) {
+		return <div className={'h-12 mt-2'} />;
+	}
 	return (
-		<div className="flex items-center justify-between py-2 mt-2">
+		<motion.div
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			transition={{ duration: 0.5, ease: 'easeInOut' }}
+			className="flex items-center justify-between py-2 mt-2"
+		>
 			<div className="flex-1 text-xs text-muted-foreground">{table.getFilteredRowModel().rows.length} result(s).</div>
 			<div className="flex items-center space-x-1 lg:space-x-4">
 				<div className="flex items-center space-x-1">
@@ -104,7 +113,7 @@ function DataTablePagination<TData>({ table }: DataTablePaginationProps<TData>) 
 					</Button>
 				</div>
 			</div>
-		</div>
+		</motion.div>
 	);
 }
 
