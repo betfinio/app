@@ -52,6 +52,10 @@ module.exports = {
 					DEFAULT: 'hsl(var(--accent))',
 					foreground: 'hsl(var(--accent-foreground))',
 				},
+				'accent-secondary': {
+					DEFAULT: 'hsl(var(--accent-secondary))',
+					foreground: 'hsl(var(--accent-secondary-foreground))',
+				},
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',
 					foreground: 'hsl(var(--popover-foreground))',
@@ -71,6 +75,9 @@ module.exports = {
 				success: {
 					DEFAULT: 'hsl(var(--success))',
 					foreground: 'hsl(var(--success-foreground))',
+				},
+				'red-roulette': {
+					DEFAULT: 'hsl(var(--red-roulette))',
 				},
 			},
 			borderRadius: {

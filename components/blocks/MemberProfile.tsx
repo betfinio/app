@@ -379,7 +379,7 @@ const UsernameEdit: FC<{
 		if (RegExp(/^[a-zA-Z0-9_]{3,32}$/).test(username)) {
 			setUsernameError('');
 		} else {
-			setUsernameError(`${t('alowedSymbols')} a-z, A-Z, 0-9, _`);
+			setUsernameError(`${t('allowedSymbols')} a-z, A-Z, 0-9, _`);
 		}
 		setUsername(username);
 	};

@@ -195,7 +195,7 @@
 		"theValueRepresentsDirect": "This value represents <span>100% of all bets</span> <br /> of your<span> direct</span> affiliates",
 		"theValueRepresentsBinary": "This value represents <span>1% of all bets</span> <br /> in your <span >binary</span> affiliate system",
 		"inviteLink": "Invite link",
-		"alowedSymbols": "At least 3 symbols. Allowed:",
+		"allowedSymbols": "At least 3 symbols. Allowed:",
 		"left": "Left",
 		"right": "Right",
 		"edit": "Edit",
