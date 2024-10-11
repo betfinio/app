@@ -1,8 +1,6 @@
 import type { i18n } from 'i18next';
 import * as i18 from 'i18next';
-import I18nextBrowserLanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
-import { localhost } from 'viem/chains';
 import czJSON from './translations/cz/shared.json';
 import enJSON from './translations/en/shared.json';
 import ruJSON from './translations/ru/shared.json';
