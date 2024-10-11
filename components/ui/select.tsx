@@ -3,6 +3,7 @@ import { Check, ChevronDown, ChevronUp } from 'lucide-react';
 import * as React from 'react';
 
 import { cn } from '@/lib/utils';
+import { SelectProps } from '@radix-ui/react-select';
 
 const Select = SelectPrimitive.Root;
 
@@ -10,20 +11,26 @@ const SelectGroup = SelectPrimitive.Group;
 
 const SelectValue = SelectPrimitive.Value;
 
-const SelectTrigger = React.forwardRef<React.ElementRef<typeof SelectPrimitive.Trigger>, React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>>(
-	({ className, children, ...props }, ref) => (
+interface SelectTriggerProps extends React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger> {
+	minimized?: boolean;
+}
+const SelectTrigger = React.forwardRef<React.ElementRef<typeof SelectPrimitive.Trigger>, SelectTriggerProps>(
+	({ className, minimized = false, children, ...props }, ref) => (
 		<SelectPrimitive.Trigger
 			ref={ref}
 			className={cn(
 				'flex h-8 w-full items-center justify-between rounded-md border border-gray-800 bg-primaryLighter px-3 py-2 text-sm  placeholder:text-muted-foreground focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1',
+				minimized && '!px-0 !py-0 !border-0',
 				className,
 			)}
 			{...props}
 		>
 			{children}
-			<SelectPrimitive.Icon asChild>
-				<ChevronDown className="h-4 w-4 opacity-50" />
-			</SelectPrimitive.Icon>
+			{!minimized && (
+				<SelectPrimitive.Icon asChild>
+					<ChevronDown className="h-4 w-4 opacity-50" />
+				</SelectPrimitive.Icon>
+			)}
 		</SelectPrimitive.Trigger>
 	),
 );

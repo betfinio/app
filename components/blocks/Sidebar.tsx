@@ -56,6 +56,8 @@ const Sidebar: FC<ISidebarProps> = ({ children, links, minimized, toggleMinimize
 					<NavGroup key={index} links={items} minimized={minimized} />
 				))}
 				<NavItem
+					keyIndex={0}
+					key={'support'}
 					minimized={minimized}
 					label={t('support')}
 					href={''}
@@ -64,11 +66,11 @@ const Sidebar: FC<ISidebarProps> = ({ children, links, minimized, toggleMinimize
 					disabled={false}
 					onClick={handleSupport}
 				/>
-				<Select defaultValue={i18n.language} onValueChange={handleLanguageChange}>
-					<SelectTrigger className="w-full min-w-[210px] mt-2 ">
+				<Select defaultValue={i18n.language?.split('-')?.[0] ?? 'en'} onValueChange={handleLanguageChange}>
+					<SelectTrigger minimized={minimized} className="w-full mt-2 ">
 						<div className={'flex flex-row items-center justify-start gap-2'}>
-							<Globe className={'w-4 h-4'} />
-							<SelectValue placeholder={t('language')} />
+							<Globe className={cx('w-4 h-4', minimized && 'w-6 h-6')} />
+							{!minimized && <SelectValue placeholder={t('language')} />}
 						</div>
 					</SelectTrigger>
 					<SelectContent>
