@@ -1,29 +1,27 @@
+import { getBetsDifference } from '@/lib/api/shared.ts';
 import type { Options } from '@/lib/types';
 import { getBlockByTimestamp } from '@/lib/utils.ts';
 import supabase from '@/src/config/supabase.ts';
-import { BetsMemoryContract } from '@betfinio/abi';
+import { GameContract } from '@betfinio/abi';
 import { readContract } from '@wagmi/core';
 import type { Address } from 'viem';
 
-const BETS_MEMORY_ADDRESS: Address = import.meta.env.PUBLIC_BETS_MEMORY_ADDRESS;
-
 const PREDICT_ADDRESS: Address = import.meta.env.PUBLIC_PREDICT_ADDRESS;
+const PREDICT_GAME_ADDRESS: Address = import.meta.env.PUBLIC_BTCUSDT_GAME_ADDRESS;
 
 export async function fetchPredictOnline(options: Options): Promise<number> {
 	if (!options.config || !options.supabase) return 0;
-	const beforeBlock = await getBlockByTimestamp(Math.floor(Date.now() / 1000) - 270 * 4, supabase);
-	const betsCount = (await readContract(options.config, {
-		abi: BetsMemoryContract.abi,
-		address: BETS_MEMORY_ADDRESS,
-		functionName: 'getGamesBetsCount',
-		args: [PREDICT_ADDRESS],
-	})) as bigint;
-	const beforeBetsCount = (await readContract(options.config, {
-		abi: BetsMemoryContract.abi,
-		address: BETS_MEMORY_ADDRESS,
-		functionName: 'getGamesBetsCount',
-		args: [PREDICT_ADDRESS],
-		blockNumber: beforeBlock,
-	})) as bigint;
-	return Number(betsCount) - Number(beforeBetsCount);
+	const currentRoundBets = (await readContract(options.config, {
+		abi: GameContract.abi,
+		address: PREDICT_GAME_ADDRESS,
+		functionName: 'getRoundBets',
+		args: [0n],
+	})) as unknown[];
+	return Number(currentRoundBets[0]);
+}
+
+export async function fetchPredictLast24h(options: Options): Promise<number> {
+	if (!options.config || !options.supabase) return 0;
+	const beforeBlock = await getBlockByTimestamp(Math.floor(Date.now() / 1000) - 60 * 60 * 24, supabase);
+	return await getBetsDifference(options.config, beforeBlock, PREDICT_ADDRESS);
 }

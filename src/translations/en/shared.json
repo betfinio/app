@@ -169,7 +169,8 @@
 	},
 	"gameBlock": {
 		"soon": "Soon",
-		"activeBets": "active bets"
+		"activeBets": "active bets",
+		"historicalBets": "last 24h bets"
 	},
 	"member": {
 		"memberProfile": "Member profile",

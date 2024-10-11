@@ -1,9 +1,11 @@
 import type { BetInterface, Options, Stake } from '@/lib/types';
 import { BetInterfaceContract, BetsMemoryContract, ConservativeStakingContract, DynamicStakingContract } from '@betfinio/abi';
 import type { SupabaseClient } from '@supabase/supabase-js';
-import { getBlock, readContract } from '@wagmi/core';
+import { type Config, getBlock, readContract } from '@wagmi/core';
 import type { Address } from 'viem';
 import { getContractEvents } from 'viem/actions';
+
+const BETS_MEMORY_ADDRESS: Address = import.meta.env.PUBLIC_BETS_MEMORY_ADDRESS;
 
 export const fetchLastBets = async (count: number, address: Address, options: Options) => {
 	if (!options.config) return [];
@@ -110,4 +112,21 @@ export const fetchMemberSide = async (parent: Address, member: Address, supabase
 		return result[0].side === 2 ? 'right' : result[0].side === 1 ? 'left' : null;
 	}
 	return null;
+};
+
+export const getBetsDifference = async (config: Config, beforeBlock: bigint, gameAddress: Address): Promise<number> => {
+	const betsCount = (await readContract(config, {
+		abi: BetsMemoryContract.abi,
+		address: BETS_MEMORY_ADDRESS,
+		functionName: 'getGamesBetsCount',
+		args: [gameAddress],
+	})) as bigint;
+	const beforeBetsCount = (await readContract(config, {
+		abi: BetsMemoryContract.abi,
+		address: BETS_MEMORY_ADDRESS,
+		functionName: 'getGamesBetsCount',
+		args: [gameAddress],
+		blockNumber: beforeBlock,
+	})) as bigint;
+	return Number(betsCount) - Number(beforeBetsCount);
 };
