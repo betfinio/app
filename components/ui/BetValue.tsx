@@ -1,4 +1,4 @@
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip.tsx';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/mobileTooltip.tsx';
 import { valueToNumber } from '@betfinio/abi';
 import { Bet } from '@betfinio/ui/dist/icons';
 import cx from 'clsx';

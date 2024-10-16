@@ -53,7 +53,7 @@ const ConnectButton = () => {
 			<PopoverTrigger asChild>
 				<AccountBlock />
 			</PopoverTrigger>
-			<PopoverContent className={'-mt-1 w-[240px] rounded-t-none'}>
+			<PopoverContent className={'-mt-1 w-[240px] rounded-t-none text-white bg-gray-800'}>
 				<WalletBalance />
 			</PopoverContent>
 		</Popover>
