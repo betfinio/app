@@ -4,7 +4,9 @@ import * as React from 'react';
 import { Button } from '@/components/ui/button.tsx';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select.tsx';
 import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const Table = React.forwardRef<HTMLTableElement, React.HTMLAttributes<HTMLTableElement>>(({ className, ...props }, ref) => (
 	<div className="relative w-full overflow-auto">
@@ -53,12 +55,24 @@ interface DataTablePaginationProps<TData> {
 }
 
 function DataTablePagination<TData>({ table }: DataTablePaginationProps<TData>) {
+	const { t } = useTranslation('shared', { keyPrefix: 'tables' });
+
+	if (table.getFilteredRowModel().rows.length === 0) {
+		return <div className={'h-12 mt-2'} />;
+	}
 	return (
-		<div className="flex items-center justify-between py-2 mt-2">
-			<div className="flex-1 text-xs text-muted-foreground">{table.getFilteredRowModel().rows.length} result(s).</div>
+		<motion.div
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			transition={{ duration: 0.5, ease: 'easeInOut' }}
+			className="flex items-center justify-between py-2 mt-2"
+		>
+			<div className="flex-1 text-xs text-muted-foreground">
+				{table.getFilteredRowModel().rows.length} {t('results')}.
+			</div>
 			<div className="flex items-center space-x-1 lg:space-x-4">
 				<div className="flex items-center space-x-1">
-					<p className="text-xs font-medium">Results per page</p>
+					<p className="text-xs font-medium">{t('resultsPerPage')}</p>
 					<Select
 						value={`${table.getState().pagination.pageSize}`}
 						onValueChange={(value) => {
@@ -78,19 +92,21 @@ function DataTablePagination<TData>({ table }: DataTablePaginationProps<TData>) 
 					</Select>
 				</div>
 				<div className="flex items-center justify-center text-xs font-medium">
-					Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
+					<span className={'capitalize pr-1'}>{t('page')}</span> {table.getState().pagination.pageIndex + 1}
+					<span className={'px-1'}>{t('of')}</span>
+					{table.getPageCount()}
 				</div>
 				<div className="flex items-center space-x-2">
 					<Button variant="outline" className="hidden h-8 w-8 p-0 lg:flex" onClick={() => table.setPageIndex(0)} disabled={!table.getCanPreviousPage()}>
-						<span className="sr-only">Go to first page</span>
+						<span className="sr-only">{t('goTo.first')}</span>
 						<ChevronsLeft className="h-4 w-4" />
 					</Button>
 					<Button variant="outline" className="h-8 w-8 p-0" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
-						<span className="sr-only">Go to previous page</span>
+						<span className="sr-only">{t('goTo.previous')}</span>
 						<ChevronLeft className="h-4 w-4" />
 					</Button>
 					<Button variant="outline" className="h-8 w-8 p-0" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
-						<span className="sr-only">Go to next page</span>
+						<span className="sr-only">{t('goTo.next')}</span>
 						<ChevronRight className="h-4 w-4" />
 					</Button>
 					<Button
@@ -99,12 +115,12 @@ function DataTablePagination<TData>({ table }: DataTablePaginationProps<TData>) 
 						onClick={() => table.setPageIndex(table.getPageCount() - 1)}
 						disabled={!table.getCanNextPage()}
 					>
-						<span className="sr-only">Go to last page</span>
+						<span className="sr-only">{t('goTo.last')}</span>
 						<ChevronsRight className="h-4 w-4" />
 					</Button>
 				</div>
 			</div>
-		</div>
+		</motion.div>
 	);
 }
 

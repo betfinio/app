@@ -34,7 +34,7 @@ const RootLayout: FC<PropsWithChildren<RootLayoutProps>> = ({ children, id }) =>
 			{minimized && <div className="hidden lg:block ">{getSidebar(minimized)}</div>}
 			<div className="flex flex-col w-full">
 				<div className={'flex flex-nowrap max-w-[100vw]  min-h-[100vh] overflow-x-hidden '}>
-					{!minimized && <section className={'hidden lg:block lg:max-w-[250px] min-h-[100vh]'}>{getSidebar(minimized)}</section>}
+					{!minimized && <section className={'hidden lg:block lg:max-w-[250px] min-h-[100vh] mb-10'}>{getSidebar(minimized)}</section>}
 					<div className={cx('flex flex-col flex-grow max-w-[100vw] overflow-x-hidden', id)}>
 						<Header sidebar={getSidebar(false)}>
 							<ConnectButton />
