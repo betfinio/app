@@ -1,7 +1,6 @@
 import { getBetsDifference } from '@/lib/api/shared.ts';
 import { getBlockByTimestamp } from '@/lib/gql';
 import type { Options } from '@/lib/types';
-import supabase from '@/src/config/supabase.ts';
 import { GameContract } from '@betfinio/abi';
 import { readContract } from '@wagmi/core';
 import type { Address } from 'viem';
@@ -22,6 +21,6 @@ export async function fetchPredictOnline(options: Options): Promise<number> {
 
 export async function fetchPredictLast24h(options: Options): Promise<number> {
 	if (!options.config || !options.supabase) return 0;
-	const beforeBlock = await getBlockByTimestamp(Math.floor(Date.now() / 1000) - 60 * 60 * 24, supabase);
+	const beforeBlock = await getBlockByTimestamp(Math.floor(Date.now() / 1000) - 60 * 60 * 24);
 	return await getBetsDifference(options.config, beforeBlock, PREDICT_ADDRESS);
 }

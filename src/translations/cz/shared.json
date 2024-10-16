@@ -18,6 +18,16 @@
 			"transaction": "Transakce",
 			"staker": "Staker",
 			"amount": "Částka"
+		},
+		"results": "vysledku",
+		"resultsPerPage": "Výsledků na stránku",
+		"page": "stránka",
+		"of": "z",
+		"goTo": {
+			"first": "Jít na první stránku",
+			"previous": "Jít na předchozí stránku",
+			"last": "Jít na poslední stránku",
+			"next": "Jít na další stránku"
 		}
 	},
 	"footer": {
