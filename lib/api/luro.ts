@@ -1,6 +1,6 @@
 import { getBetsDifference } from '@/lib/api/shared.ts';
+import { getBlockByTimestamp } from '@/lib/gql/';
 import type { Options } from '@/lib/types';
-import { getBlockByTimestamp } from '@/lib/utils.ts';
 import supabase from '@/src/config/supabase.ts';
 import { LuckyRoundContract } from '@betfinio/abi';
 import { type Config, readContract } from '@wagmi/core';
@@ -17,7 +17,8 @@ export async function fetchLuroOnline(options: Options): Promise<number> {
 
 export async function fetchLuroLast24h(options: Options): Promise<number> {
 	if (!options.config || !options.supabase) return 0;
-	const beforeBlock = await getBlockByTimestamp(Math.floor(Date.now() / 1000) - 60 * 60 * 24, supabase);
+	const beforeBlock = await getBlockByTimestamp(Math.floor(Date.now() / 1000) - 60 * 60 * 24);
+
 	const difference1d = await getBetsDifference(options.config, beforeBlock, LURO_ADDRESS);
 	const difference5m = await getBetsDifference(options.config, beforeBlock, LURO_5MIN_ADDRESS);
 

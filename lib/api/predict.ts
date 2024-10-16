@@ -1,6 +1,6 @@
 import { getBetsDifference } from '@/lib/api/shared.ts';
+import { getBlockByTimestamp } from '@/lib/gql';
 import type { Options } from '@/lib/types';
-import { getBlockByTimestamp } from '@/lib/utils.ts';
 import supabase from '@/src/config/supabase.ts';
 import { GameContract } from '@betfinio/abi';
 import { readContract } from '@wagmi/core';

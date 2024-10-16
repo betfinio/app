@@ -4,3 +4,9 @@ query GetMember($member: Bytes) {
 		blockTimestamp
 	}
 }
+
+query BlockByTimestamp($timestamp: BigInt) {
+	blocks(where: { timestamp_lte: $timestamp }, orderBy: timestamp, orderDirection: desc, first: 1) {
+		number
+	}
+}
