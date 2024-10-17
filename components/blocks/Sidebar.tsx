@@ -3,7 +3,6 @@ import NavItem, { type NavItemProps } from '@/components/ui/NavItem.tsx';
 import Logo from '@/components/ui/logo.tsx';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select.tsx';
 import { getAppUrl } from '@/lib';
-import { changeLanguage } from '@/src/i18n.ts';
 import Support from '@betfinio/ui/dist/icons/Support';
 import cx from 'clsx';
 import { Globe, PanelLeftClose, PanelRightClose } from 'lucide-react';
@@ -26,7 +25,8 @@ const Sidebar: FC<ISidebarProps> = ({ children, links, minimized, toggleMinimize
 	};
 
 	const handleLanguageChange = async (lang: string) => {
-		changeLanguage(lang);
+		await i18n.changeLanguage(lang);
+		localStorage.setItem('i18nextLng', lang);
 	};
 
 	return (
