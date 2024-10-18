@@ -34,6 +34,7 @@ instance
 			order: ['localStorage', 'navigator'],
 			convertDetectedLanguage: (lng) => lng.split('-')[0],
 		},
+		supportedLngs: ['en', 'ru', 'cs'],
 		fallbackLng: defaultLocale,
 		defaultNS,
 		interpolation: { escapeValue: false },
