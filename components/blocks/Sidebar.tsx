@@ -3,7 +3,6 @@ import NavItem, { type NavItemProps } from '@/components/ui/NavItem.tsx';
 import Logo from '@/components/ui/logo.tsx';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select.tsx';
 import { getAppUrl } from '@/lib';
-import { changeLanguage } from '@/src/i18n.ts';
 import Support from '@betfinio/ui/dist/icons/Support';
 import cx from 'clsx';
 import { Globe, PanelLeftClose, PanelRightClose } from 'lucide-react';
@@ -17,7 +16,6 @@ interface ISidebarProps extends PropsWithChildren {
 }
 const Sidebar: FC<ISidebarProps> = ({ children, links, minimized, toggleMinimized }) => {
 	const { t, i18n } = useTranslation('shared', { keyPrefix: 'sidebar' });
-
 	const toggleSidebar = () => {
 		toggleMinimized((p) => !p);
 	};
@@ -26,7 +24,7 @@ const Sidebar: FC<ISidebarProps> = ({ children, links, minimized, toggleMinimize
 	};
 
 	const handleLanguageChange = async (lang: string) => {
-		changeLanguage(lang);
+		await i18n.changeLanguage(lang);
 	};
 
 	return (
@@ -66,7 +64,7 @@ const Sidebar: FC<ISidebarProps> = ({ children, links, minimized, toggleMinimize
 					disabled={false}
 					onClick={handleSupport}
 				/>
-				<Select defaultValue={i18n.language?.split('-')?.[0] ?? 'en'} onValueChange={handleLanguageChange}>
+				<Select defaultValue={i18n.language} onValueChange={handleLanguageChange}>
 					<SelectTrigger minimized={minimized} className="w-full mt-2 ">
 						<div className={'flex flex-row items-center justify-start gap-2'}>
 							<Globe className={cx('w-4 h-4', minimized && 'w-6 h-6')} />

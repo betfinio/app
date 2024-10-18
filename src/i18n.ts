@@ -1,5 +1,6 @@
 import type { i18n } from 'i18next';
 import * as i18 from 'i18next';
+import I18nextBrowserLanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
 import czJSON from './translations/cz/shared.json';
 import enJSON from './translations/en/shared.json';
@@ -24,25 +25,19 @@ export const resources = {
 } as const;
 
 const instance: i18n = i18.createInstance();
-instance.use(initReactI18next).init({
-	resources,
-	fallbackLng: defaultLocale,
-	defaultNS,
-	interpolation: { escapeValue: false },
-	react: { useSuspense: true },
-});
-
-export const changeLanguage = (locale: string | null) => {
-	const lng = locale ?? defaultLocale;
-	instance.changeLanguage(lng);
-	localStorage.setItem('i18nextLng', lng);
-};
-
-if (!localStorage.getItem('i18nextLng')) {
-	const locale = navigator.language.split('-')[0];
-	changeLanguage(locale);
-} else {
-	changeLanguage(localStorage.getItem('i18nextLng'));
-}
+instance
+	.use(I18nextBrowserLanguageDetector)
+	.use(initReactI18next)
+	.init({
+		resources,
+		detection: {
+			order: ['localStorage', 'navigator'],
+			convertDetectedLanguage: (lng) => lng.split('-')[0],
+		},
+		fallbackLng: defaultLocale,
+		defaultNS,
+		interpolation: { escapeValue: false },
+		react: { useSuspense: true },
+	});
 
 export default instance;
