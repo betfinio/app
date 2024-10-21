@@ -41,18 +41,7 @@ export const Root: FC<{ instance: i18n; id: string }> = ({ instance, id }) => {
 									</motion.div>
 								</div>
 							)}
-							{!isProd && (
-								<div className={'w-full bg-red-roulette text-white overflow-hidden'}>
-									<motion.div
-										initial={{ x: '-300px' }}
-										animate={{ x: '100%' }}
-										transition={{ duration: 10, ease: 'linear', repeat: Number.POSITIVE_INFINITY }}
-										className={''}
-									>
-										This is a test version of BETFIN
-									</motion.div>
-								</div>
-							)}
+
 							<RootLayout id={id}>
 								<Outlet />
 							</RootLayout>
