@@ -16,7 +16,6 @@ interface ISidebarProps extends PropsWithChildren {
 }
 const Sidebar: FC<ISidebarProps> = ({ children, links, minimized, toggleMinimized }) => {
 	const { t, i18n } = useTranslation('shared', { keyPrefix: 'sidebar' });
-
 	const toggleSidebar = () => {
 		toggleMinimized((p) => !p);
 	};
@@ -65,7 +64,7 @@ const Sidebar: FC<ISidebarProps> = ({ children, links, minimized, toggleMinimize
 					disabled={false}
 					onClick={handleSupport}
 				/>
-				<Select defaultValue={i18n.language?.split('-')?.[0] ?? 'en'} onValueChange={handleLanguageChange}>
+				<Select defaultValue={i18n.language} onValueChange={handleLanguageChange}>
 					<SelectTrigger minimized={minimized} className="w-full mt-2 ">
 						<div className={'flex flex-row items-center justify-start gap-2'}>
 							<Globe className={cx('w-4 h-4', minimized && 'w-6 h-6')} />
@@ -74,7 +73,7 @@ const Sidebar: FC<ISidebarProps> = ({ children, links, minimized, toggleMinimize
 					</SelectTrigger>
 					<SelectContent>
 						<SelectItem value={'en'}>English</SelectItem>
-						<SelectItem value={'cz'}>Čeština</SelectItem>
+						<SelectItem value={'cs'}>Čeština</SelectItem>
 						<SelectItem value={'ru'}>Русский</SelectItem>
 					</SelectContent>
 				</Select>
