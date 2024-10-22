@@ -1,7 +1,7 @@
 import type { NavItemProps } from '@/components/ui/NavItem';
 import { getAcademyUrl, getAffiliateUrl, getGamesUrl, getStakingUrl } from '@/lib';
 import { isItemVisible } from '@/lib/utils.ts';
-import { Affiliate, Bag, Bank, DepthAffiliate, DirectAffiliate, Predict, Roadmap, Roulette, Slots, Staking } from '@betfinio/ui/dist/icons';
+import { Affiliate, Bag, Bank, DepthAffiliate, DirectAffiliate, Event, Predict, Roadmap, Roulette, Slots, Staking } from '@betfinio/ui/dist/icons';
 import { Binary } from '@betfinio/ui/dist/icons/Binary';
 import { LuckyRound } from '@betfinio/ui/dist/icons/LuckyRound';
 import { Stones } from '@betfinio/ui/dist/icons/Stones';
@@ -35,6 +35,7 @@ const games: NavItemProps[] = [
 	{ label: 'predict', keyIndex: 64, icon: <Predict />, href: getGamesUrl('/predict'), disabled: false },
 	{ label: 'roulette', icon: <Roulette />, href: getGamesUrl('/roulette'), disabled: false, keyIndex: 128 },
 	{ label: 'luro', icon: <LuckyRound className={'w-6 h-6'} />, href: getGamesUrl('/luro'), disabled: false, keyIndex: 256 },
+	{ label: 'elections', icon: <Event className={'color-inherit'} />, href: getGamesUrl('/elections'), disabled: false, keyIndex: 65536 },
 	{ label: 'hilo', icon: <ArrowUpDown />, href: getGamesUrl('/hilo'), keyIndex: 512 },
 	{ label: 'binary', icon: <Binary />, href: getGamesUrl('/poker'), keyIndex: 1024 },
 	{ label: 'slots', icon: <Slots />, href: getGamesUrl('/slots'), keyIndex: 2048 },
