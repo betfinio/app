@@ -3,8 +3,8 @@ import { BetValue } from '@/components/ui/BetValue.tsx';
 import { getGamesUrl, getStakingUrl } from '@/lib';
 import { useTotalStaked as useConservativeTotalStaked } from '@/lib/query/conservative.ts';
 import { useTotalProfit as useDynamicTotalProfit, useTotalStaked as useDynamicTotalStaked } from '@/lib/query/dynamic.ts';
-import { useLuroOnline } from '@/lib/query/luro.ts';
-import { usePredictOnline } from '@/lib/query/predict.ts';
+import { useLuroHistorical, useLuroOnline } from '@/lib/query/luro.ts';
+import { usePredictHistorical, usePredictOnline } from '@/lib/query/predict.ts';
 import { useRouletteOnline } from '@/lib/query/roulette.ts';
 import { useBalance } from '@/lib/query/token.ts';
 import { valueToNumber } from '@betfinio/abi/dist';
@@ -24,7 +24,9 @@ const MainBlock: FC<MainBlockProps> = ({ variant }) => {
 	const { data: stakedConservative = 0n, ...conservative } = useConservativeTotalStaked();
 	const { data: stakedDynamic = 0n, ...dynamic } = useDynamicTotalStaked();
 	const { data: predictOnline = 0, isFetching: isPredictOnlineFetching } = usePredictOnline();
+	const { data: predictHistorical = 0, isFetching: isPredictHistoricalFetching } = usePredictHistorical();
 	const { data: luroOnline = 0, isFetching: isLuroOnlineFetching } = useLuroOnline();
+	const { data: luroHistorical = 0, isFetching: isLuroHistoricalFetching } = useLuroHistorical();
 	const { data: rouletteOnline = 0, isFetching: isRouletteOnlineFetching } = useRouletteOnline();
 	const { data: conservativeBalance = 0n } = useBalance(import.meta.env.PUBLIC_CONSERVATIVE_STAKING_ADDRESS);
 	const { data: dynamicRevenue = 0n } = useDynamicTotalProfit();
@@ -34,10 +36,24 @@ const MainBlock: FC<MainBlockProps> = ({ variant }) => {
 				return (
 					<>
 						<Link to={`${getGamesUrl('predict')}`}>
-							<GameBlock disabled={false} className={'bg-game-predict'} label={t('predict')} loading={isPredictOnlineFetching} online={predictOnline} />
+							<GameBlock
+								disabled={false}
+								className={'bg-game-predict'}
+								label={t('predict')}
+								loading={isPredictOnlineFetching || isPredictHistoricalFetching}
+								online={predictOnline}
+								historical={predictHistorical}
+							/>
 						</Link>
 						<Link to={`${getGamesUrl('luro')}`} className={'hidden md:flex'}>
-							<GameBlock className={'bg-game-luro'} disabled={false} label={t('luro')} online={luroOnline} loading={isLuroOnlineFetching} />
+							<GameBlock
+								className={'bg-game-luro'}
+								disabled={false}
+								label={t('luro')}
+								historical={luroHistorical}
+								online={luroOnline}
+								loading={isLuroOnlineFetching || isLuroHistoricalFetching}
+							/>
 						</Link>
 						<div className={'hidden sm:flex'}>
 							<GameBlock className={'bg-game-stones'} label={t('stones')} online={0} />

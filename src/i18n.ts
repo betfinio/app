@@ -7,6 +7,7 @@ import enJSON from './translations/en/shared.json';
 import ruJSON from './translations/ru/shared.json';
 
 export const defaultNS = 'shared';
+export const defaultLocale = 'en';
 
 export const resources = {
 	en: {
@@ -15,6 +16,9 @@ export const resources = {
 	ru: {
 		shared: ruJSON,
 	},
+	cs: {
+		shared: czJSON,
+	},
 	cz: {
 		shared: czJSON,
 	},
@@ -22,15 +26,19 @@ export const resources = {
 
 const instance: i18n = i18.createInstance();
 instance
-	.use(initReactI18next)
 	.use(I18nextBrowserLanguageDetector)
+	.use(initReactI18next)
 	.init({
 		resources,
-		fallbackLng: 'en',
+		detection: {
+			order: ['localStorage', 'navigator'],
+			convertDetectedLanguage: (lng) => lng.split('-')[0],
+		},
+		supportedLngs: ['en', 'ru', 'cs'],
+		fallbackLng: defaultLocale,
 		defaultNS,
 		interpolation: { escapeValue: false },
 		react: { useSuspense: true },
-		detection: {},
 	});
 
 export default instance;
