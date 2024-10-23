@@ -3,6 +3,10 @@ sources:
     handler:
       graphql:
         endpoint: ${PUBLIC_PASS_GRAPH_URL}
+  - name: blocks
+    handler:
+      graphql:
+        endpoint: ${PUBLIC_BLOCKS_GRAPH_URL}
 
 
 codegen:

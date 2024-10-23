@@ -63,7 +63,7 @@ const NavItem: FC<NavItemProps> = ({
 				<div
 					onClick={handleSoon}
 					className={cx(
-						'flex flex-row relative items-center gap-5 w-full hover:text-yellow-400',
+						'flex flex-row relative items-center gap-5 w-full text-white hover:text-yellow-400',
 						active && 'text-yellow-400',
 						className,
 						'opacity-50 cursor-not-allowed',
@@ -78,7 +78,7 @@ const NavItem: FC<NavItemProps> = ({
 						<TooltipTrigger>
 							<Link
 								onClick={onClick}
-								className={cx('flex flex-row items-center gap-5 hover:text-yellow-400', active && 'text-yellow-400', className)}
+								className={cx('flex flex-row items-center gap-5 text-white hover:text-yellow-400', active && 'text-yellow-400', className)}
 								to={disabled ? '/soon' : href}
 							>
 								{icon || <div className={'w-6'} />} {!minimized && label}

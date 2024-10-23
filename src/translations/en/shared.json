@@ -18,6 +18,16 @@
 			"transaction": "Transaction",
 			"staker": "Staker",
 			"amount": "Amount"
+		},
+		"results": "result(s)",
+		"resultsPerPage": "Results per page",
+		"page": "page",
+		"of": "of",
+		"goTo": {
+			"first": "Go to first page",
+			"previous": "Go to previous page",
+			"last": "Go to last page",
+			"next": "Go to next page"
 		}
 	},
 	"footer": {
@@ -74,6 +84,7 @@
 		"poker": "Poker",
 		"blackjack": "Blackjack",
 		"stones": "Stones",
+		"elections": "Elections",
 		"slots": "Slots",
 		"support": "Support",
 		"about": "About BET"
@@ -169,7 +180,8 @@
 	},
 	"gameBlock": {
 		"soon": "Soon",
-		"activeBets": "active bets"
+		"activeBets": "active bets",
+		"historicalBets": "last 24h bets"
 	},
 	"member": {
 		"memberProfile": "Member profile",
